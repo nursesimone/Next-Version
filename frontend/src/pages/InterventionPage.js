@@ -357,27 +357,85 @@ export default function InterventionPage() {
               <CardTitle className="text-lg">Type of Intervention</CardTitle>
             </CardHeader>
             <CardContent>
-              <Tabs value={formData.intervention_type} onValueChange={(value) => updateField('intervention_type', value)}>
-                <TabsList className="grid grid-cols-4 w-full">
-                  <TabsTrigger value="injection" className="flex items-center gap-2">
-                    <Syringe className="w-4 h-4" />
-                    Injection
-                  </TabsTrigger>
-                  <TabsTrigger value="test" className="flex items-center gap-2">
-                    <TestTube className="w-4 h-4" />
-                    Test
-                  </TabsTrigger>
-                  <TabsTrigger value="treatment" className="flex items-center gap-2">
-                    <Pill className="w-4 h-4" />
-                    Treatment
-                  </TabsTrigger>
-                  <TabsTrigger value="procedure" className="flex items-center gap-2">
-                    <Scissors className="w-4 h-4" />
-                    Procedure
-                  </TabsTrigger>
-                </TabsList>
+              <Select
+                value={formData.intervention_type}
+                onValueChange={(value) => updateField('intervention_type', value)}
+              >
+                <SelectTrigger className="h-11" data-testid="intervention-type-select">
+                  <SelectValue placeholder="Select intervention type..." />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="injection">
+                    <span className="flex items-center gap-2">
+                      <Syringe className="w-4 h-4" />
+                      Injection
+                    </span>
+                  </SelectItem>
+                  <SelectItem value="test">
+                    <span className="flex items-center gap-2">
+                      <TestTube className="w-4 h-4" />
+                      Test
+                    </span>
+                  </SelectItem>
+                  <SelectItem value="treatment">
+                    <span className="flex items-center gap-2">
+                      <Pill className="w-4 h-4" />
+                      Treatment
+                    </span>
+                  </SelectItem>
+                  <SelectItem value="procedure">
+                    <span className="flex items-center gap-2">
+                      <Scissors className="w-4 h-4" />
+                      Procedure
+                    </span>
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </CardContent>
+          </Card>
 
-                {/* INJECTIONS TAB */}
+          {/* Universal Acknowledgments - Moved here */}
+          <Card className="bg-white border-slate-100">
+            <CardHeader>
+              <CardTitle className="text-lg flex items-center gap-2">
+                <ShieldCheck className="w-5 h-5 text-green-600" />
+                Required Acknowledgments
+              </CardTitle>
+              <CardDescription>
+                These acknowledgments are required for all interventions
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-start gap-3 p-3 bg-green-50 border border-green-200 rounded-lg">
+                <Checkbox
+                  id="verify-identity"
+                  checked={formData.verified_patient_identity}
+                  onCheckedChange={(checked) => updateField('verified_patient_identity', checked)}
+                  data-testid="verify-identity-checkbox"
+                />
+                <Label htmlFor="verify-identity" className="cursor-pointer">
+                  <span className="font-medium text-green-800">I have verified patient identity</span>
+                  <p className="text-sm text-green-600 mt-1">Confirmed patient name and date of birth</p>
+                </Label>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-green-50 border border-green-200 rounded-lg">
+                <Checkbox
+                  id="ppe-donned"
+                  checked={formData.donned_proper_ppe}
+                  onCheckedChange={(checked) => updateField('donned_proper_ppe', checked)}
+                  data-testid="ppe-checkbox"
+                />
+                <Label htmlFor="ppe-donned" className="cursor-pointer">
+                  <span className="font-medium text-green-800">I have donned proper PPE</span>
+                  <p className="text-sm text-green-600 mt-1">Appropriate personal protective equipment was worn</p>
+                </Label>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Intervention Type Forms */}
+          {formData.intervention_type && (
+            <>
                 <TabsContent value="injection" className="space-y-6 pt-6">
                   <div>
                     <Label className="text-base font-medium">Is this a vaccination?</Label>
