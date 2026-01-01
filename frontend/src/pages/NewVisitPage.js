@@ -1054,15 +1054,43 @@ export default function NewVisitPage() {
                       <Label htmlFor="isDiabetic" className="cursor-pointer">Patient is diabetic</Label>
                     </div>
                     {visitData.endocrine.is_diabetic && (
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <Label>Blood Sugar (mg/dL)</Label>
-                          <Input
-                            value={visitData.endocrine.blood_sugar}
-                            onChange={(e) => updateEndocrine('blood_sugar', e.target.value)}
-                            placeholder="e.g., 120"
-                            className="mt-1"
-                          />
+                      <div className="space-y-4">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <div>
+                            <Label>Blood Sugar (mg/dL)</Label>
+                            <Input
+                              value={visitData.endocrine.blood_sugar}
+                              onChange={(e) => updateEndocrine('blood_sugar', e.target.value)}
+                              placeholder="e.g., 120"
+                              className="mt-1"
+                              data-testid="blood-sugar-input"
+                            />
+                          </div>
+                          <div>
+                            <Label>Date of Reading</Label>
+                            <Input
+                              type="date"
+                              value={visitData.endocrine.blood_sugar_date}
+                              onChange={(e) => updateEndocrine('blood_sugar_date', e.target.value)}
+                              className="mt-1"
+                              data-testid="blood-sugar-date-input"
+                            />
+                          </div>
+                          <div>
+                            <Label>Time of Day</Label>
+                            <Select
+                              value={visitData.endocrine.blood_sugar_time_of_day}
+                              onValueChange={(value) => updateEndocrine('blood_sugar_time_of_day', value)}
+                            >
+                              <SelectTrigger className="mt-1" data-testid="blood-sugar-time-select">
+                                <SelectValue placeholder="Select time" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="AM">AM (Morning)</SelectItem>
+                                <SelectItem value="PM">PM (Afternoon/Evening)</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
                         </div>
                         <div>
                           <Label>Diabetic Notes</Label>
