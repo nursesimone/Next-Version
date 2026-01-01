@@ -434,9 +434,15 @@ export default function InterventionPage() {
           </Card>
 
           {/* Intervention Type Forms */}
-          {formData.intervention_type && (
-            <>
-                <TabsContent value="injection" className="space-y-6 pt-6">
+          {formData.intervention_type === 'injection' && (
+            <Card className="bg-white border-slate-100">
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <Syringe className="w-5 h-5 text-blue-600" />
+                  Injection Details
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
                   <div>
                     <Label className="text-base font-medium">Is this a vaccination?</Label>
                     <RadioGroup
