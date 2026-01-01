@@ -873,45 +873,6 @@ export default function InterventionPage() {
           </> 
           )}
 
-          {/* Universal Acknowledgments */}
-          <Card className="bg-white border-slate-100">
-            <CardHeader>
-              <CardTitle className="text-lg flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-green-600" />
-                Required Acknowledgments
-              </CardTitle>
-              <CardDescription>
-                These acknowledgments are required for all interventions
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-start gap-3 p-3 bg-green-50 border border-green-200 rounded-lg">
-                <Checkbox
-                  id="verify-identity"
-                  checked={formData.verified_patient_identity}
-                  onCheckedChange={(checked) => updateField('verified_patient_identity', checked)}
-                  data-testid="verify-identity-checkbox"
-                />
-                <Label htmlFor="verify-identity" className="cursor-pointer">
-                  <span className="font-medium text-green-800">I have verified patient identity</span>
-                  <p className="text-sm text-green-600 mt-1">Confirmed patient name and date of birth</p>
-                </Label>
-              </div>
-              <div className="flex items-start gap-3 p-3 bg-green-50 border border-green-200 rounded-lg">
-                <Checkbox
-                  id="ppe-donned"
-                  checked={formData.donned_proper_ppe}
-                  onCheckedChange={(checked) => updateField('donned_proper_ppe', checked)}
-                  data-testid="ppe-checkbox"
-                />
-                <Label htmlFor="ppe-donned" className="cursor-pointer">
-                  <span className="font-medium text-green-800">I have donned proper PPE</span>
-                  <p className="text-sm text-green-600 mt-1">Appropriate personal protective equipment was worn</p>
-                </Label>
-              </div>
-            </CardContent>
-          </Card>
-
           {/* Post-Intervention Observations */}
           <Card className="bg-white border-slate-100">
             <CardHeader>
