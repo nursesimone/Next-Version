@@ -289,18 +289,31 @@ export default function DashboardPage() {
             {filteredPatients.map(patient => (
               <Card 
                 key={patient.id} 
-                className="patient-card bg-white border-slate-100 cursor-pointer"
+                className={`patient-card bg-white border-slate-100 cursor-pointer ${
+                  !patient.is_assigned_to_me ? 'opacity-50 hover:opacity-75' : ''
+                }`}
                 onClick={() => navigate(`/patients/${patient.id}`)}
                 data-testid={`patient-card-${patient.id}`}
               >
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 bg-teal-50 rounded-full flex items-center justify-center">
-                        <User className="w-7 h-7 text-teal-700" />
+                      <div className={`w-14 h-14 ${
+                        patient.is_assigned_to_me ? 'bg-teal-50' : 'bg-slate-100'
+                      } rounded-full flex items-center justify-center`}>
+                        <User className={`w-7 h-7 ${
+                          patient.is_assigned_to_me ? 'text-teal-700' : 'text-slate-400'
+                        }`} />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-slate-900">{patient.full_name}</h3>
+                        <div className="flex items-center gap-2">
+                          <h3 className="font-semibold text-slate-900">{patient.full_name}</h3>
+                          {!patient.is_assigned_to_me && (
+                            <span className="text-xs px-2 py-0.5 bg-slate-100 text-slate-600 rounded">
+                              Not Assigned
+                            </span>
+                          )}
+                        </div>
                         <div className="flex items-center gap-2 text-sm text-slate-500 mt-1">
                           {patient.permanent_info?.date_of_birth && (
                             <>
