@@ -680,9 +680,12 @@ async def create_visit(patient_id: str, data: VisitCreate, nurse: dict = Depends
         "respiratory": data.respiratory.model_dump(),
         "endocrine": data.endocrine.model_dump(),
         "changes_since_last": data.changes_since_last.model_dump(),
+        "home_visit_logbook": data.home_visit_logbook.model_dump(),
         "overall_health_status": data.overall_health_status,
         "nurse_notes": data.nurse_notes,
         "daily_note_content": data.daily_note_content,
+        "status": data.status,
+        "attachments": data.attachments or [],
         "created_at": now
     }
     await db.visits.insert_one(visit_doc)
