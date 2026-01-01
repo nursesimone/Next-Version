@@ -232,13 +232,43 @@ export default function NewVisitPage() {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const updateHomeLogbook = (field, value) => {
+    setVisitData(prev => ({
+      ...prev,
+      home_visit_logbook: { ...prev.home_visit_logbook, [field]: value }
+    }));
+  };
+
+  const pullFromLast = (section, field) => {
+    if (!lastVisit) {
+      toast.error('No previous visit found');
+      return;
+    }
+    
+    const lastValue = lastVisit[section]?.[field];
+    if (lastValue) {
+      setVisitData(prev => ({
+        ...prev,
+        [section]: {
+          ...prev[section],
+          [field]: lastValue,
+          [`${field}_from_last`]: true
+        }
+      }));
+      toast.success(`Pulled "${field.replace(/_/g, ' ')}" from last visit`);
+    } else {
+      toast.error('No previous data found for this field');
+    }
+  };
+
+  const handleSubmit = async (e, saveAs = 'completed') => {
     e.preventDefault();
     setSaving(true);
     
     try {
-      await visitsAPI.create(patientId, visitData);
-      toast.success('Visit saved successfully');
+      const submitData = { ...visitData, status: saveAs };
+      await visitsAPI.create(patientId, submitData);
+      toast.success(saveAs === 'draft' ? 'Visit saved as draft' : 'Visit completed successfully');
       navigate(`/patients/${patientId}`);
     } catch (error) {
       toast.error('Failed to save visit');
