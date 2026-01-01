@@ -441,17 +441,30 @@ export default function PatientDetailPage() {
                     
                     <div className="space-y-3">
                       <div>
-                        <Label className="text-slate-500">Home Address</Label>
+                        <Label className="text-slate-500">Home Street Address</Label>
                         {editingProfile ? (
-                          <Textarea
-                            value={profileData.home_address || ''}
-                            onChange={(e) => handleProfileChange('home_address', e.target.value)}
+                          <Input
+                            value={profileData.home_street_address || ''}
+                            onChange={(e) => handleProfileChange('home_street_address', e.target.value)}
                             className="mt-1"
-                            placeholder="Enter full address"
-                            rows={2}
+                            placeholder="123 Main Street"
                           />
                         ) : (
-                          <p className="text-slate-900">{profileData.home_address || 'Not set'}</p>
+                          <p className="text-slate-900">{profileData.home_street_address || 'Not set'}</p>
+                        )}
+                      </div>
+
+                      <div>
+                        <Label className="text-slate-500">City, State & ZIP</Label>
+                        {editingProfile ? (
+                          <Input
+                            value={profileData.home_city_state_zip || ''}
+                            onChange={(e) => handleProfileChange('home_city_state_zip', e.target.value)}
+                            className="mt-1"
+                            placeholder="Minneapolis, MN 55401"
+                          />
+                        ) : (
+                          <p className="text-slate-900">{profileData.home_city_state_zip || 'Not set'}</p>
                         )}
                       </div>
 
@@ -498,17 +511,30 @@ export default function PatientDetailPage() {
                       </div>
 
                       <div>
-                        <Label className="text-slate-500">Adult Day Program Address</Label>
+                        <Label className="text-slate-500">Adult Day Program Street Address</Label>
                         {editingProfile ? (
-                          <Textarea
-                            value={profileData.adult_day_program_address || ''}
-                            onChange={(e) => handleProfileChange('adult_day_program_address', e.target.value)}
+                          <Input
+                            value={profileData.adult_day_street_address || ''}
+                            onChange={(e) => handleProfileChange('adult_day_street_address', e.target.value)}
                             className="mt-1"
-                            placeholder="Program address"
-                            rows={2}
+                            placeholder="456 Oak Avenue"
                           />
                         ) : (
-                          <p className="text-slate-900">{profileData.adult_day_program_address || 'Not set'}</p>
+                          <p className="text-slate-900">{profileData.adult_day_street_address || 'Not set'}</p>
+                        )}
+                      </div>
+
+                      <div>
+                        <Label className="text-slate-500">City, State & ZIP</Label>
+                        {editingProfile ? (
+                          <Input
+                            value={profileData.adult_day_city_state_zip || ''}
+                            onChange={(e) => handleProfileChange('adult_day_city_state_zip', e.target.value)}
+                            className="mt-1"
+                            placeholder="St. Paul, MN 55102"
+                          />
+                        ) : (
+                          <p className="text-slate-900">{profileData.adult_day_city_state_zip || 'Not set'}</p>
                         )}
                       </div>
                     </div>
