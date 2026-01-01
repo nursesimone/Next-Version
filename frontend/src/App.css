@@ -1,6 +1,6 @@
 /* Clinical Zen Theme - App Styles */
 
-/* Login page hero overlay */
+/* Login page hero overlay - Eggplant & Navy gradient */
 .login-hero-overlay {
     position: relative;
 }
@@ -8,7 +8,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(15, 118, 110, 0.85), rgba(13, 148, 136, 0.7));
+    background: linear-gradient(135deg, rgba(76, 29, 149, 0.9), rgba(51, 48, 202, 0.85));
     z-index: 1;
 }
 .login-hero-content {
@@ -30,11 +30,11 @@
     transition: all 0.3s ease;
 }
 .step-dot.active {
-    background: #0f766e;
+    background: #6d28d9;
     transform: scale(1.2);
 }
 .step-dot.completed {
-    background: #14b8a6;
+    background: #8b5cf6;
 }
 
 /* Vitals highlight for abnormal values */
@@ -51,15 +51,15 @@
 }
 .patient-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 12px 24px rgba(76, 29, 149, 0.12);
 }
 
 /* Sidebar navigation */
 .sidebar-nav-item {
-    @apply flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 hover:bg-teal-50 hover:text-teal-700 transition-all;
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 hover:bg-eggplant-50 hover:text-eggplant-700 transition-all;
 }
 .sidebar-nav-item.active {
-    @apply bg-teal-50 text-teal-700 font-medium;
+    @apply bg-eggplant-50 text-eggplant-700 font-medium;
 }
 
 /* Assessment section cards */
