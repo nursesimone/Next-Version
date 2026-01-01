@@ -450,7 +450,7 @@ export default function DashboardPage() {
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
-                              navigate(`/patients/${patient.id}`);
+                              navigate(`/utc/${patient.last_utc.id}`);
                             }}
                             className="ml-1 text-amber-600 hover:text-amber-700 underline font-medium"
                           >
