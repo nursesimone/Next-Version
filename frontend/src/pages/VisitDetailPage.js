@@ -649,9 +649,10 @@ export default function VisitDetailPage() {
             )}
           </CardContent>
         </Card>
+        )}
 
-        {/* Nurse Notes */}
-        {visit.nurse_notes && (
+        {/* Nurse Notes - Only for nurse_visit */}
+        {visit.visit_type === 'nurse_visit' && visit.nurse_notes && (
           <Card className="bg-white border-slate-100">
             <CardHeader>
               <CardTitle className="text-lg flex items-center gap-2">
