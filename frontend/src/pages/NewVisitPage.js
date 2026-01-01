@@ -123,6 +123,13 @@ export default function NewVisitPage() {
   // Get visit type from session storage
   const visitType = sessionStorage.getItem('visitType') || 'nurse_visit';
 
+  // Redirect to InterventionPage if patient_intervention type is selected
+  useEffect(() => {
+    if (visitType === 'patient_intervention') {
+      navigate(`/patients/${patientId}/intervention`, { replace: true });
+    }
+  }, [visitType, patientId, navigate]);
+
   useEffect(() => {
     fetchPatient();
   }, [patientId]);
