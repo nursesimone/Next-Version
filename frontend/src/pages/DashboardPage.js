@@ -372,14 +372,14 @@ export default function DashboardPage() {
                   </div>
                   
                   {/* Last Vitals with Date - Clickable */}
-                  {patient.last_vitals && (
+                  {patient.last_vitals && patient.last_visit_id && (
                     <div className="mt-4 pt-4 border-t border-slate-100">
                       <div className="flex items-center justify-between mb-2">
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
-                            // Navigate to patient detail page with hash to vitals tab
-                            navigate(`/patients/${patient.id}#vitals`);
+                            // Navigate to the visit that contains these vitals
+                            navigate(`/visits/${patient.last_visit_id}`);
                           }}
                           className="text-xs text-eggplant-600 hover:text-eggplant-700 underline font-medium"
                         >
