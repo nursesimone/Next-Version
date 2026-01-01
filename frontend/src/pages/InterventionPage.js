@@ -817,6 +817,190 @@ export default function InterventionPage() {
             </CardContent>
           </Card>
 
+          {/* Post-Intervention Observations */}
+          <Card className="bg-white border-slate-100">
+            <CardHeader>
+              <CardTitle className="text-lg flex items-center gap-2">
+                <CheckCircle2 className="w-5 h-5 text-blue-600" />
+                Post-Intervention Observations
+              </CardTitle>
+              <CardDescription>
+                Select all that apply (check all relevant observations)
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="flex items-start gap-3">
+                <Checkbox
+                  id="no-severe"
+                  checked={formData.post_no_severe_symptoms}
+                  onCheckedChange={(checked) => updateField('post_no_severe_symptoms', checked)}
+                  data-testid="no-severe-checkbox"
+                />
+                <Label htmlFor="no-severe" className="cursor-pointer">
+                  Patient showed no signs of severe adverse symptoms
+                </Label>
+              </div>
+              <div className="flex items-start gap-3">
+                <Checkbox
+                  id="tolerated"
+                  checked={formData.post_tolerated_well}
+                  onCheckedChange={(checked) => updateField('post_tolerated_well', checked)}
+                  data-testid="tolerated-checkbox"
+                />
+                <Label htmlFor="tolerated" className="cursor-pointer">
+                  Patient tolerated the intervention well
+                </Label>
+              </div>
+              <div className="flex items-start gap-3">
+                <Checkbox
+                  id="side-effects"
+                  checked={formData.post_informed_side_effects}
+                  onCheckedChange={(checked) => updateField('post_informed_side_effects', checked)}
+                  data-testid="side-effects-checkbox"
+                />
+                <Label htmlFor="side-effects" className="cursor-pointer">
+                  Patient was informed of possible side effects
+                </Label>
+              </div>
+              <div className="flex items-start gap-3">
+                <Checkbox
+                  id="results-timeframe"
+                  checked={formData.post_advised_results_timeframe}
+                  onCheckedChange={(checked) => updateField('post_advised_results_timeframe', checked)}
+                  data-testid="results-timeframe-checkbox"
+                />
+                <Label htmlFor="results-timeframe" className="cursor-pointer">
+                  Patient was advised on results timeframe
+                </Label>
+              </div>
+              <div className="flex items-start gap-3">
+                <Checkbox
+                  id="seek-care"
+                  checked={formData.post_educated_seek_care}
+                  onCheckedChange={(checked) => updateField('post_educated_seek_care', checked)}
+                  data-testid="seek-care-checkbox"
+                />
+                <Label htmlFor="seek-care" className="cursor-pointer">
+                  Patient was educated on when to seek emergency care
+                </Label>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Intervention Completion & Follow-up */}
+          <Card className="bg-white border-slate-100">
+            <CardHeader>
+              <CardTitle className="text-lg">Intervention Completion & Follow-up</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <Label>Completion Status</Label>
+                <Select
+                  value={formData.completion_status}
+                  onValueChange={(value) => updateField('completion_status', value)}
+                >
+                  <SelectTrigger className="mt-1" data-testid="completion-status-select">
+                    <SelectValue placeholder="Select completion status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="only_one">This is the only intervention needed</SelectItem>
+                    <SelectItem value="series_ongoing">Part of a series - ongoing</SelectItem>
+                    <SelectItem value="series_completed">Series completed</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {formData.completion_status === 'series_ongoing' && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label>Next Visit Interval</Label>
+                    <Select
+                      value={formData.next_visit_interval}
+                      onValueChange={(value) => updateField('next_visit_interval', value)}
+                    >
+                      <SelectTrigger className="mt-1">
+                        <SelectValue placeholder="Select interval" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="day">1 Day</SelectItem>
+                        <SelectItem value="week">1 Week</SelectItem>
+                        <SelectItem value="month">1 Month</SelectItem>
+                        <SelectItem value="3_months">3 Months</SelectItem>
+                        <SelectItem value="6_months">6 Months</SelectItem>
+                        <SelectItem value="12_months">12 Months</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  {formData.next_visit_interval === 'other' && (
+                    <div>
+                      <Label>Specify Interval</Label>
+                      <Input
+                        value={formData.next_visit_interval_other}
+                        onChange={(e) => updateField('next_visit_interval_other', e.target.value)}
+                        placeholder="e.g., 2 weeks"
+                        className="mt-1"
+                      />
+                    </div>
+                  )}
+                </div>
+              )}
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-slate-100">
+                <div>
+                  <Label>Who Was Present?</Label>
+                  <Select
+                    value={formData.present_person_type}
+                    onValueChange={(value) => updateField('present_person_type', value)}
+                  >
+                    <SelectTrigger className="mt-1">
+                      <SelectValue placeholder="Select" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="parent_guardian">Parent/Guardian</SelectItem>
+                      <SelectItem value="caregiver">Caregiver</SelectItem>
+                      <SelectItem value="staff">Staff Member</SelectItem>
+                      <SelectItem value="family">Family Member</SelectItem>
+                      <SelectItem value="other">Other</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label>Name of Person Present</Label>
+                  <Input
+                    value={formData.present_person_name}
+                    onChange={(e) => updateField('present_person_name', e.target.value)}
+                    placeholder="Enter name"
+                    className="mt-1"
+                  />
+                </div>
+              </div>
+
+              {formData.present_person_type === 'other' && (
+                <div>
+                  <Label>Specify Relationship</Label>
+                  <Input
+                    value={formData.present_person_type_other}
+                    onChange={(e) => updateField('present_person_type_other', e.target.value)}
+                    placeholder="Enter relationship"
+                    className="mt-1"
+                  />
+                </div>
+              )}
+
+              <div>
+                <Label>Additional Comments</Label>
+                <Textarea
+                  value={formData.additional_comments}
+                  onChange={(e) => updateField('additional_comments', e.target.value)}
+                  placeholder="Any additional comments or observations..."
+                  className="mt-1"
+                  rows={2}
+                />
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Additional Notes */}
           <Card className="bg-white border-slate-100">
             <CardHeader>
