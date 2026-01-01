@@ -338,6 +338,39 @@ export default function UnableToContactPage() {
               {formData.individual_location === 'admitted' && (
                 <div className="space-y-4 animate-fade-in pt-4 border-t border-slate-100">
                   <h4 className="font-medium text-slate-700">Medical Facility Admission Details</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                      <Label>Facility Name</Label>
+                      <Input
+                        value={formData.facility_name}
+                        onChange={(e) => updateField('facility_name', e.target.value)}
+                        placeholder="Hospital or facility name"
+                        className="mt-1"
+                        data-testid="facility-name-input"
+                      />
+                    </div>
+                    <div>
+                      <Label>City</Label>
+                      <Input
+                        value={formData.facility_city}
+                        onChange={(e) => updateField('facility_city', e.target.value)}
+                        placeholder="City"
+                        className="mt-1"
+                        data-testid="facility-city-input"
+                      />
+                    </div>
+                    <div>
+                      <Label>State</Label>
+                      <Input
+                        value={formData.facility_state}
+                        onChange={(e) => updateField('facility_state', e.target.value)}
+                        placeholder="State (e.g., CA)"
+                        className="mt-1"
+                        maxLength={2}
+                        data-testid="facility-state-input"
+                      />
+                    </div>
+                  </div>
                   <div>
                     <Label>When were they admitted?</Label>
                     <Input
