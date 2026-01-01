@@ -429,12 +429,6 @@ export default function DashboardPage() {
                       </div>
                     )}
                   </div>
-                  
-                  {patient.permanent_info?.visit_frequency && (
-                      <span className="bg-teal-50 text-teal-700 px-2 py-1 rounded">
-                        {patient.permanent_info.visit_frequency}
-                      </span>
-                    )}
                   </div>
                 </CardContent>
               </Card>
