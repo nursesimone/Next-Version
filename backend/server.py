@@ -443,11 +443,23 @@ async def register(data: NurseRegister):
 
 @api_router.post("/auth/login", response_model=TokenResponse)
 async def login(data: NurseLogin):
+    logger.info(f"Login attempt for email: {data.email}")
     nurse = await db.nurses.find_one({"email": data.email})
-    if not nurse or not verify_password(data.password, nurse["password_hash"]):
+    
+    if not nurse:
+        logger.warning(f"User not found: {data.email}")
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+    
+    logger.info(f"User found, verifying password")
+    password_valid = verify_password(data.password, nurse["password_hash"])
+    logger.info(f"Password valid: {password_valid}")
+    
+    if not password_valid:
+        logger.warning(f"Invalid password for: {data.email}")
         raise HTTPException(status_code=401, detail="Invalid credentials")
     
     token = create_token(nurse["id"])
+    logger.info(f"Login successful for: {data.email}")
     return TokenResponse(
         token=token,
         nurse=NurseResponse(
