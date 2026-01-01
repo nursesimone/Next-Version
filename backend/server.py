@@ -569,39 +569,36 @@ async def list_patients(nurse: dict = Depends(get_current_nurse)):
         # Get last visit (completed only, exclude daily_note as they are not visits)
         last_visit = await db.visits.find_one(
             {"patient_id": p["id"], "status": "completed", "visit_type": {"$ne": "daily_note"}},
-            {"_id": 0, "visit_date": 1, "vital_signs": 1},
+            {"_id": 0, "id": 1, "visit_date": 1, "vital_signs": 1},
             sort=[("visit_date", -1)]
         )
         
         # Get last UTC record
         last_utc = await db.unable_to_contact.find_one(
             {"patient_id": p["id"]},
-            {"_id": 0, "attempt_date": 1, "individual_location": 1, "individual_location_other": 1},
+            {"_id": 0, "id": 1, "attempt_date": 1, "individual_location": 1, "individual_location_other": 1},
             sort=[("attempt_date", -1)]
         )
         
+        p["last_visit_id"] = last_visit.get("id") if last_visit else None
         p["last_visit_date"] = last_visit.get("visit_date") if last_visit else None
         p["last_vitals_date"] = last_visit.get("visit_date") if last_visit else None
         
-        # Only include UTC if it's after the last visit
+        # Include UTC regardless of date (show most recent UTC)
         if last_utc:
-            utc_date = last_utc.get("attempt_date", "")
-            last_visit_date = p["last_visit_date"] or ""
-            if utc_date > last_visit_date:
-                location_map = {
-                    "admitted": "Hospitalized",
-                    "moved_temporarily": "Moved Temporarily",
-                    "moved_permanently": "Moved Permanently",
-                    "vacation": "On Vacation",
-                    "deceased": "Deceased",
-                    "other": last_utc.get("individual_location_other", "Other")
-                }
-                p["last_utc"] = {
-                    "date": utc_date,
-                    "reason": location_map.get(last_utc.get("individual_location"), "Unknown")
-                }
-            else:
-                p["last_utc"] = None
+            location_map = {
+                "admitted": "Hospitalized",
+                "moved_temporarily": "Temp Move",
+                "moved_permanently": "Perm Move",
+                "vacation": "Vacation",
+                "deceased": "Deceased",
+                "other": last_utc.get("individual_location_other", "Other")
+            }
+            p["last_utc"] = {
+                "id": last_utc.get("id"),
+                "date": last_utc.get("attempt_date"),
+                "reason": location_map.get(last_utc.get("individual_location"), "Unknown")
+            }
         else:
             p["last_utc"] = None
         
