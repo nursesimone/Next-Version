@@ -72,14 +72,21 @@ export default function DashboardPage() {
 
   const handleAddPatient = async (e) => {
     e.preventDefault();
-    if (!newPatientName.trim()) return;
+    if (!newPatientName.trim() || !newPatientOrg) {
+      toast.error('Please enter patient name and select organization');
+      return;
+    }
     
     setAddingPatient(true);
     try {
-      const response = await patientsAPI.create({ full_name: newPatientName.trim() });
+      const response = await patientsAPI.create({ 
+        full_name: newPatientName.trim(),
+        organization: newPatientOrg
+      });
       setPatients([response.data, ...patients]);
       setShowAddDialog(false);
       setNewPatientName('');
+      setNewPatientOrg('');
       toast.success('Patient added successfully');
       navigate(`/patients/${response.data.id}`);
     } catch (error) {
