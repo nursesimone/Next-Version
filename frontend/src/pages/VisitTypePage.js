@@ -72,7 +72,7 @@ export default function VisitTypePage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-teal-700 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-eggplant-700 rounded-xl flex items-center justify-center">
                 <Stethoscope className="w-6 h-6 text-white" />
               </div>
               <span className="text-xl font-bold text-slate-900">NurseRounds</span>
@@ -123,8 +123,8 @@ export default function VisitTypePage() {
                   key={type.id}
                   className={`cursor-pointer transition-all ${
                     visitType === type.id 
-                      ? 'border-teal-500 ring-2 ring-teal-500/20' 
-                      : 'border-slate-200 hover:border-teal-200'
+                      ? 'border-eggplant-500 ring-2 ring-eggplant-500/20' 
+                      : 'border-slate-200 hover:border-eggplant-200'
                   }`}
                   onClick={() => setVisitType(type.id)}
                   data-testid={`visit-type-${type.id}`}
@@ -132,10 +132,10 @@ export default function VisitTypePage() {
                   <CardContent className="flex items-center gap-4 p-6">
                     <RadioGroupItem value={type.id} id={type.id} className="sr-only" />
                     <div className={`w-14 h-14 rounded-xl flex items-center justify-center ${
-                      visitType === type.id ? 'bg-teal-700' : 'bg-teal-50'
+                      visitType === type.id ? 'bg-eggplant-700' : 'bg-eggplant-50'
                     }`}>
                       <Icon className={`w-7 h-7 ${
-                        visitType === type.id ? 'text-white' : 'text-teal-700'
+                        visitType === type.id ? 'text-white' : 'text-eggplant-700'
                       }`} />
                     </div>
                     <div className="flex-1">
@@ -144,7 +144,7 @@ export default function VisitTypePage() {
                     </div>
                     <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
                       visitType === type.id 
-                        ? 'border-teal-700 bg-teal-700' 
+                        ? 'border-eggplant-700 bg-eggplant-700' 
                         : 'border-slate-300'
                     }`}>
                       {visitType === type.id && (
@@ -160,7 +160,7 @@ export default function VisitTypePage() {
           {/* Proceed Button */}
           <div className="flex justify-center pt-6">
             <Button 
-              className="h-12 px-8 bg-teal-700 hover:bg-teal-600"
+              className="h-12 px-8 bg-eggplant-700 hover:bg-eggplant-600"
               onClick={handleProceed}
               disabled={!visitType}
               data-testid="proceed-btn"

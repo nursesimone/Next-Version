@@ -270,7 +270,7 @@ export default function ReportsPage() {
                 <ArrowLeft className="w-5 h-5" />
               </Button>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-teal-700 rounded-xl flex items-center justify-center">
+                <div className="w-10 h-10 bg-eggplant-700 rounded-xl flex items-center justify-center">
                   <Stethoscope className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -288,7 +288,7 @@ export default function ReportsPage() {
         <Card className="bg-white border-slate-100 mb-6">
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
-              <Filter className="w-5 h-5 text-teal-700" />
+              <Filter className="w-5 h-5 text-eggplant-700" />
               Report Filters
             </CardTitle>
           </CardHeader>
@@ -354,7 +354,7 @@ export default function ReportsPage() {
             
             <div className="flex gap-3 mt-6">
               <Button 
-                className="bg-teal-700 hover:bg-teal-600"
+                className="bg-eggplant-700 hover:bg-eggplant-600"
                 onClick={fetchReport}
                 disabled={loading}
                 data-testid="generate-report-btn"
@@ -385,8 +385,8 @@ export default function ReportsPage() {
               <Card className="bg-white border-slate-100">
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-teal-50 rounded-lg flex items-center justify-center">
-                      <ClipboardList className="w-5 h-5 text-teal-700" />
+                    <div className="w-10 h-10 bg-eggplant-50 rounded-lg flex items-center justify-center">
+                      <ClipboardList className="w-5 h-5 text-eggplant-700" />
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-slate-900">{reportData.summary.total_visits}</p>
@@ -444,7 +444,7 @@ export default function ReportsPage() {
               <Card className="bg-white border-slate-100">
                 <CardHeader>
                   <CardTitle className="text-lg flex items-center gap-2">
-                    <Building2 className="w-5 h-5 text-teal-700" />
+                    <Building2 className="w-5 h-5 text-eggplant-700" />
                     By Organization
                   </CardTitle>
                 </CardHeader>
@@ -453,7 +453,7 @@ export default function ReportsPage() {
                     {Object.entries(reportData.summary.by_organization).map(([org, count]) => (
                       <div key={org} className="bg-slate-50 p-4 rounded-lg">
                         <p className="font-medium text-slate-900">{org}</p>
-                        <p className="text-2xl font-bold text-teal-700">{count} visits</p>
+                        <p className="text-2xl font-bold text-eggplant-700">{count} visits</p>
                       </div>
                     ))}
                   </div>
@@ -542,7 +542,7 @@ function VisitTable({ visits, getVisitTypeLabel }) {
               <td className="py-3 px-4">{visit.patient_name}</td>
               <td className="py-3 px-4">
                 <span className={`px-2 py-1 rounded text-xs font-medium ${
-                  visit.visit_type === 'nurse_visit' ? 'bg-teal-50 text-teal-700' :
+                  visit.visit_type === 'nurse_visit' ? 'bg-eggplant-50 text-eggplant-700' :
                   visit.visit_type === 'vitals_only' ? 'bg-blue-50 text-blue-700' :
                   'bg-amber-50 text-amber-700'
                 }`}>

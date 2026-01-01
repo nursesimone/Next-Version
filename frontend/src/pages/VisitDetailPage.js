@@ -282,7 +282,7 @@ export default function VisitDetailPage() {
                 <ArrowLeft className="w-5 h-5" />
               </Button>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-teal-700 rounded-xl flex items-center justify-center">
+                <div className="w-10 h-10 bg-eggplant-700 rounded-xl flex items-center justify-center">
                   <Stethoscope className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -320,13 +320,13 @@ export default function VisitDetailPage() {
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle className="text-lg flex items-center gap-2">
-                <Activity className="w-5 h-5 text-teal-700" />
+                <Activity className="w-5 h-5 text-eggplant-700" />
                 Visit Summary
               </CardTitle>
               <div className="flex items-center gap-2">
                 {visit.visit_type && (
                   <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                    visit.visit_type === 'nurse_visit' ? 'bg-teal-50 text-teal-700' :
+                    visit.visit_type === 'nurse_visit' ? 'bg-eggplant-50 text-eggplant-700' :
                     visit.visit_type === 'vitals_only' ? 'bg-blue-50 text-blue-700' :
                     'bg-amber-50 text-amber-700'
                   }`}>
@@ -438,7 +438,7 @@ export default function VisitDetailPage() {
         <Card className="bg-white border-slate-100 mb-6">
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
-              <User className="w-5 h-5 text-teal-700" />
+              <User className="w-5 h-5 text-eggplant-700" />
               Physical Assessment
             </CardTitle>
           </CardHeader>
@@ -478,7 +478,7 @@ export default function VisitDetailPage() {
         <Card className="bg-white border-slate-100 mb-6">
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
-              <Eye className="w-5 h-5 text-teal-700" />
+              <Eye className="w-5 h-5 text-eggplant-700" />
               Head to Toe Assessment
             </CardTitle>
           </CardHeader>
@@ -657,7 +657,7 @@ export default function VisitDetailPage() {
           <Card className="bg-white border-slate-100">
             <CardHeader>
               <CardTitle className="text-lg flex items-center gap-2">
-                <FileText className="w-5 h-5 text-teal-700" />
+                <FileText className="w-5 h-5 text-eggplant-700" />
                 Nurse Notes
               </CardTitle>
             </CardHeader>

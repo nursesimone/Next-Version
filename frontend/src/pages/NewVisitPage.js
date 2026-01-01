@@ -295,7 +295,7 @@ export default function NewVisitPage() {
 
   const getVisitTypeColor = () => {
     switch (visitType) {
-      case 'nurse_visit': return 'bg-teal-50 text-teal-700 border-teal-200';
+      case 'nurse_visit': return 'bg-eggplant-50 text-eggplant-700 border-eggplant-200';
       case 'vitals_only': return 'bg-blue-50 text-blue-700 border-blue-200';
       case 'daily_note': return 'bg-amber-50 text-amber-700 border-amber-200';
       default: return 'bg-slate-50 text-slate-700 border-slate-200';
@@ -326,7 +326,7 @@ export default function NewVisitPage() {
                 <ArrowLeft className="w-5 h-5" />
               </Button>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-teal-700 rounded-xl flex items-center justify-center">
+                <div className="w-10 h-10 bg-eggplant-700 rounded-xl flex items-center justify-center">
                   <Stethoscope className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -349,7 +349,7 @@ export default function NewVisitPage() {
                 Save as Draft
               </Button>
               <Button 
-                className="bg-teal-700 hover:bg-teal-600"
+                className="bg-eggplant-700 hover:bg-eggplant-600"
                 onClick={(e) => handleSubmit(e, 'completed')}
                 disabled={saving}
                 data-testid="save-visit-btn"
@@ -368,7 +368,7 @@ export default function NewVisitPage() {
           <Card className="bg-white border-slate-100">
             <CardHeader>
               <CardTitle className="text-lg flex items-center gap-2">
-                <Activity className="w-5 h-5 text-teal-700" />
+                <Activity className="w-5 h-5 text-eggplant-700" />
                 {visitType === 'daily_note' ? 'Daily Note Information' : 'Visit Information'}
               </CardTitle>
             </CardHeader>
@@ -633,7 +633,7 @@ export default function NewVisitPage() {
               <Card className="bg-white border-slate-100">
                 <CardHeader>
                   <CardTitle className="text-lg flex items-center gap-2">
-                    <User className="w-5 h-5 text-teal-700" />
+                    <User className="w-5 h-5 text-eggplant-700" />
                     Physical Assessment
                   </CardTitle>
                 </CardHeader>
@@ -647,7 +647,7 @@ export default function NewVisitPage() {
                           variant="ghost" 
                           size="sm"
                           onClick={() => pullFromLast('physical_assessment', 'general_appearance')}
-                          className="text-xs text-teal-600 hover:text-teal-700"
+                          className="text-xs text-eggplant-600 hover:text-eggplant-700"
                         >
                           Pull from last visit
                         </Button>
@@ -671,7 +671,7 @@ export default function NewVisitPage() {
                           variant="ghost" 
                           size="sm"
                           onClick={() => pullFromLast('physical_assessment', 'skin_assessment')}
-                          className="text-xs text-teal-600 hover:text-teal-700"
+                          className="text-xs text-eggplant-600 hover:text-eggplant-700"
                         >
                           Pull from last visit
                         </Button>
@@ -698,7 +698,7 @@ export default function NewVisitPage() {
                             variant="ghost" 
                             size="sm"
                             onClick={() => pullFromLast('physical_assessment', 'mobility_level')}
-                            className="text-xs text-teal-600 hover:text-teal-700"
+                            className="text-xs text-eggplant-600 hover:text-eggplant-700"
                           >
                             ↻
                           </Button>
@@ -736,7 +736,7 @@ export default function NewVisitPage() {
                             variant="ghost" 
                             size="sm"
                             onClick={() => pullFromLast('physical_assessment', 'speech_level')}
-                            className="text-xs text-teal-600 hover:text-teal-700"
+                            className="text-xs text-eggplant-600 hover:text-eggplant-700"
                           >
                             ↻
                           </Button>
@@ -768,7 +768,7 @@ export default function NewVisitPage() {
                             variant="ghost" 
                             size="sm"
                             onClick={() => pullFromLast('physical_assessment', 'alert_oriented_level')}
-                            className="text-xs text-teal-600 hover:text-teal-700"
+                            className="text-xs text-eggplant-600 hover:text-eggplant-700"
                           >
                             ↻
                           </Button>
@@ -831,7 +831,7 @@ export default function NewVisitPage() {
                 <AccordionItem value="head-to-toe" className="bg-white border border-slate-100 rounded-xl px-6">
                   <AccordionTrigger className="hover:no-underline">
                     <span className="flex items-center gap-2 text-lg font-semibold">
-                      <Eye className="w-5 h-5 text-teal-700" />
+                      <Eye className="w-5 h-5 text-eggplant-700" />
                       Head to Toe Assessment
                     </span>
                   </AccordionTrigger>
@@ -1166,7 +1166,7 @@ export default function NewVisitPage() {
             <Card className="bg-white border-slate-100">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Brain className="w-5 h-5 text-teal-700" />
+                  <Brain className="w-5 h-5 text-eggplant-700" />
                   Overall Assessment
                 </CardTitle>
               </CardHeader>
@@ -1217,7 +1217,7 @@ export default function NewVisitPage() {
             </Button>
             <Button 
               type="submit"
-              className="bg-teal-700 hover:bg-teal-600 h-12 px-8"
+              className="bg-eggplant-700 hover:bg-eggplant-600 h-12 px-8"
               disabled={saving}
               data-testid="submit-visit-btn"
             >

@@ -156,14 +156,14 @@ export default function UnableToContactPage() {
           <Card className="bg-white border-slate-100">
             <CardHeader>
               <CardTitle className="text-lg flex items-center gap-2">
-                <Stethoscope className="w-5 h-5 text-teal-700" />
+                <Stethoscope className="w-5 h-5 text-eggplant-700" />
                 Reason for Visit
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="bg-teal-50 border border-teal-200 rounded-lg p-4">
-                <p className="text-teal-800 font-medium">{getVisitTypeLabel()}</p>
-                <p className="text-sm text-teal-600 mt-1">
+              <div className="bg-eggplant-50 border border-eggplant-200 rounded-lg p-4">
+                <p className="text-eggplant-800 font-medium">{getVisitTypeLabel()}</p>
+                <p className="text-sm text-eggplant-600 mt-1">
                   {patient?.permanent_info?.organization && (
                     <span className="flex items-center gap-1">
                       <Building2 className="w-4 h-4" />
@@ -179,7 +179,7 @@ export default function UnableToContactPage() {
           <Card className="bg-white border-slate-100">
             <CardHeader>
               <CardTitle className="text-lg flex items-center gap-2">
-                <Calendar className="w-5 h-5 text-teal-700" />
+                <Calendar className="w-5 h-5 text-eggplant-700" />
                 When did you attempt to visit?
               </CardTitle>
             </CardHeader>
@@ -214,7 +214,7 @@ export default function UnableToContactPage() {
           <Card className="bg-white border-slate-100">
             <CardHeader>
               <CardTitle className="text-lg flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-teal-700" />
+                <MapPin className="w-5 h-5 text-eggplant-700" />
                 Where did you attempt to contact?
               </CardTitle>
             </CardHeader>
@@ -254,7 +254,7 @@ export default function UnableToContactPage() {
           <Card className="bg-white border-slate-100">
             <CardHeader>
               <CardTitle className="text-lg flex items-center gap-2">
-                <User className="w-5 h-5 text-teal-700" />
+                <User className="w-5 h-5 text-eggplant-700" />
                 Did you speak with anyone?
               </CardTitle>
             </CardHeader>

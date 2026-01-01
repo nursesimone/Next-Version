@@ -151,7 +151,7 @@ export default function PatientDetailPage() {
                 <ArrowLeft className="w-5 h-5" />
               </Button>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-teal-700 rounded-xl flex items-center justify-center">
+                <div className="w-10 h-10 bg-eggplant-700 rounded-xl flex items-center justify-center">
                   <Stethoscope className="w-6 h-6 text-white" />
                 </div>
                 <span className="text-xl font-bold text-slate-900">NurseRounds</span>
@@ -178,14 +178,14 @@ export default function PatientDetailPage() {
         <div className="mb-8">
           <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
             <div className="flex items-center gap-4">
-              <div className="w-20 h-20 bg-teal-50 rounded-2xl flex items-center justify-center">
-                <User className="w-10 h-10 text-teal-700" />
+              <div className="w-20 h-20 bg-eggplant-50 rounded-2xl flex items-center justify-center">
+                <User className="w-10 h-10 text-eggplant-700" />
               </div>
               <div>
                 <h1 className="text-3xl font-bold text-slate-900">{patient.full_name}</h1>
                 <div className="flex flex-wrap items-center gap-3 mt-2 text-slate-500">
                   {patient.permanent_info?.organization && (
-                    <span className="flex items-center gap-1 bg-teal-50 text-teal-700 px-2 py-1 rounded text-sm">
+                    <span className="flex items-center gap-1 bg-eggplant-50 text-eggplant-700 px-2 py-1 rounded text-sm">
                       <Building2 className="w-4 h-4" />
                       {patient.permanent_info.organization}
                     </span>
@@ -211,7 +211,7 @@ export default function PatientDetailPage() {
             </div>
             <div className="flex flex-col gap-2 items-end">
               <Button 
-                className="bg-teal-700 hover:bg-teal-600 h-12 px-6"
+                className="bg-eggplant-700 hover:bg-eggplant-600 h-12 px-6"
                 onClick={() => navigate(`/patients/${patientId}/new-visit`)}
                 data-testid="new-visit-btn"
               >
@@ -235,13 +235,13 @@ export default function PatientDetailPage() {
         {/* Tabs */}
         <Tabs defaultValue="visits" className="space-y-6">
           <TabsList className="bg-white border border-slate-100 p-1">
-            <TabsTrigger value="visits" className="data-[state=active]:bg-teal-50 data-[state=active]:text-teal-700">
+            <TabsTrigger value="visits" className="data-[state=active]:bg-eggplant-50 data-[state=active]:text-eggplant-700">
               Visit History ({visits.length})
             </TabsTrigger>
-            <TabsTrigger value="profile" className="data-[state=active]:bg-teal-50 data-[state=active]:text-teal-700">
+            <TabsTrigger value="profile" className="data-[state=active]:bg-eggplant-50 data-[state=active]:text-eggplant-700">
               Profile
             </TabsTrigger>
-            <TabsTrigger value="vitals" className="data-[state=active]:bg-teal-50 data-[state=active]:text-teal-700">
+            <TabsTrigger value="vitals" className="data-[state=active]:bg-eggplant-50 data-[state=active]:text-eggplant-700">
               Last Vitals
             </TabsTrigger>
           </TabsList>
@@ -263,7 +263,7 @@ export default function PatientDetailPage() {
                     </Button>
                     <Button 
                       size="sm" 
-                      className="bg-teal-700 hover:bg-teal-600"
+                      className="bg-eggplant-700 hover:bg-eggplant-600"
                       onClick={saveProfile}
                       disabled={savingProfile}
                       data-testid="save-profile-btn"
@@ -340,7 +340,7 @@ export default function PatientDetailPage() {
                           <p className="text-slate-900 flex items-center gap-2">
                             {profileData.organization ? (
                               <>
-                                <Building2 className="w-4 h-4 text-teal-600" />
+                                <Building2 className="w-4 h-4 text-eggplant-600" />
                                 {profileData.organization}
                               </>
                             ) : (
@@ -597,7 +597,7 @@ export default function PatientDetailPage() {
                           <div className="flex flex-wrap gap-1 mt-1">
                             {((Array.isArray(profileData.medications) ? profileData.medications : [])).length > 0 ? (
                               (Array.isArray(profileData.medications) ? profileData.medications : []).map((med, i) => (
-                                <span key={i} className="bg-teal-50 text-teal-700 px-2 py-1 rounded text-sm">
+                                <span key={i} className="bg-eggplant-50 text-eggplant-700 px-2 py-1 rounded text-sm">
                                   {med}
                                 </span>
                               ))
@@ -717,15 +717,15 @@ export default function PatientDetailPage() {
               visits.map(visit => (
                 <Card 
                   key={visit.id} 
-                  className="bg-white border-slate-100 cursor-pointer hover:border-teal-200 transition-all"
+                  className="bg-white border-slate-100 cursor-pointer hover:border-eggplant-200 transition-all"
                   onClick={() => navigate(`/visits/${visit.id}`)}
                   data-testid={`visit-card-${visit.id}`}
                 >
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center">
-                          <Activity className="w-6 h-6 text-teal-700" />
+                        <div className="w-12 h-12 bg-eggplant-50 rounded-xl flex items-center justify-center">
+                          <Activity className="w-6 h-6 text-eggplant-700" />
                         </div>
                         <div>
                           <p className="font-medium text-slate-900">
@@ -771,7 +771,7 @@ export default function PatientDetailPage() {
             <Card className="bg-white border-slate-100">
               <CardHeader>
                 <CardTitle className="text-lg font-semibold flex items-center gap-2">
-                  <Activity className="w-5 h-5 text-teal-700" />
+                  <Activity className="w-5 h-5 text-eggplant-700" />
                   Last Recorded Vitals
                 </CardTitle>
               </CardHeader>

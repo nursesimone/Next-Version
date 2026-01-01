@@ -122,14 +122,14 @@ export default function DashboardPage() {
                 <ArrowLeft className="w-5 h-5" />
               </Button>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-teal-700 rounded-xl flex items-center justify-center">
+                <div className="w-10 h-10 bg-eggplant-700 rounded-xl flex items-center justify-center">
                   <Stethoscope className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <span className="text-xl font-bold text-slate-900">NurseRounds</span>
                   <div className="flex items-center gap-2 text-sm">
                     <span className={`px-2 py-0.5 rounded text-xs font-medium ${
-                      visitType === 'nurse_visit' ? 'bg-teal-50 text-teal-700' :
+                      visitType === 'nurse_visit' ? 'bg-eggplant-50 text-eggplant-700' :
                       visitType === 'vitals_only' ? 'bg-blue-50 text-blue-700' :
                       'bg-amber-50 text-amber-700'
                     }`}>
@@ -165,8 +165,8 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <Card className="bg-white border-slate-100">
             <CardContent className="flex items-center gap-4 p-6">
-              <div className="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center">
-                <Users className="w-6 h-6 text-teal-700" />
+              <div className="w-12 h-12 bg-eggplant-50 rounded-xl flex items-center justify-center">
+                <Users className="w-6 h-6 text-eggplant-700" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-slate-900">{patients.length}</p>
@@ -220,7 +220,7 @@ export default function DashboardPage() {
           {nurse?.is_admin && (
             <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
               <DialogTrigger asChild>
-                <Button className="h-11 bg-teal-700 hover:bg-teal-600" data-testid="add-patient-btn">
+                <Button className="h-11 bg-eggplant-700 hover:bg-eggplant-600" data-testid="add-patient-btn">
                   <Plus className="w-5 h-5 mr-2" />
                   Add Patient
                 </Button>
@@ -268,7 +268,7 @@ export default function DashboardPage() {
                   </Button>
                   <Button 
                     type="submit" 
-                    className="bg-teal-700 hover:bg-teal-600"
+                    className="bg-eggplant-700 hover:bg-eggplant-600"
                     disabled={addingPatient}
                     data-testid="confirm-add-patient-btn"
                   >
@@ -327,10 +327,10 @@ export default function DashboardPage() {
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-4">
                       <div className={`w-14 h-14 ${
-                        patient.is_assigned_to_me ? 'bg-teal-50' : 'bg-slate-100'
+                        patient.is_assigned_to_me ? 'bg-eggplant-50' : 'bg-slate-100'
                       } rounded-full flex items-center justify-center`}>
                         <User className={`w-7 h-7 ${
-                          patient.is_assigned_to_me ? 'text-teal-700' : 'text-slate-400'
+                          patient.is_assigned_to_me ? 'text-eggplant-700' : 'text-slate-400'
                         }`} />
                       </div>
                       <div>
@@ -394,14 +394,14 @@ export default function DashboardPage() {
                     {/* Last Visit - Clickable */}
                     {patient.last_visit_id && patient.last_visit_date && (
                       <div className="flex items-center gap-2 text-xs">
-                        <Clock className="w-3 h-3 text-teal-600" />
+                        <Clock className="w-3 h-3 text-eggplant-600" />
                         <span className="text-slate-600">
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
                               navigate(`/visits/${patient.last_visit_id}`);
                             }}
-                            className="text-teal-600 hover:text-teal-700 underline font-medium"
+                            className="text-eggplant-600 hover:text-eggplant-700 underline font-medium"
                           >
                             Last Visit
                           </button>
