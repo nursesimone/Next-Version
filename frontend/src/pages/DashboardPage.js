@@ -371,11 +371,20 @@ export default function DashboardPage() {
                     <ChevronRight className="w-5 h-5 text-slate-400" />
                   </div>
                   
-                  {/* Last Vitals with Date */}
+                  {/* Last Vitals with Date - Clickable */}
                   {patient.last_vitals && (
                     <div className="mt-4 pt-4 border-t border-slate-100">
                       <div className="flex items-center justify-between mb-2">
-                        <p className="text-xs text-slate-500">Last Vitals</p>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            // Navigate to patient detail page with hash to vitals tab
+                            navigate(`/patients/${patient.id}#vitals`);
+                          }}
+                          className="text-xs text-eggplant-600 hover:text-eggplant-700 underline font-medium"
+                        >
+                          Last Vitals
+                        </button>
                         {patient.last_vitals_date && (
                           <p className="text-xs text-slate-400 font-mono">
                             {formatDate(patient.last_vitals_date)}
