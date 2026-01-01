@@ -481,6 +481,29 @@ export default function PatientDetailPage() {
                       </div>
 
                       <div>
+                        <Label className="text-slate-500">This address is a</Label>
+                        {editingProfile ? (
+                          <Select
+                            value={profileData.home_address_type || ''}
+                            onValueChange={(value) => handleProfileChange('home_address_type', value)}
+                          >
+                            <SelectTrigger className="mt-1">
+                              <SelectValue placeholder="Select address type" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="Family Home">Family Home</SelectItem>
+                              <SelectItem value="Host Home">Host Home</SelectItem>
+                              <SelectItem value="Group Home">Group Home</SelectItem>
+                              <SelectItem value="Personal Care Home">Personal Care Home</SelectItem>
+                              <SelectItem value="Other">Other</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        ) : (
+                          <p className="text-slate-900">{profileData.home_address_type || 'Not set'}</p>
+                        )}
+                      </div>
+
+                      <div>
                         <Label className="text-slate-500">Caregiver Name</Label>
                         {editingProfile ? (
                           <Input
