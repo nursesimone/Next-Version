@@ -391,23 +391,40 @@ export default function DashboardPage() {
                   
                   {/* Visit History Summary */}
                   <div className="mt-4 pt-4 border-t border-slate-100 space-y-2">
-                    {/* Last Visit */}
-                    {patient.last_visit_date && (
+                    {/* Last Visit - Clickable */}
+                    {patient.last_visit_id && patient.last_visit_date && (
                       <div className="flex items-center gap-2 text-xs">
                         <Clock className="w-3 h-3 text-teal-600" />
                         <span className="text-slate-600">
-                          LV: <span className="font-medium">{formatDate(patient.last_visit_date)}</span>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/visits/${patient.last_visit_id}`);
+                            }}
+                            className="text-teal-600 hover:text-teal-700 underline font-medium"
+                          >
+                            Last Visit
+                          </button>
+                          : {formatDate(patient.last_visit_date)}
                         </span>
                       </div>
                     )}
                     
-                    {/* Last Unable to Contact - only if after last visit */}
+                    {/* Last Unable to Contact - Clickable */}
                     {patient.last_utc && (
                       <div className="flex items-center gap-2 text-xs">
                         <PhoneOff className="w-3 h-3 text-amber-600" />
-                        <span className="text-amber-700">
-                          UTC: <span className="font-medium">{formatDate(patient.last_utc.date)}</span>
-                          <span className="ml-1 text-amber-600">({patient.last_utc.reason})</span>
+                        <span className="text-slate-600">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/patients/${patient.id}/utc/${patient.last_utc.id}`);
+                            }}
+                            className="text-amber-600 hover:text-amber-700 underline font-medium"
+                          >
+                            UTC
+                          </button>
+                          : {formatDate(patient.last_utc.date)} - {patient.last_utc.reason}
                         </span>
                       </div>
                     )}
