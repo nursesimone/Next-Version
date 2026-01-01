@@ -278,6 +278,7 @@ export default function DashboardPage() {
               </form>
             </DialogContent>
           </Dialog>
+          )}
         </div>
 
         {/* Patient List */}
