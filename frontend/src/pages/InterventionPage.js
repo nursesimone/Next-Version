@@ -602,10 +602,20 @@ export default function InterventionPage() {
                       </div>
                     </div>
                   </div>
-                </TabsContent>
+                </CardContent>
+              </Card>
+            )}
 
-                {/* TESTS TAB */}
-                <TabsContent value="test" className="space-y-6 pt-6">
+            {/* TEST TYPE */}
+            {formData.intervention_type === 'test' && (
+              <Card className="bg-white border-slate-100">
+                <CardHeader>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <TestTube className="w-5 h-5 text-emerald-600" />
+                    Test Details
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
                   <div>
                     <Label>Test Type</Label>
                     <Select
