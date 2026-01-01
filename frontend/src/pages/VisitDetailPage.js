@@ -357,7 +357,7 @@ export default function VisitDetailPage() {
         </Card>
 
         {/* Daily Note Content - for daily_note type */}
-        {visit.daily_note_content && (
+        {visit.visit_type === 'daily_note' && visit.daily_note_content && (
           <Card className="bg-white border-slate-100 mb-6">
             <CardHeader>
               <CardTitle className="text-lg flex items-center gap-2">
@@ -371,7 +371,8 @@ export default function VisitDetailPage() {
           </Card>
         )}
 
-        {/* Vital Signs */}
+        {/* Vital Signs - Show for all visit types except daily_note without vitals */}
+        {visit.visit_type !== 'daily_note' && (
         <Card className="bg-white border-slate-100 mb-6">
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
