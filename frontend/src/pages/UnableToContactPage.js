@@ -403,8 +403,6 @@ export default function UnableToContactPage() {
               </CardContent>
             </Card>
           )}
-            </CardContent>
-          </Card>
 
           {/* Additional Information */}
           <Card className="bg-white border-slate-100">
