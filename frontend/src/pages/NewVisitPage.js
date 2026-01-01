@@ -557,7 +557,20 @@ export default function NewVisitPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <Label>General Appearance</Label>
+                    <div className="flex items-center justify-between mb-1">
+                      <Label>General Appearance</Label>
+                      {lastVisit && (
+                        <Button 
+                          type="button"
+                          variant="ghost" 
+                          size="sm"
+                          onClick={() => pullFromLast('physical_assessment', 'general_appearance')}
+                          className="text-xs text-teal-600 hover:text-teal-700"
+                        >
+                          Pull from last visit
+                        </Button>
+                      )}
+                    </div>
                     <Textarea
                       value={visitData.physical_assessment.general_appearance}
                       onChange={(e) => updatePhysicalAssessment('general_appearance', e.target.value)}
@@ -568,7 +581,20 @@ export default function NewVisitPage() {
                     />
                   </div>
                   <div>
-                    <Label>Skin Assessment</Label>
+                    <div className="flex items-center justify-between mb-1">
+                      <Label>Skin Assessment</Label>
+                      {lastVisit && (
+                        <Button 
+                          type="button"
+                          variant="ghost" 
+                          size="sm"
+                          onClick={() => pullFromLast('physical_assessment', 'skin_assessment')}
+                          className="text-xs text-teal-600 hover:text-teal-700"
+                        >
+                          Pull from last visit
+                        </Button>
+                      )}
+                    </div>
                     <Textarea
                       value={visitData.physical_assessment.skin_assessment}
                       onChange={(e) => updatePhysicalAssessment('skin_assessment', e.target.value)}
@@ -578,9 +604,24 @@ export default function NewVisitPage() {
                       data-testid="skin-assessment-input"
                     />
                   </div>
+                  
+                  {/* Mobility, Speech, Orientation */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
-                      <Label>Mobility Level</Label>
+                      <div className="flex items-center justify-between mb-1">
+                        <Label>Mobility Level</Label>
+                        {lastVisit && (
+                          <Button 
+                            type="button"
+                            variant="ghost" 
+                            size="sm"
+                            onClick={() => pullFromLast('physical_assessment', 'mobility_level')}
+                            className="text-xs text-teal-600 hover:text-teal-700"
+                          >
+                            ↻
+                          </Button>
+                        )}
+                      </div>
                       <Select
                         value={visitData.physical_assessment.mobility_level}
                         onValueChange={(value) => updatePhysicalAssessment('mobility_level', value)}
@@ -589,6 +630,12 @@ export default function NewVisitPage() {
                           <SelectValue placeholder="Select level" />
                         </SelectTrigger>
                         <SelectContent>
+                          <SelectItem value="Ambulatory">Ambulatory</SelectItem>
+                          <SelectItem value="Supervised">Supervised</SelectItem>
+                          <SelectItem value="With Assistance">With Assistance</SelectItem>
+                          <SelectItem value="Wheelchair">Wheelchair</SelectItem>
+                          <SelectItem value="Paralyzed">Paralyzed</SelectItem>
+                          <SelectItem value="Non-Ambulatory">Non-Ambulatory</SelectItem>
                           <SelectItem value="Independent">Independent</SelectItem>
                           <SelectItem value="Minimal Assistance">Minimal Assistance</SelectItem>
                           <SelectItem value="Moderate Assistance">Moderate Assistance</SelectItem>
@@ -599,7 +646,20 @@ export default function NewVisitPage() {
                       </Select>
                     </div>
                     <div>
-                      <Label>Speech Level</Label>
+                      <div className="flex items-center justify-between mb-1">
+                        <Label>Speech Level</Label>
+                        {lastVisit && (
+                          <Button 
+                            type="button"
+                            variant="ghost" 
+                            size="sm"
+                            onClick={() => pullFromLast('physical_assessment', 'speech_level')}
+                            className="text-xs text-teal-600 hover:text-teal-700"
+                          >
+                            ↻
+                          </Button>
+                        )}
+                      </div>
                       <Select
                         value={visitData.physical_assessment.speech_level}
                         onValueChange={(value) => updatePhysicalAssessment('speech_level', value)}
@@ -612,11 +672,26 @@ export default function NewVisitPage() {
                           <SelectItem value="Slurred">Slurred</SelectItem>
                           <SelectItem value="Impaired">Impaired</SelectItem>
                           <SelectItem value="Non-verbal">Non-verbal</SelectItem>
+                          <SelectItem value="ASL/Sign">ASL/Sign Language</SelectItem>
+                          <SelectItem value="Speech Impediment">Speech Impediment</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                     <div>
-                      <Label>Alert & Oriented Level</Label>
+                      <div className="flex items-center justify-between mb-1">
+                        <Label>Alert & Oriented</Label>
+                        {lastVisit && (
+                          <Button 
+                            type="button"
+                            variant="ghost" 
+                            size="sm"
+                            onClick={() => pullFromLast('physical_assessment', 'alert_oriented_level')}
+                            className="text-xs text-teal-600 hover:text-teal-700"
+                          >
+                            ↻
+                          </Button>
+                        )}
+                      </div>
                       <Select
                         value={visitData.physical_assessment.alert_oriented_level}
                         onValueChange={(value) => updatePhysicalAssessment('alert_oriented_level', value)}
@@ -632,6 +707,37 @@ export default function NewVisitPage() {
                           <SelectItem value="x0 - Unresponsive">x0 - Unresponsive</SelectItem>
                         </SelectContent>
                       </Select>
+                    </div>
+                  </div>
+
+                  {/* Gait Monitoring & Fall Incidence */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-slate-100">
+                    <div>
+                      <Label>Gait Status</Label>
+                      <Select
+                        value={visitData.physical_assessment.gait_status}
+                        onValueChange={(value) => updatePhysicalAssessment('gait_status', value)}
+                      >
+                        <SelectTrigger className="mt-1" data-testid="gait-status-select">
+                          <SelectValue placeholder="Select gait status" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="No Falls">No Falls</SelectItem>
+                          <SelectItem value="Uneventful Falls">Uneventful Falls (No Injury)</SelectItem>
+                          <SelectItem value="Eventful Falls">Eventful Falls (With Injury)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <Label>Fall Incidence Since Last Visit</Label>
+                      <Textarea
+                        value={visitData.physical_assessment.fall_incidence_since_last_visit}
+                        onChange={(e) => updatePhysicalAssessment('fall_incidence_since_last_visit', e.target.value)}
+                        placeholder="Describe any falls..."
+                        className="mt-1"
+                        rows={2}
+                        data-testid="fall-incidence-input"
+                      />
                     </div>
                   </div>
                 </CardContent>
