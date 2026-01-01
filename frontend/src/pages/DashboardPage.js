@@ -415,15 +415,7 @@ export default function DashboardPage() {
                       <div className="flex items-center gap-2 text-xs">
                         <PhoneOff className="w-3 h-3 text-amber-600" />
                         <span className="text-slate-600">
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              navigate(`/patients/${patient.id}/utc/${patient.last_utc.id}`);
-                            }}
-                            className="text-amber-600 hover:text-amber-700 underline font-medium"
-                          >
-                            UTC
-                          </button>
+                          <span className="text-amber-600 font-medium">UTC</span>
                           : {formatDate(patient.last_utc.date)} - {patient.last_utc.reason}
                         </span>
                       </div>
