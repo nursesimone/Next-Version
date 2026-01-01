@@ -118,6 +118,7 @@ export default function NewVisitPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [bpAbnormal, setBpAbnormal] = useState(false);
+  const [lastVisit, setLastVisit] = useState(null);
 
   // Get visit type from session storage
   const visitType = sessionStorage.getItem('visitType') || 'nurse_visit';
