@@ -87,8 +87,8 @@ export default function PatientDetailPage() {
   };
 
   const handleArrayFieldChange = (field, value) => {
-    const items = value.split(',').map(item => item.trim()).filter(Boolean);
-    setProfileData(prev => ({ ...prev, [field]: items }));
+    // Store as string while editing, will convert to array on save
+    setProfileData(prev => ({ ...prev, [field]: value }));
   };
 
   const saveProfile = async () => {
