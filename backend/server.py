@@ -220,6 +220,7 @@ class VisitResponse(BaseModel):
     respiratory: RespiratoryAssessment
     endocrine: EndocrineAssessment
     changes_since_last: ChangesSinceLastVisit
+    home_visit_logbook: HomeVisitLogbook = HomeVisitLogbook()
     overall_health_status: Optional[str] = None
     nurse_notes: Optional[str] = None
     daily_note_content: Optional[str] = None
