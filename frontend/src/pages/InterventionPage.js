@@ -610,7 +610,7 @@ export default function InterventionPage() {
               <Card className="bg-white border-slate-100">
                 <CardHeader>
                   <CardTitle className="text-lg flex items-center gap-2">
-                    <TestTube className="w-5 h-5 text-emerald-600" />
+                    <TestTube className="w-5 h-5 text-navy-600" />
                     Test Details
                   </CardTitle>
                 </CardHeader>
