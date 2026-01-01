@@ -40,6 +40,7 @@ export default function DashboardPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [showAddDialog, setShowAddDialog] = useState(false);
   const [newPatientName, setNewPatientName] = useState('');
+  const [newPatientOrg, setNewPatientOrg] = useState('');
   const [addingPatient, setAddingPatient] = useState(false);
 
   // Get visit type from session
