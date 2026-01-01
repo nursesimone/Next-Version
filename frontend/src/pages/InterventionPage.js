@@ -758,10 +758,20 @@ export default function InterventionPage() {
                       rows={3}
                     />
                   </div>
-                </TabsContent>
+                </CardContent>
+              </Card>
+            )}
 
-                {/* PROCEDURES TAB */}
-                <TabsContent value="procedure" className="space-y-6 pt-6">
+            {/* PROCEDURE TYPE */}
+            {formData.intervention_type === 'procedure' && (
+              <Card className="bg-white border-slate-100">
+                <CardHeader>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <Scissors className="w-5 h-5 text-rose-600" />
+                    Procedure Details
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
                   <div>
                     <Label>Procedure Type</Label>
                     <Select
