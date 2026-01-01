@@ -349,6 +349,12 @@ export default function DashboardPage() {
                               <span>•</span>
                             </>
                           )}
+                          {patient.permanent_info?.gender && (
+                            <>
+                              <span>{patient.permanent_info.gender}</span>
+                              <span>•</span>
+                            </>
+                          )}
                           {patient.permanent_info?.race && (
                             <span>{patient.permanent_info.race}</span>
                           )}
