@@ -198,6 +198,7 @@ class VisitCreate(BaseModel):
     respiratory: RespiratoryAssessment = RespiratoryAssessment()
     endocrine: EndocrineAssessment = EndocrineAssessment()
     changes_since_last: ChangesSinceLastVisit = ChangesSinceLastVisit()
+    home_visit_logbook: HomeVisitLogbook = HomeVisitLogbook()
     overall_health_status: Optional[str] = None  # stable, unstable, deteriorating, needs immediate attention
     nurse_notes: Optional[str] = None
     daily_note_content: Optional[str] = None  # For daily notes
