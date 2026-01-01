@@ -178,6 +178,14 @@ class ChangesSinceLastVisit(BaseModel):
     er_urgent_care_visits: Optional[str] = None
     upcoming_appointments: Optional[str] = None
 
+class HomeVisitLogbook(BaseModel):
+    locked_meds_checked: Optional[bool] = False
+    mar_reviewed: Optional[bool] = False
+    bm_log_checked: Optional[bool] = False
+    communication_log_checked: Optional[bool] = False
+    seizure_log_checked: Optional[bool] = False
+    notes: Optional[str] = None
+
 class VisitCreate(BaseModel):
     visit_date: Optional[str] = None
     visit_type: str = "nurse_visit"  # nurse_visit, vitals_only, daily_note
