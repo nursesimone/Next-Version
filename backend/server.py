@@ -573,11 +573,11 @@ async def list_patients(nurse: dict = Depends(get_current_nurse)):
             sort=[("visit_date", -1)]
         )
         
-        # Get last UTC record
+        # Get last UTC record (sorted by created_at for precise ordering)
         last_utc = await db.unable_to_contact.find_one(
             {"patient_id": p["id"]},
             {"_id": 0, "id": 1, "attempt_date": 1, "individual_location": 1, "individual_location_other": 1},
-            sort=[("attempt_date", -1)]
+            sort=[("created_at", -1)]
         )
         
         p["last_visit_id"] = last_visit.get("id") if last_visit else None
