@@ -79,6 +79,18 @@ export default function InterventionPage() {
     },
     verified_patient_identity: false,
     donned_proper_ppe: false,
+    post_no_severe_symptoms: false,
+    post_tolerated_well: false,
+    post_informed_side_effects: false,
+    post_advised_results_timeframe: false,
+    post_educated_seek_care: false,
+    completion_status: '',
+    next_visit_interval: '',
+    next_visit_interval_other: '',
+    present_person_type: '',
+    present_person_type_other: '',
+    present_person_name: '',
+    additional_comments: '',
     notes: ''
   });
 
