@@ -243,6 +243,23 @@ export default function DashboardPage() {
                     data-testid="new-patient-name-input"
                   />
                 </div>
+                <div className="space-y-2">
+                  <Label htmlFor="organization">Organization</Label>
+                  <Select
+                    value={newPatientOrg}
+                    onValueChange={setNewPatientOrg}
+                    required
+                  >
+                    <SelectTrigger className="h-11" data-testid="new-patient-org-select">
+                      <SelectValue placeholder="Select organization" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="POSH-Able Living">POSH-Able Living</SelectItem>
+                      <SelectItem value="Ebenezer Private HomeCare">Ebenezer Private HomeCare</SelectItem>
+                      <SelectItem value="Other">Other</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
                 <div className="flex gap-3 justify-end">
                   <Button type="button" variant="outline" onClick={() => setShowAddDialog(false)}>
                     Cancel
