@@ -408,16 +408,6 @@ export default function NewVisitPage() {
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 <div>
-                  <Label>Height (inches)</Label>
-                  <Input
-                    value={visitData.vital_signs.height}
-                    onChange={(e) => updateVitalSign('height', e.target.value)}
-                    placeholder="e.g., 68"
-                    className="mt-1"
-                    data-testid="height-input"
-                  />
-                </div>
-                <div>
                   <Label>Weight (lbs)</Label>
                   <Input
                     value={visitData.vital_signs.weight}
