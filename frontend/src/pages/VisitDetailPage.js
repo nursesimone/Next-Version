@@ -431,8 +431,10 @@ export default function VisitDetailPage() {
             </div>
           </CardContent>
         </Card>
+        )}
 
-        {/* Physical Assessment */}
+        {/* Physical Assessment - Only for nurse_visit */}
+        {visit.visit_type === 'nurse_visit' && (
         <Card className="bg-white border-slate-100 mb-6">
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
