@@ -217,13 +217,14 @@ export default function DashboardPage() {
             />
           </div>
           
-          <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
-            <DialogTrigger asChild>
-              <Button className="h-11 bg-teal-700 hover:bg-teal-600" data-testid="add-patient-btn">
-                <Plus className="w-5 h-5 mr-2" />
-                Add Patient
-              </Button>
-            </DialogTrigger>
+          {nurse?.is_admin && (
+            <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
+              <DialogTrigger asChild>
+                <Button className="h-11 bg-teal-700 hover:bg-teal-600" data-testid="add-patient-btn">
+                  <Plus className="w-5 h-5 mr-2" />
+                  Add Patient
+                </Button>
+              </DialogTrigger>
             <DialogContent>
               <DialogHeader>
                 <DialogTitle>Add New Patient</DialogTitle>
