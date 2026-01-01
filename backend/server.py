@@ -746,6 +746,48 @@ async def delete_visit(visit_id: str, nurse: dict = Depends(get_current_nurse)):
         raise HTTPException(status_code=404, detail="Visit not found")
     return {"message": "Visit deleted successfully"}
 
+@api_router.put("/visits/{visit_id}", response_model=VisitResponse)
+async def update_visit(visit_id: str, data: VisitCreate, nurse: dict = Depends(get_current_nurse)):
+    visit = await db.visits.find_one({"id": visit_id, "nurse_id": nurse["id"]})
+    if not visit:
+        raise HTTPException(status_code=404, detail="Visit not found")
+    
+    update_doc = {
+        "visit_date": data.visit_date or visit["visit_date"],
+        "visit_type": data.visit_type,
+        "organization": data.organization,
+        "vital_signs": data.vital_signs.model_dump(),
+        "physical_assessment": data.physical_assessment.model_dump(),
+        "head_to_toe": data.head_to_toe.model_dump(),
+        "gastrointestinal": data.gastrointestinal.model_dump(),
+        "genito_urinary": data.genito_urinary.model_dump(),
+        "respiratory": data.respiratory.model_dump(),
+        "endocrine": data.endocrine.model_dump(),
+        "changes_since_last": data.changes_since_last.model_dump(),
+        "home_visit_logbook": data.home_visit_logbook.model_dump(),
+        "overall_health_status": data.overall_health_status,
+        "nurse_notes": data.nurse_notes,
+        "daily_note_content": data.daily_note_content,
+        "status": data.status,
+        "attachments": data.attachments or [],
+    }
+    
+    await db.visits.update_one({"id": visit_id}, {"$set": update_doc})
+    updated = await db.visits.find_one({"id": visit_id}, {"_id": 0})
+    return VisitResponse(**updated)
+
+@api_router.get("/patients/{patient_id}/visits/last", response_model=VisitResponse)
+async def get_last_visit(patient_id: str, nurse: dict = Depends(get_current_nurse)):
+    """Get the most recent completed visit for a patient (for pulling data from last visit)"""
+    visit = await db.visits.find_one(
+        {"patient_id": patient_id, "status": "completed"},
+        {"_id": 0},
+        sort=[("visit_date", -1)]
+    )
+    if not visit:
+        raise HTTPException(status_code=404, detail="No previous visits found")
+    return VisitResponse(**visit)
+
 # ==================== UNABLE TO CONTACT ENDPOINTS ====================
 @api_router.post("/unable-to-contact", response_model=UnableToContactResponse)
 async def create_unable_to_contact(data: UnableToContactCreate, nurse: dict = Depends(get_current_nurse)):
