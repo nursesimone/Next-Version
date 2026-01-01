@@ -869,8 +869,6 @@ export default function InterventionPage() {
                 </CardContent>
               </Card>
             )}
-          </> 
-          )}
 
           {/* Post-Intervention Observations */}
           <Card className="bg-white border-slate-100">
