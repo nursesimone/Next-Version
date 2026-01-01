@@ -233,13 +233,13 @@ export default function PatientDetailPage() {
         </div>
 
         {/* Tabs */}
-        <Tabs defaultValue="profile" className="space-y-6">
+        <Tabs defaultValue="visits" className="space-y-6">
           <TabsList className="bg-white border border-slate-100 p-1">
-            <TabsTrigger value="profile" className="data-[state=active]:bg-teal-50 data-[state=active]:text-teal-700">
-              Profile
-            </TabsTrigger>
             <TabsTrigger value="visits" className="data-[state=active]:bg-teal-50 data-[state=active]:text-teal-700">
               Visit History ({visits.length})
+            </TabsTrigger>
+            <TabsTrigger value="profile" className="data-[state=active]:bg-teal-50 data-[state=active]:text-teal-700">
+              Profile
             </TabsTrigger>
             <TabsTrigger value="vitals" className="data-[state=active]:bg-teal-50 data-[state=active]:text-teal-700">
               Last Vitals
