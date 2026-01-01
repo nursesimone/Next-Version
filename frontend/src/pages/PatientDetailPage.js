@@ -617,16 +617,16 @@ export default function PatientDetailPage() {
                         <Label className="text-slate-500">Medical Diagnoses</Label>
                         {editingProfile ? (
                           <Textarea
-                            value={(profileData.medical_diagnoses || []).join(', ')}
+                            value={Array.isArray(profileData.medical_diagnoses) ? profileData.medical_diagnoses.join(', ') : (profileData.medical_diagnoses || '')}
                             onChange={(e) => handleArrayFieldChange('medical_diagnoses', e.target.value)}
                             className="mt-1"
-                            placeholder="Separate with commas"
+                            placeholder="Separate with commas (e.g., Type 2 Diabetes, Hypertension, COPD)"
                             rows={2}
                           />
                         ) : (
                           <div className="flex flex-wrap gap-1 mt-1">
-                            {(profileData.medical_diagnoses || []).length > 0 ? (
-                              profileData.medical_diagnoses.map((dx, i) => (
+                            {((Array.isArray(profileData.medical_diagnoses) ? profileData.medical_diagnoses : [])).length > 0 ? (
+                              (Array.isArray(profileData.medical_diagnoses) ? profileData.medical_diagnoses : []).map((dx, i) => (
                                 <span key={i} className="bg-slate-100 text-slate-700 px-2 py-1 rounded text-sm">
                                   {dx}
                                 </span>
@@ -642,16 +642,16 @@ export default function PatientDetailPage() {
                         <Label className="text-slate-500">Psychiatric Diagnoses</Label>
                         {editingProfile ? (
                           <Textarea
-                            value={(profileData.psychiatric_diagnoses || []).join(', ')}
+                            value={Array.isArray(profileData.psychiatric_diagnoses) ? profileData.psychiatric_diagnoses.join(', ') : (profileData.psychiatric_diagnoses || '')}
                             onChange={(e) => handleArrayFieldChange('psychiatric_diagnoses', e.target.value)}
                             className="mt-1"
-                            placeholder="Separate with commas"
+                            placeholder="Separate with commas (e.g., Major Depression, Anxiety Disorder, PTSD)"
                             rows={2}
                           />
                         ) : (
                           <div className="flex flex-wrap gap-1 mt-1">
-                            {(profileData.psychiatric_diagnoses || []).length > 0 ? (
-                              profileData.psychiatric_diagnoses.map((dx, i) => (
+                            {((Array.isArray(profileData.psychiatric_diagnoses) ? profileData.psychiatric_diagnoses : [])).length > 0 ? (
+                              (Array.isArray(profileData.psychiatric_diagnoses) ? profileData.psychiatric_diagnoses : []).map((dx, i) => (
                                 <span key={i} className="bg-purple-50 text-purple-700 px-2 py-1 rounded text-sm">
                                   {dx}
                                 </span>
