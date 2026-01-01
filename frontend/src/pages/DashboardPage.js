@@ -395,10 +395,9 @@ export default function DashboardPage() {
                     </div>
                   )}
                   
-                  {/* Visit History Summary */}
-                  <div className="mt-4 pt-4 border-t border-slate-100 space-y-2">
-                    {/* Last Visit - Clickable */}
-                    {patient.last_visit_id && patient.last_visit_date && (
+                  {/* Last Visit - ALWAYS shown */}
+                  <div className="mt-4 pt-4 border-t border-slate-100">
+                    {patient.last_visit_id && patient.last_visit_date ? (
                       <div className="flex items-center gap-2 text-xs">
                         <Clock className="w-3 h-3 text-eggplant-600" />
                         <span className="text-slate-600">
@@ -414,10 +413,19 @@ export default function DashboardPage() {
                           : {formatDate(patient.last_visit_date)}
                         </span>
                       </div>
+                    ) : (
+                      <div className="flex items-center gap-2 text-xs">
+                        <Clock className="w-3 h-3 text-navy-500" />
+                        <span className="text-navy-600 font-medium">
+                          No Visits as of {formatDate(new Date().toISOString())}
+                        </span>
+                      </div>
                     )}
-                    
-                    {/* Last Unable to Contact - Clickable */}
-                    {patient.last_utc && (
+                  </div>
+                  
+                  {/* Last Unable to Contact - Shows if exists */}
+                  {patient.last_utc && (
+                    <div className="mt-2 pb-1">
                       <div className="flex items-center gap-2 text-xs">
                         <PhoneOff className="w-3 h-3 text-amber-600" />
                         <span className="text-slate-600">
@@ -425,8 +433,8 @@ export default function DashboardPage() {
                           : {formatDate(patient.last_utc.date)} - {patient.last_utc.reason}
                         </span>
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             ))}
