@@ -94,7 +94,19 @@ export default function PatientDetailPage() {
   const saveProfile = async () => {
     setSavingProfile(true);
     try {
-      const response = await patientsAPI.update(patientId, { permanent_info: profileData });
+      // Convert comma-separated strings to arrays before saving
+      const processedData = { ...profileData };
+      const arrayFields = ['medications', 'allergies', 'medical_diagnoses', 'psychiatric_diagnoses'];
+      arrayFields.forEach(field => {
+        if (typeof processedData[field] === 'string') {
+          processedData[field] = processedData[field]
+            .split(',')
+            .map(item => item.trim())
+            .filter(Boolean);
+        }
+      });
+      
+      const response = await patientsAPI.update(patientId, { permanent_info: processedData });
       setPatient(response.data);
       setEditingProfile(false);
       toast.success('Profile saved successfully');
