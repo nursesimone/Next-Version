@@ -430,12 +430,7 @@ export default function DashboardPage() {
                     )}
                   </div>
                   
-                  <div className="mt-3 flex items-center justify-between text-xs text-slate-500">
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3" />
-                      Added {formatDate(patient.created_at)}
-                    </span>
-                    {patient.permanent_info?.visit_frequency && (
+                  {patient.permanent_info?.visit_frequency && (
                       <span className="bg-teal-50 text-teal-700 px-2 py-1 rounded">
                         {patient.permanent_info.visit_frequency}
                       </span>
