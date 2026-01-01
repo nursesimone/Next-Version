@@ -446,7 +446,16 @@ export default function DashboardPage() {
                         <PhoneOff className="w-3 h-3 text-amber-600" />
                         <span className="text-slate-600">
                           <span className="text-amber-600 font-medium">UTC</span>
-                          : {formatDate(patient.last_utc.date)} - {patient.last_utc.reason}
+                          : {formatDate(patient.last_utc.date)} - 
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/patients/${patient.id}`);
+                            }}
+                            className="ml-1 text-amber-600 hover:text-amber-700 underline font-medium"
+                          >
+                            {patient.last_utc.reason}
+                          </button>
                         </span>
                       </div>
                     </div>
