@@ -544,6 +544,89 @@ export default function NewVisitPage() {
             </Card>
           )}
 
+          {/* Home Visit Logbook - Only for nurse_visit type */}
+          {visitType === 'nurse_visit' && (
+            <Card className="bg-white border-slate-100">
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <ClipboardList className="w-5 h-5 text-indigo-600" />
+                  Home Visit Logbook Checks
+                </CardTitle>
+                <CardDescription>Review and check required home environment items</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex items-center gap-3">
+                    <Checkbox
+                      id="locked-meds"
+                      checked={visitData.home_visit_logbook.locked_meds_checked}
+                      onCheckedChange={(checked) => updateHomeLogbook('locked_meds_checked', checked)}
+                      data-testid="locked-meds-checkbox"
+                    />
+                    <Label htmlFor="locked-meds" className="cursor-pointer">
+                      Locked Medications Checked
+                    </Label>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Checkbox
+                      id="mar-reviewed"
+                      checked={visitData.home_visit_logbook.mar_reviewed}
+                      onCheckedChange={(checked) => updateHomeLogbook('mar_reviewed', checked)}
+                      data-testid="mar-checkbox"
+                    />
+                    <Label htmlFor="mar-reviewed" className="cursor-pointer">
+                      MAR (Medication Administration Record) Reviewed
+                    </Label>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Checkbox
+                      id="bm-log"
+                      checked={visitData.home_visit_logbook.bm_log_checked}
+                      onCheckedChange={(checked) => updateHomeLogbook('bm_log_checked', checked)}
+                      data-testid="bm-log-checkbox"
+                    />
+                    <Label htmlFor="bm-log" className="cursor-pointer">
+                      BM (Bowel Movement) Log Checked
+                    </Label>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Checkbox
+                      id="communication-log"
+                      checked={visitData.home_visit_logbook.communication_log_checked}
+                      onCheckedChange={(checked) => updateHomeLogbook('communication_log_checked', checked)}
+                      data-testid="communication-log-checkbox"
+                    />
+                    <Label htmlFor="communication-log" className="cursor-pointer">
+                      Communication Log Checked
+                    </Label>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Checkbox
+                      id="seizure-log"
+                      checked={visitData.home_visit_logbook.seizure_log_checked}
+                      onCheckedChange={(checked) => updateHomeLogbook('seizure_log_checked', checked)}
+                      data-testid="seizure-log-checkbox"
+                    />
+                    <Label htmlFor="seizure-log" className="cursor-pointer">
+                      Seizure Log Checked (if applicable)
+                    </Label>
+                  </div>
+                </div>
+                <div>
+                  <Label>Logbook Notes</Label>
+                  <Textarea
+                    value={visitData.home_visit_logbook.notes}
+                    onChange={(e) => updateHomeLogbook('notes', e.target.value)}
+                    placeholder="Any observations or concerns from logbook review..."
+                    className="mt-1"
+                    rows={2}
+                    data-testid="logbook-notes-input"
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
           {/* Full Assessment - Only for nurse_visit type */}
           {visitType === 'nurse_visit' && (
             <>
