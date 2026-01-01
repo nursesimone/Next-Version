@@ -332,15 +332,25 @@ export default function NewVisitPage() {
               </div>
             </div>
             
-            <Button 
-              className="bg-teal-700 hover:bg-teal-600"
-              onClick={handleSubmit}
-              disabled={saving}
-              data-testid="save-visit-btn"
-            >
-              <Save className="w-4 h-4 mr-2" />
-              {saving ? 'Saving...' : 'Save Visit'}
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button 
+                variant="outline"
+                onClick={(e) => handleSubmit(e, 'draft')}
+                disabled={saving}
+                data-testid="save-draft-btn"
+              >
+                Save as Draft
+              </Button>
+              <Button 
+                className="bg-teal-700 hover:bg-teal-600"
+                onClick={(e) => handleSubmit(e, 'completed')}
+                disabled={saving}
+                data-testid="save-visit-btn"
+              >
+                <Save className="w-4 h-4 mr-2" />
+                {saving ? 'Saving...' : 'Complete Visit'}
+              </Button>
+            </div>
           </div>
         </div>
       </header>
