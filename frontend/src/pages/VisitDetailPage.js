@@ -517,6 +517,7 @@ export default function VisitDetailPage() {
             </div>
           </CardContent>
         </Card>
+        )}
 
         {/* System Assessments - Only for nurse_visit */}
         {visit.visit_type === 'nurse_visit' && (
