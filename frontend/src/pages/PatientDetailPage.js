@@ -367,7 +367,7 @@ export default function PatientDetailPage() {
                             className="mt-1"
                           />
                         ) : (
-                          <p className="text-slate-900">{formatDate(profileData.date_of_birth) || 'Not set'}</p>
+                          <p className="text-slate-900">{formatDateNumeric(profileData.date_of_birth) || 'Not set'}</p>
                         )}
                       </div>
 
