@@ -867,10 +867,11 @@ export default function InterventionPage() {
                       rows={3}
                     />
                   </div>
-                </TabsContent>
-              </Tabs>
-            </CardContent>
-          </Card>
+                </CardContent>
+              </Card>
+            )}
+          </> 
+          )}
 
           {/* Universal Acknowledgments */}
           <Card className="bg-white border-slate-100">
