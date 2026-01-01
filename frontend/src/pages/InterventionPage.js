@@ -703,10 +703,20 @@ export default function InterventionPage() {
                       rows={2}
                     />
                   </div>
-                </TabsContent>
+                </CardContent>
+              </Card>
+            )}
 
-                {/* TREATMENTS TAB */}
-                <TabsContent value="treatment" className="space-y-6 pt-6">
+            {/* TREATMENT TYPE */}
+            {formData.intervention_type === 'treatment' && (
+              <Card className="bg-white border-slate-100">
+                <CardHeader>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <Pill className="w-5 h-5 text-indigo-600" />
+                    Treatment Details
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
                   <div>
                     <Label>Treatment Type</Label>
                     <Select
