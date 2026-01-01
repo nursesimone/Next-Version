@@ -216,7 +216,7 @@ export default function PatientDetailPage() {
                 data-testid="new-visit-btn"
               >
                 <Plus className="w-5 h-5 mr-2" />
-                New Visit
+                {sessionStorage.getItem('visitType') === 'daily_note' ? 'New Note' : 'New Visit'}
               </Button>
               <Button 
                 variant="outline"
