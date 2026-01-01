@@ -130,6 +130,14 @@ function AppRoutes() {
         } 
       />
       <Route 
+        path="/utc/:utcId" 
+        element={
+          <ProtectedRoute>
+            <UTCDetailPage />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
         path="/reports" 
         element={
           <ProtectedRoute>
