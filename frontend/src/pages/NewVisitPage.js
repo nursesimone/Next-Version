@@ -33,6 +33,7 @@ const initialVisitData = {
   visit_type: 'nurse_visit',
   organization: '',
   vital_signs: {
+    height: '',
     weight: '',
     body_temperature: '',
     blood_pressure_systolic: '',
@@ -46,17 +47,29 @@ const initialVisitData = {
   },
   physical_assessment: {
     general_appearance: '',
+    general_appearance_from_last: false,
     skin_assessment: '',
+    skin_assessment_from_last: false,
     mobility_level: '',
+    mobility_level_from_last: false,
     speech_level: '',
-    alert_oriented_level: ''
+    speech_level_from_last: false,
+    alert_oriented_level: '',
+    alert_oriented_level_from_last: false,
+    gait_status: '',
+    fall_incidence_since_last_visit: ''
   },
   head_to_toe: {
     head_neck: '',
+    head_neck_from_last: false,
     eyes_vision: '',
+    eyes_vision_from_last: false,
     ears_hearing: '',
+    ears_hearing_from_last: false,
     nose_nasal_cavity: '',
-    mouth_teeth_oral_cavity: ''
+    nose_nasal_cavity_from_last: false,
+    mouth_teeth_oral_cavity: '',
+    mouth_teeth_oral_cavity_from_last: false
   },
   gastrointestinal: {
     last_bowel_movement: '',
@@ -73,7 +86,9 @@ const initialVisitData = {
   endocrine: {
     is_diabetic: false,
     diabetic_notes: '',
-    blood_sugar: ''
+    blood_sugar: '',
+    blood_sugar_date: '',
+    blood_sugar_time_of_day: ''
   },
   changes_since_last: {
     medication_changes: '',
@@ -81,9 +96,18 @@ const initialVisitData = {
     er_urgent_care_visits: '',
     upcoming_appointments: ''
   },
+  home_visit_logbook: {
+    locked_meds_checked: false,
+    mar_reviewed: false,
+    bm_log_checked: false,
+    communication_log_checked: false,
+    seizure_log_checked: false,
+    notes: ''
+  },
   overall_health_status: '',
   nurse_notes: '',
-  daily_note_content: ''
+  daily_note_content: '',
+  status: 'completed'
 };
 
 export default function NewVisitPage() {
