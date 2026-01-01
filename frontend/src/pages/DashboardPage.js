@@ -345,16 +345,12 @@ export default function DashboardPage() {
                         <div className="flex items-center gap-2 text-sm text-slate-500 mt-1">
                           {patient.permanent_info?.date_of_birth && (
                             <>
-                              <span>{calculateAge(patient.permanent_info.date_of_birth)} yrs</span>
+                              <span>DOB: {formatDate(patient.permanent_info.date_of_birth)}</span>
                               <span>•</span>
                             </>
                           )}
-                          <span>{patient.permanent_info?.gender || 'Unknown'}</span>
                           {patient.permanent_info?.race && (
-                            <>
-                              <span>•</span>
-                              <span>{patient.permanent_info.race}</span>
-                            </>
+                            <span>{patient.permanent_info.race}</span>
                           )}
                         </div>
                       </div>
