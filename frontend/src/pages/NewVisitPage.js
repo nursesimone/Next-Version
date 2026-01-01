@@ -369,13 +369,13 @@ export default function NewVisitPage() {
             <CardHeader>
               <CardTitle className="text-lg flex items-center gap-2">
                 <Activity className="w-5 h-5 text-teal-700" />
-                Visit Information
+                {visitType === 'daily_note' ? 'Daily Note Information' : 'Visit Information'}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <Label>Visit Date</Label>
+                  <Label>{visitType === 'daily_note' ? 'Daily note for:' : 'Visit Date'}</Label>
                   <Input
                     type="date"
                     value={visitData.visit_date}
@@ -403,8 +403,9 @@ export default function NewVisitPage() {
             </CardContent>
           </Card>
 
-          {/* Vital Signs - Always shown */}
-          <Card className="bg-white border-slate-100">
+          {/* Vital Signs - NOT shown for daily_note */}
+          {visitType !== 'daily_note' && (
+            <Card className="bg-white border-slate-100">
             <CardHeader>
               <CardTitle className="text-lg flex items-center gap-2">
                 <Heart className="w-5 h-5 text-rose-500" />
