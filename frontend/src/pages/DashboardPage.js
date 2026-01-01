@@ -326,13 +326,20 @@ export default function DashboardPage() {
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-4">
-                      <div className={`w-14 h-14 ${
-                        patient.is_assigned_to_me ? 'bg-eggplant-50' : 'bg-slate-100'
-                      } rounded-full flex items-center justify-center`}>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/patients/${patient.id}`);
+                        }}
+                        className={`w-14 h-14 ${
+                          patient.is_assigned_to_me ? 'bg-eggplant-50 hover:bg-eggplant-100' : 'bg-slate-100 hover:bg-slate-200'
+                        } rounded-full flex items-center justify-center transition-colors cursor-pointer`}
+                        title="View patient profile"
+                      >
                         <User className={`w-7 h-7 ${
                           patient.is_assigned_to_me ? 'text-eggplant-700' : 'text-slate-400'
                         }`} />
-                      </div>
+                      </button>
                       <div>
                         <div className="flex items-center gap-2">
                           <h3 className="font-semibold text-slate-900">{patient.full_name}</h3>
