@@ -592,16 +592,16 @@ export default function PatientDetailPage() {
                         </Label>
                         {editingProfile ? (
                           <Textarea
-                            value={(profileData.allergies || []).join(', ')}
+                            value={Array.isArray(profileData.allergies) ? profileData.allergies.join(', ') : (profileData.allergies || '')}
                             onChange={(e) => handleArrayFieldChange('allergies', e.target.value)}
                             className="mt-1"
-                            placeholder="Separate with commas"
+                            placeholder="Separate with commas (e.g., Penicillin, Peanuts, Latex)"
                             rows={2}
                           />
                         ) : (
                           <div className="flex flex-wrap gap-1 mt-1">
-                            {(profileData.allergies || []).length > 0 ? (
-                              profileData.allergies.map((allergy, i) => (
+                            {((Array.isArray(profileData.allergies) ? profileData.allergies : [])).length > 0 ? (
+                              (Array.isArray(profileData.allergies) ? profileData.allergies : []).map((allergy, i) => (
                                 <span key={i} className="bg-rose-50 text-rose-700 px-2 py-1 rounded text-sm">
                                   {allergy}
                                 </span>
