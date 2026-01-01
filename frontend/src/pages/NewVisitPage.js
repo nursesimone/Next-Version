@@ -1204,8 +1204,18 @@ export default function NewVisitPage() {
             </Card>
           )}
 
-          {/* Submit Button */}
-          <div className="flex justify-end">
+          {/* Submit Buttons */}
+          <div className="flex justify-end gap-3">
+            <Button 
+              type="button"
+              variant="outline"
+              className="h-12 px-8"
+              onClick={(e) => handleSubmit(e, 'draft')}
+              disabled={saving}
+              data-testid="submit-draft-btn"
+            >
+              Save as Draft
+            </Button>
             <Button 
               type="submit"
               className="bg-teal-700 hover:bg-teal-600 h-12 px-8"
@@ -1213,7 +1223,7 @@ export default function NewVisitPage() {
               data-testid="submit-visit-btn"
             >
               <Save className="w-5 h-5 mr-2" />
-              {saving ? 'Saving Visit...' : 'Save Visit'}
+              {saving ? 'Saving Visit...' : 'Complete Visit'}
             </Button>
           </div>
         </form>
