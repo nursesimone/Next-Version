@@ -413,8 +413,8 @@ export default function ReportsPage() {
               <Card className="bg-white border-slate-100">
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
-                      <Stethoscope className="w-5 h-5 text-blue-600" />
+                    <div className="w-10 h-10 bg-navy-50 rounded-lg flex items-center justify-center">
+                      <Stethoscope className="w-5 h-5 text-navy-600" />
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-slate-900">{reportData.summary.nurse_visits}</p>
@@ -543,7 +543,7 @@ function VisitTable({ visits, getVisitTypeLabel }) {
               <td className="py-3 px-4">
                 <span className={`px-2 py-1 rounded text-xs font-medium ${
                   visit.visit_type === 'nurse_visit' ? 'bg-eggplant-50 text-eggplant-700' :
-                  visit.visit_type === 'vitals_only' ? 'bg-blue-50 text-blue-700' :
+                  visit.visit_type === 'vitals_only' ? 'bg-navy-50 text-blue-700' :
                   'bg-amber-50 text-amber-700'
                 }`}>
                   {getVisitTypeLabel(visit.visit_type)}

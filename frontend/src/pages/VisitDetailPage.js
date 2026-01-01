@@ -327,7 +327,7 @@ export default function VisitDetailPage() {
                 {visit.visit_type && (
                   <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                     visit.visit_type === 'nurse_visit' ? 'bg-eggplant-50 text-eggplant-700' :
-                    visit.visit_type === 'vitals_only' ? 'bg-blue-50 text-blue-700' :
+                    visit.visit_type === 'vitals_only' ? 'bg-navy-50 text-blue-700' :
                     'bg-amber-50 text-amber-700'
                   }`}>
                     {visit.visit_type === 'nurse_visit' ? 'Nurse Visit' :
@@ -570,7 +570,7 @@ export default function VisitDetailPage() {
           <Card className="bg-white border-slate-100">
             <CardHeader>
               <CardTitle className="text-base flex items-center gap-2">
-                <Droplet className="w-4 h-4 text-blue-600" />
+                <Droplet className="w-4 h-4 text-navy-600" />
                 Genito-Urinary
               </CardTitle>
             </CardHeader>

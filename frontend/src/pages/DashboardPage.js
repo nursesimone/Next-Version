@@ -130,7 +130,7 @@ export default function DashboardPage() {
                   <div className="flex items-center gap-2 text-sm">
                     <span className={`px-2 py-0.5 rounded text-xs font-medium ${
                       visitType === 'nurse_visit' ? 'bg-eggplant-50 text-eggplant-700' :
-                      visitType === 'vitals_only' ? 'bg-blue-50 text-blue-700' :
+                      visitType === 'vitals_only' ? 'bg-navy-50 text-blue-700' :
                       'bg-amber-50 text-amber-700'
                     }`}>
                       {getVisitTypeLabel()}

@@ -437,7 +437,7 @@ export default function InterventionPage() {
             <Card className="bg-white border-slate-100">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Syringe className="w-5 h-5 text-blue-600" />
+                  <Syringe className="w-5 h-5 text-navy-600" />
                   Injection Details
                 </CardTitle>
               </CardHeader>
@@ -711,7 +711,7 @@ export default function InterventionPage() {
               <Card className="bg-white border-slate-100">
                 <CardHeader>
                   <CardTitle className="text-lg flex items-center gap-2">
-                    <Pill className="w-5 h-5 text-indigo-600" />
+                    <Pill className="w-5 h-5 text-navy-600" />
                     Treatment Details
                   </CardTitle>
                 </CardHeader>
@@ -874,7 +874,7 @@ export default function InterventionPage() {
           <Card className="bg-white border-slate-100">
             <CardHeader>
               <CardTitle className="text-lg flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-blue-600" />
+                <CheckCircle2 className="w-5 h-5 text-navy-600" />
                 Post-Intervention Observations
               </CardTitle>
               <CardDescription>

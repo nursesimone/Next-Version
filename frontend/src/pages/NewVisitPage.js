@@ -296,7 +296,7 @@ export default function NewVisitPage() {
   const getVisitTypeColor = () => {
     switch (visitType) {
       case 'nurse_visit': return 'bg-eggplant-50 text-eggplant-700 border-eggplant-200';
-      case 'vitals_only': return 'bg-blue-50 text-blue-700 border-blue-200';
+      case 'vitals_only': return 'bg-navy-50 text-blue-700 border-blue-200';
       case 'daily_note': return 'bg-amber-50 text-amber-700 border-amber-200';
       default: return 'bg-slate-50 text-slate-700 border-slate-200';
     }
@@ -548,7 +548,7 @@ export default function NewVisitPage() {
             <Card className="bg-white border-slate-100">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <ClipboardList className="w-5 h-5 text-indigo-600" />
+                  <ClipboardList className="w-5 h-5 text-navy-600" />
                   Home Visit Logbook Checks
                 </CardTitle>
                 <CardDescription>Review and check required home environment items</CardDescription>
@@ -954,7 +954,7 @@ export default function NewVisitPage() {
                 <AccordionItem value="gu" className="bg-white border border-slate-100 rounded-xl px-6">
                   <AccordionTrigger className="hover:no-underline">
                     <span className="flex items-center gap-2 text-lg font-semibold">
-                      <Droplet className="w-5 h-5 text-blue-600" />
+                      <Droplet className="w-5 h-5 text-navy-600" />
                       Genito-Urinary Assessment
                     </span>
                   </AccordionTrigger>
