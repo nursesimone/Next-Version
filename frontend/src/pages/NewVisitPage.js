@@ -519,6 +519,7 @@ export default function NewVisitPage() {
               )}
             </CardContent>
           </Card>
+          )}
 
           {/* Daily Note Content - Only for daily_note type */}
           {visitType === 'daily_note' && (
