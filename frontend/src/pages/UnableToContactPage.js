@@ -323,20 +323,6 @@ export default function UnableToContactPage() {
                 </div>
               )}
               
-              {/* Expected Return Date */}
-              {['moved_temporarily', 'vacation', 'admitted'].includes(formData.individual_location) && (
-                <div className="animate-fade-in">
-                  <Label>When are they expected to return?</Label>
-                  <Input
-                    type="date"
-                    value={formData.expected_return_date}
-                    onChange={(e) => updateField('expected_return_date', e.target.value)}
-                    className="mt-1"
-                    data-testid="expected-return-input"
-                  />
-                </div>
-              )}
-              
               {/* If admitted to medical facility */}
               {formData.individual_location === 'admitted' && (
                 <div className="space-y-4 animate-fade-in pt-4 border-t border-slate-100">
@@ -397,6 +383,26 @@ export default function UnableToContactPage() {
                   </div>
                 </div>
               )}
+            </CardContent>
+          </Card>
+
+          {/* Expected Return Date - Moved to the end, before Additional Information */}
+          {['moved_temporarily', 'vacation', 'admitted'].includes(formData.individual_location) && (
+            <Card className="bg-white border-slate-100">
+              <CardHeader>
+                <CardTitle className="text-lg">When are they expected to return?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Input
+                  type="date"
+                  value={formData.expected_return_date}
+                  onChange={(e) => updateField('expected_return_date', e.target.value)}
+                  className="h-11"
+                  data-testid="expected-return-input"
+                />
+              </CardContent>
+            </Card>
+          )}
             </CardContent>
           </Card>
 
