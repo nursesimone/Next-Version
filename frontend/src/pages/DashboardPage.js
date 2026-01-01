@@ -381,14 +381,14 @@ export default function DashboardPage() {
                             BP: {patient.last_vitals.blood_pressure_systolic}/{patient.last_vitals.blood_pressure_diastolic}
                           </span>
                         )}
-                        {patient.last_vitals.pulse && (
-                          <span className="bg-slate-100 px-2 py-1 rounded font-mono">
-                            HR: {patient.last_vitals.pulse}
-                          </span>
-                        )}
                         {patient.last_vitals.body_temperature && (
                           <span className="bg-slate-100 px-2 py-1 rounded font-mono">
-                            T: {patient.last_vitals.body_temperature}
+                            T: {patient.last_vitals.body_temperature}°F
+                          </span>
+                        )}
+                        {patient.last_vitals.weight && (
+                          <span className="bg-slate-100 px-2 py-1 rounded font-mono">
+                            Wt: {patient.last_vitals.weight} lbs
                           </span>
                         )}
                       </div>
