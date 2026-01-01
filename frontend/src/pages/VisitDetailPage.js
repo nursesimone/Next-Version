@@ -518,7 +518,8 @@ export default function VisitDetailPage() {
           </CardContent>
         </Card>
 
-        {/* System Assessments */}
+        {/* System Assessments - Only for nurse_visit */}
+        {visit.visit_type === 'nurse_visit' && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           {/* GI */}
           <Card className="bg-white border-slate-100">
