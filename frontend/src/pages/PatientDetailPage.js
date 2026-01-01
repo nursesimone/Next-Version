@@ -667,6 +667,13 @@ export default function PatientDetailPage() {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Added Date - at bottom of profile */}
+            <div className="text-center pt-6">
+              <p className="text-xs text-slate-400">
+                Patient added on {formatDate(patient.created_at)}
+              </p>
+            </div>
           </TabsContent>
 
           {/* Visits Tab */}
