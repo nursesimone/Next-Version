@@ -149,7 +149,16 @@ export default function NewVisitPage() {
         organization: patientOrg
       }));
       
-      // Only pre-fill height from last vitals (height should persist)
+      // Load last visit for "pull from last" functionality
+      try {
+        const lastVisitResponse = await visitsAPI.getLast(patientId);
+        setLastVisit(lastVisitResponse.data);
+      } catch (err) {
+        // No previous visit - that's okay
+        console.log('No previous visits found');
+      }
+      
+      // Pre-fill height from last vitals (height should persist)
       if (response.data.last_vitals?.height) {
         setVisitData(prev => ({
           ...prev,
