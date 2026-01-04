@@ -375,13 +375,7 @@ export default function NewVisitPage() {
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Visit Info */}
           <Card className="bg-white border-slate-100">
-            <CardHeader>
-              <CardTitle className="text-lg flex items-center gap-2">
-                <User className="w-5 h-5 text-eggplant-700" />
-                <strong>{patient?.full_name}</strong>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
+            <CardContent className="pt-6">
               <div>
                 <Label>
                   {visitType === 'daily_note' ? 'Daily note for:' : 
