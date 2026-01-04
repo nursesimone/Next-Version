@@ -219,16 +219,28 @@ export default function AdminPage() {
                       </p>
                     </div>
                   </div>
-                  {!nurseItem.is_admin && (
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => handlePromoteToAdmin(nurseItem.id)}
-                    >
-                      <Shield className="w-4 h-4 mr-2" />
-                      Promote to Admin
-                    </Button>
-                  )}
+                  <div className="flex items-center gap-2">
+                    {nurseItem.is_admin && nurseItem.id !== nurse?.id && (
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => handleDemoteFromAdmin(nurseItem.id)}
+                        className="text-amber-600 border-amber-200 hover:bg-amber-50"
+                      >
+                        Remove Admin
+                      </Button>
+                    )}
+                    {!nurseItem.is_admin && (
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => handlePromoteToAdmin(nurseItem.id)}
+                      >
+                        <Shield className="w-4 h-4 mr-2" />
+                        Promote to Admin
+                      </Button>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
