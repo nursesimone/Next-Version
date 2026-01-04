@@ -248,27 +248,25 @@ export default function InterventionPage() {
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Patient Info (DOB prefilled) */}
+          {/* Patient Name */}
           <Card className="bg-white border-slate-100">
             <CardHeader>
               <CardTitle className="text-lg flex items-center gap-2">
-                <User className="w-5 h-5 text-purple-600" />
-                Patient Information
+                <User className="w-5 h-5 text-eggplant-700" />
+                <strong>{patient?.full_name}</strong>
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <Label className="text-slate-500">Patient Name</Label>
-                  <p className="text-lg font-medium text-slate-900">{patient?.full_name}</p>
-                </div>
-                <div>
-                  <Label className="text-slate-500">Date of Birth</Label>
-                  <p className="text-lg font-medium text-slate-900 flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-slate-400" />
-                    {formatDate(patient?.permanent_info?.date_of_birth) || 'Not set'}
-                  </p>
-                </div>
+              <div>
+                <Label>Intervention for:</Label>
+                <Input
+                  type="date"
+                  value={formData.intervention_date}
+                  onChange={(e) => updateField('intervention_date', e.target.value)}
+                  className="mt-1"
+                  required
+                  data-testid="intervention-date-input"
+                />
               </div>
             </CardContent>
           </Card>
