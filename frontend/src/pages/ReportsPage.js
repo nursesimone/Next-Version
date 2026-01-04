@@ -269,7 +269,14 @@ export default function ReportsPage() {
               <Button 
                 variant="ghost" 
                 size="icon" 
-                onClick={() => navigate('/visit-type')}
+                onClick={() => {
+                  // Check if user is admin and go to appropriate page
+                  if (nurse?.is_admin) {
+                    navigate('/admin');
+                  } else {
+                    navigate('/visit-type');
+                  }
+                }}
                 data-testid="back-btn"
               >
                 <ArrowLeft className="w-5 h-5" />
