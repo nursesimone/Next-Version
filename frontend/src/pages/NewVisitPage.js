@@ -1201,6 +1201,58 @@ export default function NewVisitPage() {
             </Card>
           )}
 
+          {/* Signature Section - Only for nurse_visit */}
+          {visitType === 'nurse_visit' && (
+            <Card className="bg-white border-slate-100">
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <FileText className="w-5 h-5 text-eggplant-700" />
+                  Certification
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <Label className="text-slate-700 font-medium">Screening completed by:</Label>
+                  <p className="text-lg text-slate-900 mt-2">
+                    <span className="underline font-medium">
+                      {visitData.screening_completed_by || `${nurse?.full_name}, ${nurse?.title}`}
+                    </span>
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-slate-100">
+                  <Label className="text-slate-700 font-medium">
+                    Nurse assessment was reviewed and signed by:
+                  </Label>
+                  <Select
+                    value={visitData.reviewed_and_signed_by}
+                    onValueChange={(value) => setVisitData(prev => ({ ...prev, reviewed_and_signed_by: value }))}
+                  >
+                    <SelectTrigger className="mt-2 h-12" data-testid="reviewed-by-select">
+                      <SelectValue placeholder="Select reviewer..." />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value={`${nurse?.full_name}, ${nurse?.title}`}>
+                        {nurse?.full_name}, {nurse?.title}
+                      </SelectItem>
+                      <SelectItem value="Simone Lajonquille, LPN">
+                        Simone Lajonquille, LPN
+                      </SelectItem>
+                      <SelectItem value="Hilary Thompson-Pierre, RN">
+                        Hilary Thompson-Pierre, RN
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                  {visitData.reviewed_and_signed_by && (
+                    <p className="text-lg text-slate-900 mt-3">
+                      Signed by: <span className="underline font-medium">{visitData.reviewed_and_signed_by}</span>
+                    </p>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
           {/* Submit Buttons */}
           <div className="flex justify-end gap-3">
             <Button 
