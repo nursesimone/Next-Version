@@ -905,7 +905,18 @@ export default function PatientDetailPage() {
               </CardContent>
             </Card>
           </TabsContent>
-        </Tabs>
+            </Tabs>
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => navigate(`/daily-notes-report?patientId=${patientId}`)}
+            className="ml-4 self-start"
+          >
+            <FileText className="w-4 h-4 mr-2" />
+            Daily Notes Report
+          </Button>
+        </div>
       </main>
 
       {/* Delete Confirmation Dialog */}
