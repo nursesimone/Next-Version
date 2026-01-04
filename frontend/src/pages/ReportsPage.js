@@ -35,6 +35,7 @@ export default function ReportsPage() {
   const [selectedMonth, setSelectedMonth] = useState((new Date().getMonth() + 1).toString());
   const [selectedPatient, setSelectedPatient] = useState('all');
   const [selectedOrganization, setSelectedOrganization] = useState('all');
+  const [selectedVisitType, setSelectedVisitType] = useState('all');
 
   const months = [
     { value: '1', label: 'January' },
