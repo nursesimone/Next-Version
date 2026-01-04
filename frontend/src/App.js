@@ -47,7 +47,7 @@ function PublicRoute({ children }) {
   }
   
   if (nurse) {
-    return <Navigate to="/visit-type" replace />;
+    return <Navigate to="/dashboard" replace />;
   }
   
   return children;
@@ -56,7 +56,7 @@ function PublicRoute({ children }) {
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/visit-type" replace />} />
+      <Route path="/" element={<Navigate to="/dashboard" replace />} />
       <Route 
         path="/login" 
         element={
