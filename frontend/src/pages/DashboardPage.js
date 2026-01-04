@@ -129,7 +129,7 @@ export default function DashboardPage() {
                     className="bg-navy-700 hover:bg-navy-600"
                   >
                     <Shield className="w-4 h-4 mr-2" />
-                    Admin Panel
+                    Admin
                   </Button>
                   <Button 
                     variant="outline"
