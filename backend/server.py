@@ -735,6 +735,8 @@ async def create_visit(patient_id: str, data: VisitCreate, nurse: dict = Depends
         daily_note_content=data.daily_note_content,
         status=data.status,
         attachments=data.attachments or [],
+        screening_completed_by=data.screening_completed_by,
+        reviewed_and_signed_by=data.reviewed_and_signed_by,
         created_at=now
     )
 
