@@ -148,6 +148,7 @@ export default function PatientDetailPage() {
                 size="icon" 
                 onClick={() => navigate('/dashboard')}
                 data-testid="back-to-dashboard"
+                title="Return to Patient List"
               >
                 <ArrowLeft className="w-5 h-5" />
               </Button>
@@ -157,6 +158,15 @@ export default function PatientDetailPage() {
                 </div>
                 <span className="text-xl font-bold text-slate-900">NurseRounds</span>
               </div>
+              <Button 
+                variant="outline"
+                size="sm"
+                onClick={() => navigate('/dashboard')}
+                className="ml-4"
+                data-testid="return-to-list-btn"
+              >
+                Return to Patient List
+              </Button>
             </div>
             
             <div className="flex items-center gap-2">
