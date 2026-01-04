@@ -332,12 +332,15 @@ export default function DashboardPage() {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          navigate(`/patients/${patient.id}`);
+                          if (canAccess) navigate(`/patients/${patient.id}`);
                         }}
                         className={`w-14 h-14 ${
-                          patient.is_assigned_to_me ? 'bg-eggplant-50 hover:bg-eggplant-100' : 'bg-slate-100 hover:bg-slate-200'
-                        } rounded-full flex items-center justify-center transition-colors cursor-pointer`}
-                        title="View patient profile"
+                          patient.is_assigned_to_me ? 'bg-eggplant-50 hover:bg-eggplant-100' : 'bg-slate-100'
+                        } rounded-full flex items-center justify-center transition-colors ${
+                          canAccess ? 'cursor-pointer' : 'cursor-not-allowed'
+                        }`}
+                        title={canAccess ? "View patient profile" : "Not assigned to you"}
+                        disabled={!canAccess}
                       >
                         <User className={`w-7 h-7 ${
                           patient.is_assigned_to_me ? 'text-eggplant-700' : 'text-slate-400'
