@@ -286,7 +286,16 @@ export default function NewVisitPage() {
     setSaving(true);
     
     try {
-      const submitData = { ...visitData, status: saveAs };
+      let submitData = { ...visitData, status: saveAs };
+      
+      // Auto-append initials for daily notes
+      if (visitType === 'daily_note' && submitData.daily_note_content) {
+        const initials = nurse?.full_name?.split(' ').map(n => n[0]).join('').toUpperCase();
+        if (!submitData.daily_note_content.trim().endsWith(initials)) {
+          submitData.daily_note_content = submitData.daily_note_content.trim() + ` -${initials}`;
+        }
+      }
+      
       await visitsAPI.create(patientId, submitData);
       toast.success(saveAs === 'draft' ? 'Visit saved as draft' : 'Visit completed successfully');
       navigate(`/patients/${patientId}`);
