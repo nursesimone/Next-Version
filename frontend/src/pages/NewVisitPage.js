@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import { patientsAPI, visitsAPI } from '../lib/api';
 import { isBloodPressureAbnormal } from '../lib/utils';
 import { Button } from '../components/ui/button';
