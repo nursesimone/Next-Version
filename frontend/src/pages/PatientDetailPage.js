@@ -209,15 +209,72 @@ export default function PatientDetailPage() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col gap-2 items-end">
+          </div>
+        </div>
+
+        {/* Create a new... Section */}
+        <Card className="mb-6 bg-gradient-to-br from-eggplant-50 to-navy-50 border-eggplant-200">
+          <CardHeader>
+            <CardTitle className="text-lg text-eggplant-900">What would you like to do?</CardTitle>
+            <CardDescription className="text-slate-600">Create a new entry for this patient</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               <Button 
-                className="bg-eggplant-700 hover:bg-eggplant-600 h-12 px-6"
-                onClick={() => navigate(`/patients/${patientId}/new-visit`)}
-                data-testid="new-visit-btn"
+                className="h-auto py-4 flex-col gap-2 bg-white hover:bg-eggplant-50 text-eggplant-700 border-2 border-eggplant-200 shadow-sm"
+                variant="outline"
+                onClick={() => {
+                  sessionStorage.setItem('visitType', 'nurse_visit');
+                  navigate(`/patients/${patientId}/new-visit`);
+                }}
+                data-testid="create-nurse-visit-btn"
               >
-                <Plus className="w-5 h-5 mr-2" />
-                {sessionStorage.getItem('visitType') === 'daily_note' ? 'New Note' : 'New Visit'}
+                <Stethoscope className="w-6 h-6" />
+                <span className="text-sm font-medium">Routine Nurse Visit</span>
               </Button>
+
+              <Button 
+                className="h-auto py-4 flex-col gap-2 bg-white hover:bg-navy-50 text-navy-700 border-2 border-navy-200 shadow-sm"
+                variant="outline"
+                onClick={() => {
+                  sessionStorage.setItem('visitType', 'patient_intervention');
+                  navigate(`/patients/${patientId}/intervention`);
+                }}
+                data-testid="create-intervention-btn"
+              >
+                <Activity className="w-6 h-6" />
+                <span className="text-sm font-medium">Intervention</span>
+              </Button>
+
+              <Button 
+                className="h-auto py-4 flex-col gap-2 bg-white hover:bg-eggplant-50 text-eggplant-700 border-2 border-eggplant-200 shadow-sm"
+                variant="outline"
+                onClick={() => {
+                  sessionStorage.setItem('visitType', 'vitals_only');
+                  navigate(`/patients/${patientId}/new-visit`);
+                }}
+                data-testid="create-vitals-only-btn"
+              >
+                <Heart className="w-6 h-6" />
+                <span className="text-sm font-medium">Vital Signs Only</span>
+              </Button>
+
+              <Button 
+                className="h-auto py-4 flex-col gap-2 bg-white hover:bg-navy-50 text-navy-700 border-2 border-navy-200 shadow-sm"
+                variant="outline"
+                onClick={() => {
+                  sessionStorage.setItem('visitType', 'daily_note');
+                  navigate(`/patients/${patientId}/new-visit`);
+                }}
+                data-testid="create-daily-note-btn"
+              >
+                <FileText className="w-6 h-6" />
+                <span className="text-sm font-medium">Daily Note</span>
+              </Button>
+            </div>
+
+            {/* Unable to Contact as Secondary Action */}
+            <div className="mt-4 pt-4 border-t border-slate-200">
               <Button 
                 variant="outline"
                 size="sm"
@@ -229,8 +286,8 @@ export default function PatientDetailPage() {
                 Unable to Contact
               </Button>
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
         {/* Tabs */}
         <Tabs defaultValue="visits" className="space-y-6">
