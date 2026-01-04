@@ -87,6 +87,10 @@ export default function ReportsPage() {
         requestData.organization = selectedOrganization;
       }
       
+      if (selectedVisitType !== 'all') {
+        requestData.visit_type = selectedVisitType;
+      }
+      
       const response = await reportsAPI.getMonthly(requestData);
       setReportData(response.data);
     } catch (error) {
