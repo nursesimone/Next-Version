@@ -228,7 +228,6 @@ export default function InterventionPage() {
                 </div>
                 <div>
                   <h1 className="font-bold text-slate-900">Patient Intervention</h1>
-                  <p className="text-sm text-slate-500">{patient?.full_name}</p>
                 </div>
               </div>
             </div>
@@ -248,17 +247,11 @@ export default function InterventionPage() {
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Patient Name */}
+          {/* Intervention Date */}
           <Card className="bg-white border-slate-100">
-            <CardHeader>
-              <CardTitle className="text-lg flex items-center gap-2">
-                <User className="w-5 h-5 text-eggplant-700" />
-                <strong>{patient?.full_name}</strong>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
+            <CardContent className="pt-6">
               <div>
-                <Label>Intervention for:</Label>
+                <Label>Intervention completed on:</Label>
                 <Input
                   type="date"
                   value={formData.intervention_date}
