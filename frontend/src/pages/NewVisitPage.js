@@ -343,11 +343,7 @@ export default function NewVisitPage() {
                   <Stethoscope className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <div className="flex items-center gap-2">
-                    <h1 className="font-bold text-slate-900">{getVisitTypeLabel()}</h1>
-                    <Badge className={getVisitTypeColor()}>{visitType.replace('_', ' ')}</Badge>
-                  </div>
-                  <p className="text-sm text-slate-500">{patient?.full_name}</p>
+                  <h1 className="font-bold text-slate-900">{getVisitTypeLabel()}</h1>
                 </div>
               </div>
             </div>
