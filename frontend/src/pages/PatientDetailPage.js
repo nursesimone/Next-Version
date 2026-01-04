@@ -787,13 +787,15 @@ export default function PatientDetailPage() {
               visits.map(visit => (
                 <Card 
                   key={visit.id} 
-                  className="bg-white border-slate-100 cursor-pointer hover:border-eggplant-200 transition-all"
-                  onClick={() => navigate(`/visits/${visit.id}`)}
+                  className="bg-white border-slate-100 hover:border-eggplant-200 transition-all"
                   data-testid={`visit-card-${visit.id}`}
                 >
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-4">
+                      <div 
+                        className="flex items-center gap-4 flex-1 cursor-pointer"
+                        onClick={() => navigate(`/visits/${visit.id}`)}
+                      >
                         <div className="w-12 h-12 bg-eggplant-50 rounded-xl flex items-center justify-center">
                           <Activity className="w-6 h-6 text-eggplant-700" />
                         </div>
@@ -825,9 +827,25 @@ export default function PatientDetailPage() {
                           </div>
                         </div>
                       </div>
-                      <div className="text-slate-400 text-sm flex items-center gap-1">
-                        <Clock className="w-4 h-4" />
-                        {formatDate(visit.created_at)}
+                      <div className="flex items-center gap-3">
+                        {(visit.visit_type === 'nurse_visit' || visit.visit_type === 'vitals_only') && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/visits/${visit.id}`);
+                            }}
+                            className="text-eggplant-700"
+                          >
+                            <FileText className="w-4 h-4 mr-1" />
+                            View PDF
+                          </Button>
+                        )}
+                        <div className="text-slate-400 text-sm flex items-center gap-1">
+                          <Clock className="w-4 h-4" />
+                          {formatDate(visit.created_at)}
+                        </div>
                       </div>
                     </div>
                   </CardContent>
