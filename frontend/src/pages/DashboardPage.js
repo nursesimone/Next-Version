@@ -120,6 +120,17 @@ export default function DashboardPage() {
             </div>
             
             <div className="flex items-center gap-4">
+              {nurse?.is_admin && (
+                <Button 
+                  variant="outline"
+                  size="sm"
+                  onClick={() => navigate('/reports')}
+                  className="hidden sm:flex"
+                >
+                  <ClipboardList className="w-4 h-4 mr-2" />
+                  Reports
+                </Button>
+              )}
               <div className="text-right hidden sm:block">
                 <p className="text-sm font-medium text-slate-900">{nurse?.full_name}</p>
                 <p className="text-xs text-slate-500">{nurse?.license_number || 'Nurse'}</p>
