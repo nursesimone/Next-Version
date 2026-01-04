@@ -107,7 +107,7 @@ export default function ReportsPage() {
     // Get visit type label
     const getVisitTypeLabel = (type) => {
       switch (type) {
-        case 'nurse_visit': return 'Routine Nurse Visit';
+        case 'nurse_visit': return 'Nurse Visit';
         case 'vitals_only': return 'Vital Signs';
         case 'daily_note': return 'Daily Note';
         default: return type;
