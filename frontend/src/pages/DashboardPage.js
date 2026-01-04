@@ -29,7 +29,8 @@ import {
   ClipboardList,
   ArrowLeft,
   PhoneOff,
-  Clock
+  Clock,
+  Shield
 } from 'lucide-react';
 import { toast } from 'sonner';
 
