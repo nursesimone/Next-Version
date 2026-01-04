@@ -133,6 +133,14 @@ export default function NewVisitPage() {
     }
   }, [visitType, patientId, navigate]);
 
+  // Auto-fill screening completed by
+  useEffect(() => {
+    if (nurse && !visitData.screening_completed_by) {
+      const screeningBy = `${nurse.full_name}, ${nurse.title}`;
+      setVisitData(prev => ({ ...prev, screening_completed_by: screeningBy }));
+    }
+  }, [nurse]);
+
   useEffect(() => {
     fetchPatient();
   }, [patientId]);
