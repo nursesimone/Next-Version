@@ -301,18 +301,32 @@ export default function PatientDetailPage() {
         </Card>
 
         {/* Tabs */}
+        <div className="flex items-center justify-between mb-4">
+          <Tabs defaultValue="visits" className="flex-1">
+            <TabsList className="bg-white border border-slate-100 p-1">
+              <TabsTrigger value="visits" className="data-[state=active]:bg-eggplant-50 data-[state=active]:text-eggplant-700">
+                Visit History ({visits.length})
+              </TabsTrigger>
+              <TabsTrigger value="profile" className="data-[state=active]:bg-eggplant-50 data-[state=active]:text-eggplant-700">
+                Profile
+              </TabsTrigger>
+              <TabsTrigger value="vitals" className="data-[state=active]:bg-eggplant-50 data-[state=active]:text-eggplant-700">
+                Last Vitals
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => navigate(`/daily-notes-report?patientId=${patientId}`)}
+            className="ml-4"
+          >
+            <FileText className="w-4 h-4 mr-2" />
+            Daily Notes Report
+          </Button>
+        </div>
+        
         <Tabs defaultValue="visits" className="space-y-6">
-          <TabsList className="bg-white border border-slate-100 p-1">
-            <TabsTrigger value="visits" className="data-[state=active]:bg-eggplant-50 data-[state=active]:text-eggplant-700">
-              Visit History ({visits.length})
-            </TabsTrigger>
-            <TabsTrigger value="profile" className="data-[state=active]:bg-eggplant-50 data-[state=active]:text-eggplant-700">
-              Profile
-            </TabsTrigger>
-            <TabsTrigger value="vitals" className="data-[state=active]:bg-eggplant-50 data-[state=active]:text-eggplant-700">
-              Last Vitals
-            </TabsTrigger>
-          </TabsList>
 
           {/* Profile Tab */}
           <TabsContent value="profile" className="space-y-6">
