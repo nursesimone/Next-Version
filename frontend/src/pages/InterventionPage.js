@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import { patientsAPI, interventionsAPI } from '../lib/api';
 import { formatDate } from '../lib/utils';
 import { Button } from '../components/ui/button';
@@ -31,6 +32,7 @@ import { toast } from 'sonner';
 export default function InterventionPage() {
   const { patientId } = useParams();
   const navigate = useNavigate();
+  const { nurse } = useAuth();
   const [patient, setPatient] = useState(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
