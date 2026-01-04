@@ -314,13 +314,16 @@ export default function DashboardPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredPatients.map(patient => (
+            {filteredPatients.map(patient => {
+              const canAccess = nurse?.is_admin || patient.is_assigned_to_me;
+              
+              return (
               <Card 
                 key={patient.id} 
-                className={`patient-card bg-white border-slate-100 cursor-pointer ${
-                  !patient.is_assigned_to_me ? 'opacity-50 hover:opacity-75' : ''
-                }`}
-                onClick={() => navigate(`/patients/${patient.id}`)}
+                className={`patient-card bg-white border-slate-100 ${
+                  canAccess ? 'cursor-pointer' : 'cursor-not-allowed opacity-40'
+                } ${!patient.is_assigned_to_me && nurse?.is_admin ? 'opacity-75' : ''}`}
+                onClick={() => canAccess && navigate(`/patients/${patient.id}`)}
                 data-testid={`patient-card-${patient.id}`}
               >
                 <CardContent className="p-6">
