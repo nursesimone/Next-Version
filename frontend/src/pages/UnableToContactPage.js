@@ -32,7 +32,7 @@ export default function UnableToContactPage() {
 
   const getVisitTypeLabel = () => {
     switch (visitType) {
-      case 'nurse_visit': return 'Routine Nurse Visit';
+      case 'nurse_visit': return 'Nurse Visit';
       case 'vitals_only': return 'Vital Signs Check';
       case 'daily_note': return "Resident's Daily Note";
       default: return 'Visit';

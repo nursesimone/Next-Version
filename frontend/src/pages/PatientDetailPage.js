@@ -241,7 +241,7 @@ export default function PatientDetailPage() {
                 data-testid="create-nurse-visit-btn"
               >
                 <Stethoscope className="w-6 h-6" />
-                <span className="text-sm font-medium">Routine Nurse Visit</span>
+                <span className="text-sm font-medium">Nurse Visit</span>
               </Button>
 
               <Button 
