@@ -1015,6 +1015,9 @@ async def get_monthly_report(data: MonthlyReportRequest, nurse: dict = Depends(g
     if data.organization:
         query["organization"] = data.organization
     
+    if data.visit_type:
+        query["visit_type"] = data.visit_type
+    
     # Get visits
     visits = await db.visits.find(query, {"_id": 0}).sort("visit_date", 1).to_list(10000)
     
