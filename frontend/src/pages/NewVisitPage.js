@@ -368,37 +368,24 @@ export default function NewVisitPage() {
           <Card className="bg-white border-slate-100">
             <CardHeader>
               <CardTitle className="text-lg flex items-center gap-2">
-                <Activity className="w-5 h-5 text-eggplant-700" />
-                {visitType === 'daily_note' ? 'Daily Note Information' : 'Visit Information'}
+                <User className="w-5 h-5 text-eggplant-700" />
+                <strong>{patient?.full_name}</strong>
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div>
-                  <Label>{visitType === 'daily_note' ? 'Daily note for:' : 'Visit Date'}</Label>
-                  <Input
-                    type="date"
-                    value={visitData.visit_date}
-                    onChange={(e) => setVisitData(prev => ({ ...prev, visit_date: e.target.value }))}
-                    className="mt-1"
-                    data-testid="visit-date-input"
-                  />
-                </div>
-                <div>
-                  <Label>Visit Type</Label>
-                  <div className={`mt-1 h-11 px-3 py-2 rounded-lg border flex items-center ${getVisitTypeColor()}`}>
-                    {getVisitTypeLabel()}
-                  </div>
-                </div>
-                {visitData.organization && (
-                  <div>
-                    <Label>Organization</Label>
-                    <div className="mt-1 h-11 px-3 py-2 rounded-lg border border-slate-200 bg-slate-50 flex items-center gap-2">
-                      <Building2 className="w-4 h-4 text-slate-500" />
-                      {visitData.organization}
-                    </div>
-                  </div>
-                )}
+              <div>
+                <Label>
+                  {visitType === 'daily_note' ? 'Daily note for:' : 
+                   visitType === 'vitals_only' ? 'Vital signs only for:' :
+                   'Routine nurse visit for:'}
+                </Label>
+                <Input
+                  type="date"
+                  value={visitData.visit_date}
+                  onChange={(e) => setVisitData(prev => ({ ...prev, visit_date: e.target.value }))}
+                  className="mt-1"
+                  data-testid="visit-date-input"
+                />
               </div>
             </CardContent>
           </Card>
