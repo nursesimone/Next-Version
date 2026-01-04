@@ -25,7 +25,8 @@ import {
   Save,
   User,
   Building2,
-  FileText
+  FileText,
+  ClipboardList
 } from 'lucide-react';
 import { toast } from 'sonner';
 
