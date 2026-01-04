@@ -121,15 +121,24 @@ export default function DashboardPage() {
             
             <div className="flex items-center gap-4">
               {nurse?.is_admin && (
-                <Button 
-                  variant="outline"
-                  size="sm"
-                  onClick={() => navigate('/reports')}
-                  className="hidden sm:flex"
-                >
-                  <ClipboardList className="w-4 h-4 mr-2" />
-                  Reports
-                </Button>
+                <>
+                  <Button 
+                    onClick={() => navigate('/admin')}
+                    className="bg-purple-600 hover:bg-purple-500"
+                  >
+                    <Shield className="w-4 h-4 mr-2" />
+                    Admin Panel
+                  </Button>
+                  <Button 
+                    variant="outline"
+                    size="sm"
+                    onClick={() => navigate('/reports')}
+                    className="hidden sm:flex"
+                  >
+                    <ClipboardList className="w-4 h-4 mr-2" />
+                    Reports
+                  </Button>
+                </>
               )}
               <div className="text-right hidden sm:block">
                 <p className="text-sm font-medium text-slate-900">{nurse?.full_name}</p>
