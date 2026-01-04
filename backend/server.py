@@ -228,6 +228,8 @@ class VisitResponse(BaseModel):
     daily_note_content: Optional[str] = None
     status: str = "completed"  # draft or completed
     attachments: List[str] = []
+    screening_completed_by: Optional[str] = None
+    reviewed_and_signed_by: Optional[str] = None
     created_at: str
 
 # ==================== INTERVENTION MODELS ====================
