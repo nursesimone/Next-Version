@@ -204,6 +204,8 @@ class VisitCreate(BaseModel):
     daily_note_content: Optional[str] = None  # For daily notes
     status: str = "completed"  # draft or completed
     attachments: Optional[List[str]] = []  # List of file IDs
+    screening_completed_by: Optional[str] = None
+    reviewed_and_signed_by: Optional[str] = None
 
 class VisitResponse(BaseModel):
     id: str
