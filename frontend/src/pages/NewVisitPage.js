@@ -389,7 +389,7 @@ export default function NewVisitPage() {
               <div>
                 <Label>
                   {visitType === 'daily_note' ? 'Daily note for:' : 
-                   visitType === 'vitals_only' ? 'Vital signs only for:' :
+                   visitType === 'vitals_only' ? 'Vital signs measured on:' :
                    'Routine nurse visit for:'}
                 </Label>
                 <Input
