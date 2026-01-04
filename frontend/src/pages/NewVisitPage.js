@@ -107,7 +107,9 @@ const initialVisitData = {
   overall_health_status: '',
   nurse_notes: '',
   daily_note_content: '',
-  status: 'completed'
+  status: 'completed',
+  screening_completed_by: '',
+  reviewed_and_signed_by: ''
 };
 
 export default function NewVisitPage() {
