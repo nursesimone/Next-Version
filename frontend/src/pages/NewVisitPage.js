@@ -115,6 +115,7 @@ const initialVisitData = {
 export default function NewVisitPage() {
   const { patientId } = useParams();
   const navigate = useNavigate();
+  const { nurse } = useAuth();
   const [patient, setPatient] = useState(null);
   const [visitData, setVisitData] = useState(initialVisitData);
   const [loading, setLoading] = useState(true);
