@@ -41,7 +41,7 @@ export default function VisitTypePage() {
   const visitTypes = [
     {
       id: 'nurse_visit',
-      title: 'Routine Nurse Visit',
+      title: 'Nurse Visit',
       description: 'Complete nursing assessment with all documentation',
       icon: Stethoscope
     },
