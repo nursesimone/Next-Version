@@ -11,6 +11,7 @@ import NewVisitPage from './pages/NewVisitPage';
 import VisitDetailPage from './pages/VisitDetailPage';
 import ReportsPage from './pages/ReportsPage';
 import DailyNotesReportPage from './pages/DailyNotesReportPage';
+import AdminPage from './pages/AdminPage';
 import UnableToContactPage from './pages/UnableToContactPage';
 import UTCDetailPage from './pages/UTCDetailPage';
 import InterventionPage from './pages/InterventionPage';
@@ -151,6 +152,14 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <DailyNotesReportPage />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/admin" 
+        element={
+          <ProtectedRoute>
+            <AdminPage />
           </ProtectedRoute>
         } 
       />
