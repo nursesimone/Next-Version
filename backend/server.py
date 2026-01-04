@@ -986,6 +986,7 @@ class MonthlyReportRequest(BaseModel):
     month: int
     patient_id: Optional[str] = None  # Optional: filter by specific patient
     organization: Optional[str] = None  # Optional: filter by organization
+    visit_type: Optional[str] = None  # Optional: filter by visit type (daily_note, vitals_only)
 
 @api_router.post("/reports/monthly")
 async def get_monthly_report(data: MonthlyReportRequest, nurse: dict = Depends(get_current_nurse)):
