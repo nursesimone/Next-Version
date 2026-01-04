@@ -984,6 +984,15 @@ export default function InterventionPage() {
             </CardContent>
           </Card>
 
+          {/* Signature */}
+          <Card className="bg-white border-slate-100">
+            <CardContent className="pt-6 pb-6">
+              <p className="text-slate-700">
+                Completed by: <span className="font-medium">{patient && `${patient.full_name}, ${patient.permanent_info?.gender || ''}`}</span>
+              </p>
+            </CardContent>
+          </Card>
+
           {/* Submit Button */}
           <div className="flex justify-end">
             <Button 
@@ -993,7 +1002,7 @@ export default function InterventionPage() {
               data-testid="submit-btn"
             >
               <Save className="w-5 h-5 mr-2" />
-              {saving ? 'Saving...' : 'Save Intervention'}
+              {saving ? 'Saving...' : 'Complete Visit'}
             </Button>
           </div>
         </form>
