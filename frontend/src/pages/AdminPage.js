@@ -66,6 +66,19 @@ export default function AdminPage() {
     }
   };
 
+  const handleDemoteFromAdmin = async (nurseId) => {
+    try {
+      const token = localStorage.getItem('nurse_token');
+      await axios.post(`${API}/admin/nurses/${nurseId}/demote`, {}, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      toast.success('Admin privileges removed');
+      fetchData();
+    } catch (error) {
+      toast.error('Failed to demote nurse');
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
