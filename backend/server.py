@@ -508,6 +508,20 @@ async def promote_to_admin(nurse_id: str, nurse: dict = Depends(get_current_nurs
         raise HTTPException(status_code=404, detail="Nurse not found")
     return {"message": "Nurse promoted to admin"}
 
+@api_router.post("/admin/nurses/{nurse_id}/demote")
+async def demote_from_admin(nurse_id: str, nurse: dict = Depends(get_current_nurse)):
+    if not nurse.get("is_admin"):
+        raise HTTPException(status_code=403, detail="Admin access required")
+    
+    # Prevent demoting yourself
+    if nurse_id == nurse.get("id"):
+        raise HTTPException(status_code=400, detail="Cannot demote yourself")
+    
+    result = await db.nurses.update_one({"id": nurse_id}, {"$set": {"is_admin": False}})
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="Nurse not found")
+    return {"message": "Admin privileges removed"}
+
 @api_router.post("/admin/patients/{patient_id}/assign")
 async def assign_nurses_to_patient(patient_id: str, nurse_ids: List[str], nurse: dict = Depends(get_current_nurse)):
     if not nurse.get("is_admin"):
