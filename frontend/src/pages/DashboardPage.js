@@ -125,7 +125,8 @@ export default function DashboardPage() {
                 <>
                   <Button 
                     onClick={() => navigate('/admin')}
-                    className="bg-purple-600 hover:bg-purple-500"
+                    size="sm"
+                    className="bg-navy-700 hover:bg-navy-600"
                   >
                     <Shield className="w-4 h-4 mr-2" />
                     Admin Panel
