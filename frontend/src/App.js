@@ -146,6 +146,14 @@ function AppRoutes() {
           </ProtectedRoute>
         } 
       />
+      <Route 
+        path="/daily-notes-report" 
+        element={
+          <ProtectedRoute>
+            <DailyNotesReportPage />
+          </ProtectedRoute>
+        } 
+      />
       <Route path="*" element={<Navigate to="/visit-type" replace />} />
     </Routes>
   );
