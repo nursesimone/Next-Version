@@ -34,7 +34,7 @@ export default function AdminPage() {
 
   const fetchData = async () => {
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('nurse_token');
       
       // Fetch all nurses
       const nursesRes = await axios.get(`${API}/admin/nurses`, {
@@ -46,6 +46,7 @@ export default function AdminPage() {
       const patientsRes = await patientsAPI.list();
       setPatients(patientsRes.data);
     } catch (error) {
+      console.error('Admin data fetch error:', error);
       toast.error('Failed to load admin data');
     } finally {
       setLoading(false);
@@ -54,7 +55,7 @@ export default function AdminPage() {
 
   const handlePromoteToAdmin = async (nurseId) => {
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('nurse_token');
       await axios.post(`${API}/admin/nurses/${nurseId}/promote`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
