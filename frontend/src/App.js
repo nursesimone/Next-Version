@@ -10,6 +10,7 @@ import PatientDetailPage from './pages/PatientDetailPage';
 import NewVisitPage from './pages/NewVisitPage';
 import VisitDetailPage from './pages/VisitDetailPage';
 import ReportsPage from './pages/ReportsPage';
+import DailyNotesReportPage from './pages/DailyNotesReportPage';
 import UnableToContactPage from './pages/UnableToContactPage';
 import UTCDetailPage from './pages/UTCDetailPage';
 import InterventionPage from './pages/InterventionPage';
