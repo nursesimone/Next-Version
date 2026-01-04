@@ -990,7 +990,7 @@ export default function InterventionPage() {
           <Card className="bg-white border-slate-100">
             <CardContent className="pt-6 pb-6">
               <p className="text-slate-700">
-                Completed by: <span className="font-medium">{patient && `${patient.full_name}, ${patient.permanent_info?.gender || ''}`}</span>
+                Completed by: <span className="font-medium">{nurse?.full_name}, {nurse?.title}</span>
               </p>
             </CardContent>
           </Card>
