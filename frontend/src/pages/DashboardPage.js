@@ -140,47 +140,11 @@ export default function DashboardPage() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Stats Row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <Card className="bg-white border-slate-100">
-            <CardContent className="flex items-center gap-4 p-6">
-              <div className="w-12 h-12 bg-eggplant-50 rounded-xl flex items-center justify-center">
-                <Users className="w-6 h-6 text-eggplant-700" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-slate-900">{patients.length}</p>
-                <p className="text-sm text-slate-500">Total Patients</p>
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card className="bg-white border-slate-100">
-            <CardContent className="flex items-center gap-4 p-6">
-              <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center">
-                <Activity className="w-6 h-6 text-emerald-600" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-slate-900">
-                  {patients.filter(p => p.last_vitals).length}
-                </p>
-                <p className="text-sm text-slate-500">With Recent Vitals</p>
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card className="bg-white border-slate-100">
-            <CardContent className="flex items-center gap-4 p-6">
-              <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center">
-                <ClipboardList className="w-6 h-6 text-amber-600" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-slate-900">
-                  {patients.filter(p => !p.permanent_info?.date_of_birth).length}
-                </p>
-                <p className="text-sm text-slate-500">Incomplete Profiles</p>
-              </div>
-            </CardContent>
-          </Card>
+        {/* Personalized Greeting */}
+        <div className="mb-6">
+          <h2 className="text-2xl font-semibold text-slate-900">
+            Hello {nurse?.full_name?.split(' ')[0] || 'there'}, please select a patient's file
+          </h2>
         </div>
 
         {/* Search and Add */}
