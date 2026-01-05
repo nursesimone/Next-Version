@@ -1110,7 +1110,7 @@ async def get_monthly_report(data: MonthlyReportRequest, nurse: dict = Depends(g
 # ==================== HEALTH CHECK ====================
 @api_router.get("/")
 async def root():
-    return {"message": "NurseRounds API", "status": "healthy"}
+    return {"message": "POSH-Able Living API", "status": "healthy"}
 
 # Include router and middleware
 app.include_router(api_router)

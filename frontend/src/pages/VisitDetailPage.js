@@ -125,7 +125,7 @@ export default function VisitDetailPage() {
 
     // ============ HEADER WITH BUSINESS NAME ============
     // Business/Organization Name as main heading
-    const businessName = visit?.organization || 'NurseRounds';
+    const businessName = visit?.organization || 'POSH-Able Living';
     doc.setFontSize(22);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(15, 118, 110);

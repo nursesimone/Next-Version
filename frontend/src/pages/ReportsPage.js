@@ -116,7 +116,7 @@ export default function ReportsPage() {
     };
 
     // Determine report type based on filter
-    const reportType = selectedVisitType !== 'all' ? getVisitTypeLabel(selectedVisitType) : 'NurseRounds';
+    const reportType = selectedVisitType !== 'all' ? getVisitTypeLabel(selectedVisitType) : 'POSH-Able Living';
 
     // ============ HEADER ============
     // Report Type as main heading
