@@ -290,14 +290,23 @@ export default function IncidentReportPage() {
         incident_time: '',
         involved_parties: {
           resident: false,
-          employee: false,
-          management: false,
+          staff: false,
           visitor: false,
           other: false,
           no_people: false
         },
         involved_residents: [],
         involved_staff: [],
+        visitor_details: {
+          name: '',
+          visiting_whom: '',
+          phone: ''
+        },
+        other_details: {
+          name: '',
+          reason: '',
+          contact: ''
+        },
         incident_type: '',
         location: '',
         description: '',
