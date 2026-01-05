@@ -253,7 +253,7 @@ export default function AdminPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-slate-500">Total Nurses</p>
+                  <p className="text-sm text-slate-500">Total Staff</p>
                   <p className="text-3xl font-bold text-slate-900">{nurses.length}</p>
                 </div>
                 <Users className="w-10 h-10 text-purple-600" />
@@ -321,24 +321,24 @@ export default function AdminPage() {
               <div>
                 <CardTitle className="flex items-center gap-2">
                   <UserCog className="w-5 h-5" />
-                  Manage Nurses
+                  Manage Staff
                 </CardTitle>
                 <CardDescription>
-                  View all nurses and manage admin privileges
+                  View all staff members and manage access permissions
                 </CardDescription>
               </div>
               <Dialog open={showAddNurseDialog} onOpenChange={setShowAddNurseDialog}>
                 <DialogTrigger asChild>
                   <Button className="bg-purple-600 hover:bg-purple-500">
                     <Plus className="w-4 h-4 mr-2" />
-                    Add Nurse
+                    Add Staff
                   </Button>
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
-                    <DialogTitle>Add New Nurse</DialogTitle>
+                    <DialogTitle>Add New Staff Member</DialogTitle>
                     <DialogDescription>
-                      Create a new nurse account
+                      Create a new staff account
                     </DialogDescription>
                   </DialogHeader>
                   <form onSubmit={handleAddNurse} className="space-y-4">
@@ -369,11 +369,11 @@ export default function AdminPage() {
                       />
                     </div>
                     <div>
-                      <Label>Title</Label>
+                      <Label>Title/Role</Label>
                       <Input
                         value={newNurseData.title}
                         onChange={(e) => setNewNurseData({...newNurseData, title: e.target.value})}
-                        placeholder="e.g., RN, LPN"
+                        placeholder="e.g., RN, LPN, CNA, DSP, Med Tech"
                         required
                       />
                     </div>
@@ -389,7 +389,7 @@ export default function AdminPage() {
                         Cancel
                       </Button>
                       <Button type="submit" className="bg-purple-600 hover:bg-purple-500">
-                        Add Nurse
+                        Add Staff Member
                       </Button>
                     </div>
                   </form>
