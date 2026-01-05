@@ -682,7 +682,7 @@ export default function IncidentReportPage() {
                 <Textarea
                   value={formData.outcome}
                   onChange={(e) => updateField('outcome', e.target.value)}
-                  placeholder="I.e. hospitalization, arrest, Removal, unresolved, etc"
+                  placeholder="I.e. hospitalization, arrest, removal, unresolved, etc"
                   className="min-h-[80px]"
                 />
               </div>
