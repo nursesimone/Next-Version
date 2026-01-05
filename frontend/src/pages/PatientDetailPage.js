@@ -72,7 +72,7 @@ export default function PatientDetailPage() {
       setUnableToContactRecords(utcRes.data);
       // Check if organization is custom (not one of the presets)
       const org = patientRes.data.permanent_info?.organization;
-      if (org && org !== 'POSH-Able Living' && org !== 'Ebenezer Private HomeCare') {
+      if (org && org !== 'POSH Host Homes' && org !== 'Ebenezer Private HomeCare' && org !== 'Jericho') {
         setCustomOrganization(org);
       }
     } catch (error) {
