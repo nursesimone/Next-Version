@@ -102,6 +102,33 @@ export default function AdminPage() {
     }
   };
 
+  const handleAddNurse = async (e) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem('nurse_token');
+      await axios.post(`${API}/auth/register`, newNurseData, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      toast.success('Nurse added successfully');
+      setShowAddNurseDialog(false);
+      setNewNurseData({
+        email: '',
+        password: '',
+        full_name: '',
+        title: 'RN',
+        license_number: ''
+      });
+      fetchData();
+    } catch (error) {
+      toast.error(error.response?.data?.detail || 'Failed to add nurse');
+    }
+  };
+
+  const handleViewNurseProfile = (nurseItem) => {
+    setSelectedNurse(nurseItem);
+    setShowNurseProfileDialog(true);
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
