@@ -597,7 +597,7 @@ export default function AdminPage() {
                 Grant access to all patients within selected organizations
               </p>
               <div className="space-y-2">
-                {['POSH-Able Living', 'Ebenezer Private HomeCare'].map(org => (
+                {['POSH Host Homes', 'Ebenezer Private HomeCare', 'Jericho'].map(org => (
                   <div key={org} className="flex items-center space-x-2">
                     <input
                       type="checkbox"
