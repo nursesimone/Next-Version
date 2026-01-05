@@ -126,12 +126,12 @@ export default function ReportsPage() {
     doc.text(reportType, pageWidth / 2, y, { align: 'center' });
     y += 10;
 
-    // Patient Name or "Monthly Visit Report"
+    // Patient Name (or "All Patients" if filtering all)
     doc.setFontSize(14);
     doc.setTextColor(60);
     const patientName = selectedPatient !== 'all' 
-      ? patients.find(p => p.id === selectedPatient)?.full_name || 'Monthly Visit Report'
-      : 'Monthly Visit Report';
+      ? patients.find(p => p.id === selectedPatient)?.full_name || 'All Patients'
+      : 'All Patients';
     doc.text(patientName, pageWidth / 2, y, { align: 'center' });
     y += 8;
 
@@ -141,53 +141,20 @@ export default function ReportsPage() {
     doc.setTextColor(0);
     doc.setFont('helvetica', 'normal');
     doc.text(`${monthName} ${selectedYear}`, pageWidth / 2, y, { align: 'center' });
-    y += 6;
-
-    // Report date range
-    doc.setFontSize(10);
-    doc.text(`Report Period: ${reportData.summary.start_date} to ${reportData.summary.end_date}`, pageWidth / 2, y, { align: 'center' });
     y += 8;
 
     // Divider line
     doc.setDrawColor(15, 118, 110);
     doc.setLineWidth(0.5);
     doc.line(margin, y, pageWidth - margin, y);
+    y += 8;
+
+    // Report date range (below divider)
+    doc.setFontSize(10);
+    doc.text(`Report Period: ${reportData.summary.start_date} to ${reportData.summary.end_date}`, pageWidth / 2, y, { align: 'center' });
     y += 10;
 
-    // Stats Box
-    doc.setFillColor(240, 253, 250);
-    doc.rect(margin, y, pageWidth - margin * 2, 35, 'F');
-    doc.setDrawColor(15, 118, 110);
-    doc.rect(margin, y, pageWidth - margin * 2, 35, 'S');
-    
-    y += 8;
-    doc.setFont('helvetica', 'bold');
-    doc.text('Summary Statistics', margin + 5, y);
-    y += lineHeight;
-    doc.setFont('helvetica', 'normal');
-    doc.text(`Total Visits: ${reportData.summary.total_visits}`, margin + 5, y);
-    doc.text(`Unique Patients: ${reportData.summary.unique_patients}`, margin + 80, y);
-    y += lineHeight;
-    doc.text(`Nurse Visits: ${reportData.summary.nurse_visits}`, margin + 5, y);
-    doc.text(`Vitals Only: ${reportData.summary.vitals_only}`, margin + 80, y);
-    doc.text(`Daily Notes: ${reportData.summary.daily_notes}`, margin + 140, y);
-    y += lineHeight + 10;
-
-    // By Organization
-    if (Object.keys(reportData.summary.by_organization).length > 0) {
-      doc.setFont('helvetica', 'bold');
-      doc.text('Visits by Organization:', margin, y);
-      y += lineHeight;
-      doc.setFont('helvetica', 'normal');
-      for (const [org, count] of Object.entries(reportData.summary.by_organization)) {
-        doc.text(`• ${org}: ${count} visits`, margin + 5, y);
-        y += lineHeight;
-      }
-      y += 5;
-    }
-
-    // Visit Details
-    y += 5;
+    // Visit Details (no stats box, no organization section)
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(12);
     doc.text('Visit Details', margin, y);
