@@ -77,6 +77,7 @@ export default function ReportsPage() {
       const requestData = {
         year: parseInt(selectedYear),
         month: parseInt(selectedMonth),
+        visit_type: selectedVisitType, // Always include visit type
       };
       
       if (selectedPatient !== 'all') {
@@ -85,10 +86,6 @@ export default function ReportsPage() {
       
       if (selectedOrganization !== 'all') {
         requestData.organization = selectedOrganization;
-      }
-      
-      if (selectedVisitType !== 'all') {
-        requestData.visit_type = selectedVisitType;
       }
       
       const response = await reportsAPI.getMonthly(requestData);
