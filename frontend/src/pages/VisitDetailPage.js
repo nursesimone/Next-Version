@@ -123,49 +123,183 @@ export default function VisitDetailPage() {
       }
     };
 
-    // ============ HEADER WITH BUSINESS NAME ============
-    // Business/Organization Name as main heading
-    const businessName = visit?.organization || 'POSH-Able Living';
-    doc.setFontSize(22);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(15, 118, 110);
-    doc.text(businessName, pageWidth / 2, y, { align: 'center' });
-    y += 12;
+    // ============ HEADER FOR NURSE VISIT ============
+    if (visit?.visit_type === 'nurse_visit') {
+      // Line 1: Routine Nurse Visit
+      doc.setFontSize(22);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(15, 118, 110);
+      doc.text('Routine Nurse Visit', pageWidth / 2, y, { align: 'center' });
+      y += 10;
 
-    // Report Type
-    const reportType = getVisitTypeLabel(visit?.visit_type);
-    doc.setFontSize(14);
-    doc.setTextColor(60);
-    doc.text(reportType, pageWidth / 2, y, { align: 'center' });
-    y += 8;
+      // Line 2: Organization Name
+      const organizationName = visit?.organization || 'POSH-Able Living';
+      doc.setFontSize(16);
+      doc.setTextColor(60);
+      doc.text(organizationName, pageWidth / 2, y, { align: 'center' });
+      y += 10;
 
-    // Resident Name
-    doc.setFontSize(16);
-    doc.setTextColor(0);
-    doc.setFont('helvetica', 'bold');
-    doc.text(`Resident: ${patient?.full_name}`, pageWidth / 2, y, { align: 'center' });
-    y += 6;
+      // Divider line
+      doc.setDrawColor(15, 118, 110);
+      doc.setLineWidth(0.5);
+      doc.line(margin, y, pageWidth - margin, y);
+      y += 10;
 
-    // Divider line
-    doc.setDrawColor(15, 118, 110);
-    doc.setLineWidth(0.5);
-    doc.line(margin, y, pageWidth - margin, y);
-    y += 10;
+      // Patient Information Box
+      doc.setFillColor(240, 253, 250);
+      const boxHeight = 90;
+      doc.rect(margin, y, pageWidth - margin * 2, boxHeight, 'F');
+      doc.setDrawColor(15, 118, 110);
+      doc.rect(margin, y, pageWidth - margin * 2, boxHeight, 'S');
+      
+      y += 6;
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(0);
+      doc.text('Patient Information', margin + 5, y);
+      y += 7;
 
-    // Visit Date
-    doc.setFontSize(11);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(0);
-    doc.text(`Visit Date: ${formatDateTime(visit?.visit_date)}`, margin, y);
-    y += lineHeight * 2;
+      // Patient details in the box
+      doc.setFontSize(9);
+      doc.setFont('helvetica', 'normal');
+      
+      // Column 1
+      let col1X = margin + 5;
+      let col1Y = y;
+      doc.setFont('helvetica', 'bold');
+      doc.text('Name:', col1X, col1Y);
+      doc.setFont('helvetica', 'normal');
+      doc.text(patient?.full_name || 'N/A', col1X + 25, col1Y);
+      col1Y += 6;
+      
+      doc.setFont('helvetica', 'bold');
+      doc.text('DOB:', col1X, col1Y);
+      doc.setFont('helvetica', 'normal');
+      doc.text(formatDate(patient?.permanent_info?.date_of_birth) || 'N/A', col1X + 25, col1Y);
+      col1Y += 6;
+      
+      doc.setFont('helvetica', 'bold');
+      doc.text('Gender:', col1X, col1Y);
+      doc.setFont('helvetica', 'normal');
+      doc.text(patient?.permanent_info?.gender || 'N/A', col1X + 25, col1Y);
+      col1Y += 6;
+      
+      doc.setFont('helvetica', 'bold');
+      doc.text('Race:', col1X, col1Y);
+      doc.setFont('helvetica', 'normal');
+      doc.text(patient?.permanent_info?.race || 'N/A', col1X + 25, col1Y);
+      col1Y += 6;
+      
+      doc.setFont('helvetica', 'bold');
+      doc.text('Address:', col1X, col1Y);
+      doc.setFont('helvetica', 'normal');
+      const address = patient?.permanent_info?.home_address || 'N/A';
+      const addressLines = doc.splitTextToSize(address, 70);
+      doc.text(addressLines, col1X + 25, col1Y);
+      col1Y += 6 * addressLines.length;
+      
+      doc.setFont('helvetica', 'bold');
+      doc.text('Caregiver:', col1X, col1Y);
+      doc.setFont('helvetica', 'normal');
+      doc.text(patient?.permanent_info?.caregiver_name || 'N/A', col1X + 25, col1Y);
 
-    // Patient Info
-    doc.setTextColor(0);
-    addSectionTitle('Patient Information');
-    addField('Date of Birth', formatDate(patient?.permanent_info?.date_of_birth));
-    addField('Gender', patient?.permanent_info?.gender);
-    addField('Address', patient?.permanent_info?.home_address);
-    y += 5;
+      // Column 2
+      let col2X = pageWidth / 2 + 5;
+      let col2Y = y;
+      
+      if (patient?.permanent_info?.attends_adult_day_program) {
+        doc.setFont('helvetica', 'bold');
+        doc.text('Day Program:', col2X, col2Y);
+        doc.setFont('helvetica', 'normal');
+        const programName = patient?.permanent_info?.adult_day_program_name || 'N/A';
+        const programLines = doc.splitTextToSize(programName, 60);
+        doc.text(programLines, col2X + 30, col2Y);
+        col2Y += 6 * programLines.length;
+        
+        if (patient?.permanent_info?.adult_day_program_address) {
+          const programAddr = doc.splitTextToSize(patient.permanent_info.adult_day_program_address, 60);
+          doc.text(programAddr, col2X + 30, col2Y);
+          col2Y += 6 * programAddr.length;
+        }
+      }
+      
+      col2Y += 2;
+      doc.setFont('helvetica', 'bold');
+      doc.text('Allergies:', col2X, col2Y);
+      doc.setFont('helvetica', 'normal');
+      const allergies = patient?.permanent_info?.allergies?.join(', ') || 'None';
+      const allergyLines = doc.splitTextToSize(allergies, 60);
+      doc.text(allergyLines, col2X + 30, col2Y);
+      col2Y += 6 * allergyLines.length;
+      
+      doc.setFont('helvetica', 'bold');
+      doc.text('Medical Dx:', col2X, col2Y);
+      doc.setFont('helvetica', 'normal');
+      const medDx = patient?.permanent_info?.medical_diagnoses?.join(', ') || 'None';
+      const medDxLines = doc.splitTextToSize(medDx, 60);
+      doc.text(medDxLines, col2X + 30, col2Y);
+      col2Y += 6 * medDxLines.length;
+      
+      doc.setFont('helvetica', 'bold');
+      doc.text('Psych Dx:', col2X, col2Y);
+      doc.setFont('helvetica', 'normal');
+      const psychDx = patient?.permanent_info?.psychiatric_diagnoses?.join(', ') || 'None';
+      const psychDxLines = doc.splitTextToSize(psychDx, 60);
+      doc.text(psychDxLines, col2X + 30, col2Y);
+      col2Y += 6 * psychDxLines.length;
+      
+      doc.setFont('helvetica', 'bold');
+      doc.text('Medications:', col2X, col2Y);
+      doc.setFont('helvetica', 'normal');
+      const meds = patient?.permanent_info?.medications?.join(', ') || 'None';
+      const medLines = doc.splitTextToSize(meds, 60);
+      doc.text(medLines, col2X + 30, col2Y);
+
+      y += boxHeight + 10;
+
+      // Visit Date
+      doc.setFontSize(11);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(0);
+      doc.text(`Visit Date: ${formatDateTime(visit?.visit_date)}`, margin, y);
+      y += lineHeight * 2;
+    } else {
+      // ============ HEADER FOR OTHER VISIT TYPES ============
+      // Business/Organization Name as main heading
+      const businessName = visit?.organization || 'POSH-Able Living';
+      doc.setFontSize(22);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(15, 118, 110);
+      doc.text(businessName, pageWidth / 2, y, { align: 'center' });
+      y += 12;
+
+      // Report Type
+      const reportType = getVisitTypeLabel(visit?.visit_type);
+      doc.setFontSize(14);
+      doc.setTextColor(60);
+      doc.text(reportType, pageWidth / 2, y, { align: 'center' });
+      y += 8;
+
+      // Resident Name
+      doc.setFontSize(16);
+      doc.setTextColor(0);
+      doc.setFont('helvetica', 'bold');
+      doc.text(`Resident: ${patient?.full_name}`, pageWidth / 2, y, { align: 'center' });
+      y += 6;
+
+      // Divider line
+      doc.setDrawColor(15, 118, 110);
+      doc.setLineWidth(0.5);
+      doc.line(margin, y, pageWidth - margin, y);
+      y += 10;
+
+      // Visit Date
+      doc.setFontSize(11);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(0);
+      doc.text(`Visit Date: ${formatDateTime(visit?.visit_date)}`, margin, y);
+      y += lineHeight * 2;
+    }
 
     // Vital Signs
     addSectionTitle('Vital Signs');
