@@ -14,6 +14,7 @@ import DailyNotesReportPage from './pages/DailyNotesReportPage';
 import AdminPage from './pages/AdminPage';
 import UnableToContactPage from './pages/UnableToContactPage';
 import UTCDetailPage from './pages/UTCDetailPage';
+import IncidentReportPage from './pages/IncidentReportPage';
 import InterventionPage from './pages/InterventionPage';
 import './App.css';
 
@@ -160,6 +161,14 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <AdminPage />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/incident-report" 
+        element={
+          <ProtectedRoute>
+            <IncidentReportPage />
           </ProtectedRoute>
         } 
       />
