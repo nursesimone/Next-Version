@@ -236,20 +236,92 @@ export default function AdminPage() {
         {/* Nurses Management */}
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <UserCog className="w-5 h-5" />
-              Manage Nurses
-            </CardTitle>
-            <CardDescription>
-              View all nurses and manage admin privileges
-            </CardDescription>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="flex items-center gap-2">
+                  <UserCog className="w-5 h-5" />
+                  Manage Nurses
+                </CardTitle>
+                <CardDescription>
+                  View all nurses and manage admin privileges
+                </CardDescription>
+              </div>
+              <Dialog open={showAddNurseDialog} onOpenChange={setShowAddNurseDialog}>
+                <DialogTrigger asChild>
+                  <Button className="bg-purple-600 hover:bg-purple-500">
+                    <Plus className="w-4 h-4 mr-2" />
+                    Add Nurse
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Add New Nurse</DialogTitle>
+                    <DialogDescription>
+                      Create a new nurse account
+                    </DialogDescription>
+                  </DialogHeader>
+                  <form onSubmit={handleAddNurse} className="space-y-4">
+                    <div>
+                      <Label>Full Name</Label>
+                      <Input
+                        value={newNurseData.full_name}
+                        onChange={(e) => setNewNurseData({...newNurseData, full_name: e.target.value})}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label>Email</Label>
+                      <Input
+                        type="email"
+                        value={newNurseData.email}
+                        onChange={(e) => setNewNurseData({...newNurseData, email: e.target.value})}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label>Password</Label>
+                      <Input
+                        type="password"
+                        value={newNurseData.password}
+                        onChange={(e) => setNewNurseData({...newNurseData, password: e.target.value})}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label>Title</Label>
+                      <Input
+                        value={newNurseData.title}
+                        onChange={(e) => setNewNurseData({...newNurseData, title: e.target.value})}
+                        placeholder="e.g., RN, LPN"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label>License Number</Label>
+                      <Input
+                        value={newNurseData.license_number}
+                        onChange={(e) => setNewNurseData({...newNurseData, license_number: e.target.value})}
+                      />
+                    </div>
+                    <div className="flex justify-end gap-2">
+                      <Button type="button" variant="outline" onClick={() => setShowAddNurseDialog(false)}>
+                        Cancel
+                      </Button>
+                      <Button type="submit" className="bg-purple-600 hover:bg-purple-500">
+                        Add Nurse
+                      </Button>
+                    </div>
+                  </form>
+                </DialogContent>
+              </Dialog>
+            </div>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
               {nurses.map(nurseItem => (
                 <div 
                   key={nurseItem.id}
-                  className="flex items-center justify-between p-4 bg-slate-50 rounded-lg border border-slate-100"
+                  className="flex items-center justify-between p-4 bg-slate-50 rounded-lg border border-slate-100 hover:bg-slate-100 transition-colors"
                 >
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
