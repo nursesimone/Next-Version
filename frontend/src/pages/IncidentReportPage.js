@@ -438,18 +438,18 @@ export default function IncidentReportPage() {
 
                 <div className="flex items-center space-x-2">
                   <Checkbox
-                    id="employee"
-                    checked={formData.involved_parties.employee}
-                    onCheckedChange={() => toggleInvolvedParty('employee')}
+                    id="staff"
+                    checked={formData.involved_parties.staff}
+                    onCheckedChange={() => toggleInvolvedParty('staff')}
                   />
-                  <Label htmlFor="employee" className="font-normal cursor-pointer">Employee</Label>
+                  <Label htmlFor="staff" className="font-normal cursor-pointer">Staff Member</Label>
                 </div>
 
-                {formData.involved_parties.employee && formData.organization && (
+                {formData.involved_parties.staff && formData.organization && (
                   <div className="ml-6 p-4 bg-slate-50 rounded border">
-                    <Label className="mb-2 block">Select Employee(s):</Label>
+                    <Label className="mb-2 block">Select Staff Member(s):</Label>
                     <div className="space-y-2 max-h-40 overflow-y-auto">
-                      {getFilteredStaff().filter(s => !s.is_admin).map(staffMember => (
+                      {getFilteredStaff().map(staffMember => (
                         <div key={staffMember.id} className="flex items-center space-x-2">
                           <Checkbox
                             id={`staff-${staffMember.id}`}
@@ -457,35 +457,6 @@ export default function IncidentReportPage() {
                             onCheckedChange={() => toggleStaffInvolved(staffMember.id)}
                           />
                           <Label htmlFor={`staff-${staffMember.id}`} className="font-normal cursor-pointer text-sm">
-                            {staffMember.full_name} ({staffMember.title})
-                          </Label>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                <div className="flex items-center space-x-2">
-                  <Checkbox
-                    id="management"
-                    checked={formData.involved_parties.management}
-                    onCheckedChange={() => toggleInvolvedParty('management')}
-                  />
-                  <Label htmlFor="management" className="font-normal cursor-pointer">Management</Label>
-                </div>
-
-                {formData.involved_parties.management && formData.organization && (
-                  <div className="ml-6 p-4 bg-slate-50 rounded border">
-                    <Label className="mb-2 block">Select Management:</Label>
-                    <div className="space-y-2 max-h-40 overflow-y-auto">
-                      {getFilteredStaff().filter(s => s.is_admin).map(staffMember => (
-                        <div key={staffMember.id} className="flex items-center space-x-2">
-                          <Checkbox
-                            id={`mgmt-${staffMember.id}`}
-                            checked={formData.involved_staff.includes(staffMember.id)}
-                            onCheckedChange={() => toggleStaffInvolved(staffMember.id)}
-                          />
-                          <Label htmlFor={`mgmt-${staffMember.id}`} className="font-normal cursor-pointer text-sm">
                             {staffMember.full_name} ({staffMember.title})
                           </Label>
                         </div>
