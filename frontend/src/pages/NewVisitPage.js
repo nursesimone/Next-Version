@@ -114,7 +114,12 @@ const initialVisitData = {
     no_concerns: false,
     no_corrective_actions: false
   },
-  miscellaneous_info: '',
+  miscellaneous_info: {
+    satisfied: false,
+    clean_tidy: false,
+    safety_practices: false,
+    follows_plan: false
+  },
   additional_notes: '',
   attachments: [],
   daily_note_content: '',
