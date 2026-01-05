@@ -1196,7 +1196,7 @@ export default function NewVisitPage() {
                   </Select>
                 </div>
                 <div>
-                  <Label>Nurse Notes</Label>
+                  <Label>Nurse Documentation</Label>
                   <Textarea
                     value={visitData.nurse_notes}
                     onChange={(e) => setVisitData(prev => ({ ...prev, nurse_notes: e.target.value }))}
@@ -1205,6 +1205,168 @@ export default function NewVisitPage() {
                     rows={4}
                     data-testid="nurse-notes-input"
                   />
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Medication Compliance - For nurse_visit */}
+          {visitType === 'nurse_visit' && (
+            <Card className="bg-white border-slate-100">
+              <CardHeader>
+                <CardTitle className="text-lg">Compliance with Medications?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <RadioGroup
+                  value={visitData.medication_compliance}
+                  onValueChange={(value) => setVisitData(prev => ({ ...prev, medication_compliance: value }))}
+                >
+                  <div className="flex items-center space-x-2 mb-2">
+                    <RadioGroupItem value="compliance" id="compliance" />
+                    <Label htmlFor="compliance" className="font-normal cursor-pointer">Compliance</Label>
+                  </div>
+                  <div className="flex items-center space-x-2 mb-2">
+                    <RadioGroupItem value="partial_compliance" id="partial_compliance" />
+                    <Label htmlFor="partial_compliance" className="font-normal cursor-pointer">Partial Compliance</Label>
+                  </div>
+                  <div className="flex items-center space-x-2 mb-2">
+                    <RadioGroupItem value="noncompliance" id="noncompliance" />
+                    <Label htmlFor="noncompliance" className="font-normal cursor-pointer">Noncompliance</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="not_applicable" id="not_applicable" />
+                    <Label htmlFor="not_applicable" className="font-normal cursor-pointer">Not Applicable</Label>
+                  </div>
+                </RadioGroup>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Concerns/Actions - For nurse_visit */}
+          {visitType === 'nurse_visit' && (
+            <Card className="bg-white border-slate-100">
+              <CardHeader>
+                <CardTitle className="text-lg">Concerns/Actions</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="no_concerns"
+                    checked={visitData.concerns_actions.no_concerns}
+                    onCheckedChange={(checked) => 
+                      setVisitData(prev => ({
+                        ...prev,
+                        concerns_actions: { ...prev.concerns_actions, no_concerns: checked }
+                      }))
+                    }
+                  />
+                  <Label htmlFor="no_concerns" className="font-normal cursor-pointer">
+                    No new concerns identified as per staff reporting
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="no_corrective_actions"
+                    checked={visitData.concerns_actions.no_corrective_actions}
+                    onCheckedChange={(checked) => 
+                      setVisitData(prev => ({
+                        ...prev,
+                        concerns_actions: { ...prev.concerns_actions, no_corrective_actions: checked }
+                      }))
+                    }
+                  />
+                  <Label htmlFor="no_corrective_actions" className="font-normal cursor-pointer">
+                    No Corrective actions required
+                  </Label>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Miscellaneous Information - For nurse_visit */}
+          {visitType === 'nurse_visit' && (
+            <Card className="bg-white border-slate-100">
+              <CardHeader>
+                <CardTitle className="text-lg">Miscellaneous Information</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <RadioGroup
+                  value={visitData.miscellaneous_info}
+                  onValueChange={(value) => setVisitData(prev => ({ ...prev, miscellaneous_info: value }))}
+                >
+                  <div className="flex items-center space-x-2 mb-2">
+                    <RadioGroupItem value="satisfied" id="satisfied" />
+                    <Label htmlFor="satisfied" className="font-normal cursor-pointer">Individual is satisfied with Service</Label>
+                  </div>
+                  <div className="flex items-center space-x-2 mb-2">
+                    <RadioGroupItem value="clean_tidy" id="clean_tidy" />
+                    <Label htmlFor="clean_tidy" className="font-normal cursor-pointer">Home area Clean and Tidy</Label>
+                  </div>
+                  <div className="flex items-center space-x-2 mb-2">
+                    <RadioGroupItem value="safety_practices" id="safety_practices" />
+                    <Label htmlFor="safety_practices" className="font-normal cursor-pointer">Good Safety Practices observed</Label>
+                  </div>
+                  <div className="flex items-center space-x-2 mb-2">
+                    <RadioGroupItem value="follows_plan" id="follows_plan" />
+                    <Label htmlFor="follows_plan" className="font-normal cursor-pointer">Follows Healthcare Plan and Protocols</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="all_good" id="all_good" />
+                    <Label htmlFor="all_good" className="font-normal cursor-pointer">
+                      Individual is satisfied with their service, the home is clean and tidy. Good Safety Practices are being observed. The Healthcare Plan and Protocols are being followed.
+                    </Label>
+                  </div>
+                </RadioGroup>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Additional Notes - For nurse_visit */}
+          {visitType === 'nurse_visit' && (
+            <Card className="bg-white border-slate-100">
+              <CardHeader>
+                <CardTitle className="text-lg">Additional Notes</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Textarea
+                  value={visitData.additional_notes}
+                  onChange={(e) => setVisitData(prev => ({ ...prev, additional_notes: e.target.value }))}
+                  placeholder="Any additional notes or observations..."
+                  className="min-h-[100px]"
+                />
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Pictures/Documents Upload - For nurse_visit */}
+          {visitType === 'nurse_visit' && (
+            <Card className="bg-white border-slate-100">
+              <CardHeader>
+                <CardTitle className="text-lg">Do you need to add any pictures or documents?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  <Input
+                    type="file"
+                    multiple
+                    accept="image/*,.pdf,.doc,.docx"
+                    onChange={(e) => {
+                      const files = Array.from(e.target.files);
+                      setVisitData(prev => ({
+                        ...prev,
+                        attachments: files
+                      }));
+                    }}
+                    className="cursor-pointer"
+                  />
+                  {visitData.attachments.length > 0 && (
+                    <div className="text-sm text-slate-600">
+                      {visitData.attachments.length} file(s) selected
+                    </div>
+                  )}
+                  <p className="text-xs text-slate-500">
+                    Accepted formats: Images (JPG, PNG), PDF, Word documents
+                  </p>
                 </div>
               </CardContent>
             </Card>
