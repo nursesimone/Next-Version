@@ -956,17 +956,6 @@ export default function InterventionPage() {
                   />
                 </div>
               )}
-
-              <div>
-                <Label>Additional Comments</Label>
-                <Textarea
-                  value={formData.additional_comments}
-                  onChange={(e) => updateField('additional_comments', e.target.value)}
-                  placeholder="Any additional comments or observations..."
-                  className="mt-1"
-                  rows={2}
-                />
-              </div>
             </CardContent>
           </Card>
 
