@@ -370,8 +370,7 @@ export default function PatientDetailPage() {
                           <div className="space-y-2 mt-1">
                             <Select
                               value={
-                                profileData.organization === 'POSH-Able Living' || 
-                                profileData.organization === 'Ebenezer Private HomeCare' 
+                                ['POSH Host Homes', 'Ebenezer Private HomeCare', 'Jericho'].includes(profileData.organization)
                                   ? profileData.organization 
                                   : profileData.organization ? 'Other' : ''
                               }
@@ -388,8 +387,9 @@ export default function PatientDetailPage() {
                                 <SelectValue placeholder="Select organization" />
                               </SelectTrigger>
                               <SelectContent>
-                                <SelectItem value="POSH-Able Living">POSH-Able Living</SelectItem>
+                                <SelectItem value="POSH Host Homes">POSH Host Homes</SelectItem>
                                 <SelectItem value="Ebenezer Private HomeCare">Ebenezer Private HomeCare</SelectItem>
+                                <SelectItem value="Jericho">Jericho</SelectItem>
                                 <SelectItem value="Other">Other (Enter custom name)</SelectItem>
                               </SelectContent>
                             </Select>
