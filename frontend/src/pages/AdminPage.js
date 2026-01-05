@@ -527,6 +527,130 @@ export default function AdminPage() {
           )}
         </DialogContent>
       </Dialog>
+
+      {/* Edit Nurse Dialog */}
+      <Dialog open={showEditNurseDialog} onOpenChange={setShowEditNurseDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Edit Nurse Profile</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={handleUpdateNurse} className="space-y-4">
+            <div>
+              <Label>Full Name</Label>
+              <Input
+                value={editNurseData.full_name}
+                onChange={(e) => setEditNurseData({...editNurseData, full_name: e.target.value})}
+                required
+              />
+            </div>
+            <div>
+              <Label>Email</Label>
+              <Input
+                type="email"
+                value={editNurseData.email}
+                onChange={(e) => setEditNurseData({...editNurseData, email: e.target.value})}
+                required
+              />
+            </div>
+            <div>
+              <Label>Title</Label>
+              <Input
+                value={editNurseData.title}
+                onChange={(e) => setEditNurseData({...editNurseData, title: e.target.value})}
+                required
+              />
+            </div>
+            <div>
+              <Label>License Number</Label>
+              <Input
+                value={editNurseData.license_number}
+                onChange={(e) => setEditNurseData({...editNurseData, license_number: e.target.value})}
+              />
+            </div>
+            <div className="flex justify-end gap-2">
+              <Button type="button" variant="outline" onClick={() => setShowEditNurseDialog(false)}>
+                Cancel
+              </Button>
+              <Button type="submit" className="bg-purple-600 hover:bg-purple-500">
+                Update Nurse
+              </Button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* Manage Assignments Dialog */}
+      <Dialog open={showAssignmentsDialog} onOpenChange={setShowAssignmentsDialog}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Manage Patient & Organization Access</DialogTitle>
+            <DialogDescription>
+              {selectedNurse?.full_name} - Control access to patients and organizations
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleUpdateAssignments} className="space-y-6">
+            {/* Organization Access */}
+            <div>
+              <Label className="text-base font-semibold mb-3 block">Organization Access</Label>
+              <p className="text-sm text-slate-500 mb-3">
+                Grant access to all patients within selected organizations
+              </p>
+              <div className="space-y-2">
+                {['POSH-Able Living', 'Ebenezer Private HomeCare'].map(org => (
+                  <div key={org} className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      id={`org-${org}`}
+                      checked={assignmentData.assigned_organizations.includes(org)}
+                      onChange={() => toggleOrganizationAssignment(org)}
+                      className="w-4 h-4 text-purple-600 rounded"
+                    />
+                    <label htmlFor={`org-${org}`} className="text-sm font-medium">
+                      {org}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Individual Patient Access */}
+            <div>
+              <Label className="text-base font-semibold mb-3 block">Individual Patient Access</Label>
+              <p className="text-sm text-slate-500 mb-3">
+                Or assign specific patients individually
+              </p>
+              <div className="space-y-2 max-h-60 overflow-y-auto border rounded p-3">
+                {patients.map(patient => (
+                  <div key={patient.id} className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      id={`patient-${patient.id}`}
+                      checked={assignmentData.assigned_patients.includes(patient.id)}
+                      onChange={() => togglePatientAssignment(patient.id)}
+                      className="w-4 h-4 text-purple-600 rounded"
+                    />
+                    <label htmlFor={`patient-${patient.id}`} className="text-sm">
+                      {patient.full_name} 
+                      <span className="text-slate-500 ml-2">
+                        ({patient.permanent_info?.organization || 'No org'})
+                      </span>
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-2 pt-4 border-t">
+              <Button type="button" variant="outline" onClick={() => setShowAssignmentsDialog(false)}>
+                Cancel
+              </Button>
+              <Button type="submit" className="bg-blue-600 hover:bg-blue-500">
+                Save Assignments
+              </Button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
