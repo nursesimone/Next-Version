@@ -542,9 +542,9 @@ export default function AdminPage() {
 
       {/* Edit Nurse Dialog */}
       <Dialog open={showEditNurseDialog} onOpenChange={setShowEditNurseDialog}>
-        <DialogContent>
+        <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>Edit Nurse Profile</DialogTitle>
+            <DialogTitle>Edit Staff Profile</DialogTitle>
           </DialogHeader>
           <form onSubmit={handleUpdateNurse} className="space-y-4">
             <div>
@@ -565,7 +565,7 @@ export default function AdminPage() {
               />
             </div>
             <div>
-              <Label>Title</Label>
+              <Label>Title/Role</Label>
               <Input
                 value={editNurseData.title}
                 onChange={(e) => setEditNurseData({...editNurseData, title: e.target.value})}
@@ -579,12 +579,98 @@ export default function AdminPage() {
                 onChange={(e) => setEditNurseData({...editNurseData, license_number: e.target.value})}
               />
             </div>
-            <div className="flex justify-end gap-2">
+
+            {/* Assignments Section - Embedded in Edit Dialog */}
+            <div className="border-t pt-4 mt-6">
+              <h3 className="font-semibold text-lg mb-4">Access Assignments</h3>
+              
+              {/* Organization Access */}
+              <div className="mb-4">
+                <Label className="text-base font-semibold mb-3 block">Organization Access</Label>
+                <p className="text-sm text-slate-500 mb-3">
+                  Grant access to all patients within selected organizations
+                </p>
+                <div className="space-y-2">
+                  {['POSH Host Homes', 'Ebenezer Private HomeCare', 'Jericho'].map(org => (
+                    <div key={org} className="flex items-center space-x-2">
+                      <input
+                        type="checkbox"
+                        id={`edit-org-${org}`}
+                        checked={assignmentData.assigned_organizations.includes(org)}
+                        onChange={() => toggleOrganizationAssignment(org)}
+                        className="w-4 h-4 text-purple-600 rounded"
+                      />
+                      <label htmlFor={`edit-org-${org}`} className="text-sm font-medium">
+                        {org}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Individual Patient Access */}
+              <div className="mb-4">
+                <Label className="text-base font-semibold mb-3 block">Individual Patient Access</Label>
+                <p className="text-sm text-slate-500 mb-3">
+                  Or assign specific patients individually
+                </p>
+                <div className="space-y-2 max-h-48 overflow-y-auto border rounded p-3">
+                  {patients.map(patient => (
+                    <div key={patient.id} className="flex items-center space-x-2">
+                      <input
+                        type="checkbox"
+                        id={`edit-patient-${patient.id}`}
+                        checked={assignmentData.assigned_patients.includes(patient.id)}
+                        onChange={() => togglePatientAssignment(patient.id)}
+                        className="w-4 h-4 text-purple-600 rounded"
+                      />
+                      <label htmlFor={`edit-patient-${patient.id}`} className="text-sm">
+                        {patient.full_name} 
+                        <span className="text-slate-500 ml-2">
+                          ({patient.permanent_info?.organization || 'No org'})
+                        </span>
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Form Access */}
+              <div className="mb-4">
+                <Label className="text-base font-semibold mb-3 block">Form Access</Label>
+                <p className="text-sm text-slate-500 mb-3">
+                  Control which forms this staff member can access
+                </p>
+                <div className="space-y-2">
+                  {[
+                    { id: 'nurse_visit', label: 'Nurse Visit' },
+                    { id: 'vitals_only', label: 'Vital Signs' },
+                    { id: 'daily_note', label: 'Daily Note' },
+                    { id: 'intervention', label: 'Intervention' }
+                  ].map(form => (
+                    <div key={form.id} className="flex items-center space-x-2">
+                      <input
+                        type="checkbox"
+                        id={`edit-form-${form.id}`}
+                        checked={assignmentData.allowed_forms.includes(form.id)}
+                        onChange={() => toggleFormAccess(form.id)}
+                        className="w-4 h-4 text-purple-600 rounded"
+                      />
+                      <label htmlFor={`edit-form-${form.id}`} className="text-sm font-medium">
+                        {form.label}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-2 pt-4 border-t">
               <Button type="button" variant="outline" onClick={() => setShowEditNurseDialog(false)}>
                 Cancel
               </Button>
               <Button type="submit" className="bg-purple-600 hover:bg-purple-500">
-                Update Nurse
+                Save All Changes
               </Button>
             </div>
           </form>
