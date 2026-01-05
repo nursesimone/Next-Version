@@ -62,6 +62,8 @@ class NurseListResponse(BaseModel):
     title: str = "RN"
     license_number: Optional[str] = None
     is_admin: bool = False
+    assigned_patients: List[str] = []  # List of patient IDs
+    assigned_organizations: List[str] = []  # List of organizations
 
 # ==================== PATIENT MODELS ====================
 class PatientPermanentInfo(BaseModel):
