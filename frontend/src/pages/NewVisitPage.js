@@ -1293,36 +1293,69 @@ export default function NewVisitPage() {
           {visitType === 'nurse_visit' && (
             <Card className="bg-white border-slate-100">
               <CardHeader>
-                <CardTitle className="text-lg">Miscellaneous Information</CardTitle>
+                <CardTitle className="text-lg">Miscellaneous Information (Select all that apply)</CardTitle>
               </CardHeader>
-              <CardContent>
-                <RadioGroup
-                  value={visitData.miscellaneous_info}
-                  onValueChange={(value) => setVisitData(prev => ({ ...prev, miscellaneous_info: value }))}
-                >
-                  <div className="flex items-center space-x-2 mb-2">
-                    <RadioGroupItem value="satisfied" id="satisfied" />
-                    <Label htmlFor="satisfied" className="font-normal cursor-pointer">Individual is satisfied with Service</Label>
-                  </div>
-                  <div className="flex items-center space-x-2 mb-2">
-                    <RadioGroupItem value="clean_tidy" id="clean_tidy" />
-                    <Label htmlFor="clean_tidy" className="font-normal cursor-pointer">Home area Clean and Tidy</Label>
-                  </div>
-                  <div className="flex items-center space-x-2 mb-2">
-                    <RadioGroupItem value="safety_practices" id="safety_practices" />
-                    <Label htmlFor="safety_practices" className="font-normal cursor-pointer">Good Safety Practices observed</Label>
-                  </div>
-                  <div className="flex items-center space-x-2 mb-2">
-                    <RadioGroupItem value="follows_plan" id="follows_plan" />
-                    <Label htmlFor="follows_plan" className="font-normal cursor-pointer">Follows Healthcare Plan and Protocols</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="all_good" id="all_good" />
-                    <Label htmlFor="all_good" className="font-normal cursor-pointer">
-                      Individual is satisfied with their service, the home is clean and tidy. Good Safety Practices are being observed. The Healthcare Plan and Protocols are being followed.
-                    </Label>
-                  </div>
-                </RadioGroup>
+              <CardContent className="space-y-3">
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="satisfied"
+                    checked={visitData.miscellaneous_info.satisfied}
+                    onCheckedChange={(checked) => 
+                      setVisitData(prev => ({
+                        ...prev,
+                        miscellaneous_info: { ...prev.miscellaneous_info, satisfied: checked }
+                      }))
+                    }
+                  />
+                  <Label htmlFor="satisfied" className="font-normal cursor-pointer">
+                    Individual is satisfied with Service
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="clean_tidy"
+                    checked={visitData.miscellaneous_info.clean_tidy}
+                    onCheckedChange={(checked) => 
+                      setVisitData(prev => ({
+                        ...prev,
+                        miscellaneous_info: { ...prev.miscellaneous_info, clean_tidy: checked }
+                      }))
+                    }
+                  />
+                  <Label htmlFor="clean_tidy" className="font-normal cursor-pointer">
+                    Home area Clean and Tidy
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="safety_practices"
+                    checked={visitData.miscellaneous_info.safety_practices}
+                    onCheckedChange={(checked) => 
+                      setVisitData(prev => ({
+                        ...prev,
+                        miscellaneous_info: { ...prev.miscellaneous_info, safety_practices: checked }
+                      }))
+                    }
+                  />
+                  <Label htmlFor="safety_practices" className="font-normal cursor-pointer">
+                    Good Safety Practices observed
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="follows_plan"
+                    checked={visitData.miscellaneous_info.follows_plan}
+                    onCheckedChange={(checked) => 
+                      setVisitData(prev => ({
+                        ...prev,
+                        miscellaneous_info: { ...prev.miscellaneous_info, follows_plan: checked }
+                      }))
+                    }
+                  />
+                  <Label htmlFor="follows_plan" className="font-normal cursor-pointer">
+                    Follows Healthcare Plan and Protocols
+                  </Label>
+                </div>
               </CardContent>
             </Card>
           )}
