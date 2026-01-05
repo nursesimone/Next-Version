@@ -474,6 +474,45 @@ export default function IncidentReportPage() {
                   <Label htmlFor="visitor" className="font-normal cursor-pointer">Visitor</Label>
                 </div>
 
+                {formData.involved_parties.visitor && (
+                  <div className="ml-6 p-4 bg-slate-50 rounded border space-y-3">
+                    <div>
+                      <Label>Visitor Name *</Label>
+                      <Input
+                        value={formData.visitor_details.name}
+                        onChange={(e) => setFormData(prev => ({
+                          ...prev,
+                          visitor_details: { ...prev.visitor_details, name: e.target.value }
+                        }))}
+                        placeholder="Full name of visitor"
+                      />
+                    </div>
+                    <div>
+                      <Label>Who were they visiting? *</Label>
+                      <Input
+                        value={formData.visitor_details.visiting_whom}
+                        onChange={(e) => setFormData(prev => ({
+                          ...prev,
+                          visitor_details: { ...prev.visitor_details, visiting_whom: e.target.value }
+                        }))}
+                        placeholder="Name of person being visited"
+                      />
+                    </div>
+                    <div>
+                      <Label>Visitor Phone Number</Label>
+                      <Input
+                        type="tel"
+                        value={formData.visitor_details.phone}
+                        onChange={(e) => setFormData(prev => ({
+                          ...prev,
+                          visitor_details: { ...prev.visitor_details, phone: e.target.value }
+                        }))}
+                        placeholder="Contact phone number"
+                      />
+                    </div>
+                  </div>
+                )}
+
                 <div className="flex items-center space-x-2">
                   <Checkbox
                     id="other"
@@ -482,6 +521,44 @@ export default function IncidentReportPage() {
                   />
                   <Label htmlFor="other" className="font-normal cursor-pointer">Other</Label>
                 </div>
+
+                {formData.involved_parties.other && (
+                  <div className="ml-6 p-4 bg-slate-50 rounded border space-y-3">
+                    <div>
+                      <Label>Name *</Label>
+                      <Input
+                        value={formData.other_details.name}
+                        onChange={(e) => setFormData(prev => ({
+                          ...prev,
+                          other_details: { ...prev.other_details, name: e.target.value }
+                        }))}
+                        placeholder="Full name"
+                      />
+                    </div>
+                    <div>
+                      <Label>Reason for being there *</Label>
+                      <Input
+                        value={formData.other_details.reason}
+                        onChange={(e) => setFormData(prev => ({
+                          ...prev,
+                          other_details: { ...prev.other_details, reason: e.target.value }
+                        }))}
+                        placeholder="Why were they present?"
+                      />
+                    </div>
+                    <div>
+                      <Label>Contact Information</Label>
+                      <Input
+                        value={formData.other_details.contact}
+                        onChange={(e) => setFormData(prev => ({
+                          ...prev,
+                          other_details: { ...prev.other_details, contact: e.target.value }
+                        }))}
+                        placeholder="Phone number or email"
+                      />
+                    </div>
+                  </div>
+                )}
 
                 <div className="flex items-center space-x-2">
                   <Checkbox
