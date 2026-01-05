@@ -50,7 +50,8 @@ export default function AdminPage() {
   });
   const [assignmentData, setAssignmentData] = useState({
     assigned_patients: [],
-    assigned_organizations: []
+    assigned_organizations: [],
+    allowed_forms: []
   });
   const [newNurseData, setNewNurseData] = useState({
     email: '',
@@ -172,7 +173,8 @@ export default function AdminPage() {
     setSelectedNurse(nurseItem);
     setAssignmentData({
       assigned_patients: nurseItem.assigned_patients || [],
-      assigned_organizations: nurseItem.assigned_organizations || []
+      assigned_organizations: nurseItem.assigned_organizations || [],
+      allowed_forms: nurseItem.allowed_forms || []
     });
     setShowAssignmentsDialog(true);
   };
@@ -207,6 +209,15 @@ export default function AdminPage() {
       assigned_organizations: prev.assigned_organizations.includes(org)
         ? prev.assigned_organizations.filter(o => o !== org)
         : [...prev.assigned_organizations, org]
+    }));
+  };
+
+  const toggleFormAccess = (form) => {
+    setAssignmentData(prev => ({
+      ...prev,
+      allowed_forms: prev.allowed_forms.includes(form)
+        ? prev.allowed_forms.filter(f => f !== form)
+        : [...prev.allowed_forms, form]
     }));
   };
 
