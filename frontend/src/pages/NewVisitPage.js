@@ -108,6 +108,14 @@ const initialVisitData = {
   },
   overall_health_status: '',
   nurse_notes: '',
+  medication_compliance: '',
+  concerns_actions: {
+    no_concerns: false,
+    no_corrective_actions: false
+  },
+  miscellaneous_info: '',
+  additional_notes: '',
+  attachments: [],
   daily_note_content: '',
   status: 'completed',
   screening_completed_by: '',
