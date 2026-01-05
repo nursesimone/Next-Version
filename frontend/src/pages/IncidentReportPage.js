@@ -247,6 +247,14 @@ export default function IncidentReportPage() {
     y += lineHeight;
     doc.setFont('helvetica', 'normal');
     doc.text(formData.reported_by, margin + 5, y);
+    y += lineHeight;
+    if (formData.reporter_cell) {
+      doc.text(`Cell: ${formData.reporter_cell}`, margin + 5, y);
+      y += lineHeight;
+    }
+    if (formData.reporter_email) {
+      doc.text(`Email: ${formData.reporter_email}`, margin + 5, y);
+    }
 
     // Save PDF
     doc.save(`Incident_Report_${formData.incident_date}.pdf`);
