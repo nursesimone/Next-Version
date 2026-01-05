@@ -61,7 +61,9 @@ export default function IncidentReportPage() {
     others_notified: '',
     outcome: '',
     additional_info: '',
-    reported_by: `${nurse?.full_name}, ${nurse?.title}`
+    reported_by: `${nurse?.full_name}, ${nurse?.title}`,
+    reporter_cell: '',
+    reporter_email: nurse?.email || ''
   });
 
   useEffect(() => {
