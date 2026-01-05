@@ -141,6 +141,74 @@ export default function AdminPage() {
     setShowNurseProfileDialog(true);
   };
 
+  const handleEditNurse = (nurseItem) => {
+    setSelectedNurse(nurseItem);
+    setEditNurseData({
+      full_name: nurseItem.full_name,
+      title: nurseItem.title,
+      license_number: nurseItem.license_number || '',
+      email: nurseItem.email
+    });
+    setShowEditNurseDialog(true);
+  };
+
+  const handleUpdateNurse = async (e) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem('nurse_token');
+      await axios.put(`${API}/admin/nurses/${selectedNurse.id}`, editNurseData, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      toast.success('Nurse updated successfully');
+      setShowEditNurseDialog(false);
+      fetchData();
+    } catch (error) {
+      toast.error('Failed to update nurse');
+    }
+  };
+
+  const handleManageAssignments = (nurseItem) => {
+    setSelectedNurse(nurseItem);
+    setAssignmentData({
+      assigned_patients: nurseItem.assigned_patients || [],
+      assigned_organizations: nurseItem.assigned_organizations || []
+    });
+    setShowAssignmentsDialog(true);
+  };
+
+  const handleUpdateAssignments = async (e) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem('nurse_token');
+      await axios.post(`${API}/admin/nurses/${selectedNurse.id}/assignments`, assignmentData, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      toast.success('Assignments updated successfully');
+      setShowAssignmentsDialog(false);
+      fetchData();
+    } catch (error) {
+      toast.error('Failed to update assignments');
+    }
+  };
+
+  const togglePatientAssignment = (patientId) => {
+    setAssignmentData(prev => ({
+      ...prev,
+      assigned_patients: prev.assigned_patients.includes(patientId)
+        ? prev.assigned_patients.filter(id => id !== patientId)
+        : [...prev.assigned_patients, patientId]
+    }));
+  };
+
+  const toggleOrganizationAssignment = (org) => {
+    setAssignmentData(prev => ({
+      ...prev,
+      assigned_organizations: prev.assigned_organizations.includes(org)
+        ? prev.assigned_organizations.filter(o => o !== org)
+        : [...prev.assigned_organizations, org]
+    }));
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
