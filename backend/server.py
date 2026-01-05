@@ -580,6 +580,27 @@ async def assign_nurses_to_patient(patient_id: str, nurse_ids: List[str], nurse:
         raise HTTPException(status_code=404, detail="Patient not found")
     return {"message": "Nurses assigned successfully"}
 
+@api_router.post("/incident-reports")
+async def create_incident_report(data: dict, nurse: dict = Depends(get_current_nurse)):
+    report = {
+        **data,
+        "id": str(uuid.uuid4()),
+        "nurse_id": nurse["id"],
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
+    await db.incident_reports.insert_one(report)
+    return {"message": "Incident report created successfully", "id": report["id"]}
+
+@api_router.get("/incident-reports")
+async def list_incident_reports(nurse: dict = Depends(get_current_nurse)):
+    if not nurse.get("is_admin"):
+        # Regular staff can only see their own reports
+        reports = await db.incident_reports.find({"nurse_id": nurse["id"]}, {"_id": 0}).sort("created_at", -1).to_list(1000)
+    else:
+        # Admins can see all reports
+        reports = await db.incident_reports.find({}, {"_id": 0}).sort("created_at", -1).to_list(1000)
+    return reports
+
 # ==================== PATIENT ENDPOINTS ====================
 @api_router.post("/patients", response_model=PatientResponse)
 async def create_patient(data: PatientCreate, nurse: dict = Depends(get_current_nurse)):
