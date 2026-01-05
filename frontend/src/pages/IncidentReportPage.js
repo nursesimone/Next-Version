@@ -511,26 +511,22 @@ export default function IncidentReportPage() {
               <CardTitle>Type of Incident *</CardTitle>
             </CardHeader>
             <CardContent>
-              <RadioGroup value={formData.incident_type} onValueChange={(value) => updateField('incident_type', value)} required>
-                <div className="space-y-2">
-                  {[
-                    { value: 'fall', label: 'Fall (includes slips, trips and falls)' },
-                    { value: 'medication_error', label: 'Medication Error' },
-                    { value: 'exposure', label: 'Exposure to chemicals/poisoning' },
-                    { value: 'near_miss', label: 'Near Misses (could\'ve/would\'ve aka close calls)' },
-                    { value: 'altercation', label: 'Altercation/Fight' },
-                    { value: 'fire', label: 'Fire' },
-                    { value: 'theft', label: 'Theft' },
-                    { value: 'death', label: 'Death' },
-                    { value: 'other', label: 'All other types of incidents' }
-                  ].map(type => (
-                    <div key={type.value} className="flex items-center space-x-2">
-                      <RadioGroupItem value={type.value} id={type.value} />
-                      <Label htmlFor={type.value} className="font-normal cursor-pointer">{type.label}</Label>
-                    </div>
-                  ))}
-                </div>
-              </RadioGroup>
+              <Select value={formData.incident_type} onValueChange={(value) => updateField('incident_type', value)} required>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select incident type..." />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="fall">Fall (includes slips, trips and falls)</SelectItem>
+                  <SelectItem value="medication_error">Medication Error</SelectItem>
+                  <SelectItem value="exposure">Exposure to chemicals/poisoning</SelectItem>
+                  <SelectItem value="near_miss">Near Misses (could've/would've aka close calls)</SelectItem>
+                  <SelectItem value="altercation">Altercation/Fight</SelectItem>
+                  <SelectItem value="fire">Fire</SelectItem>
+                  <SelectItem value="theft">Theft</SelectItem>
+                  <SelectItem value="death">Death</SelectItem>
+                  <SelectItem value="other">All other types of incidents</SelectItem>
+                </SelectContent>
+              </Select>
             </CardContent>
           </Card>
 
