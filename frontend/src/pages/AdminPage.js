@@ -652,6 +652,35 @@ export default function AdminPage() {
               </div>
             </div>
 
+            {/* Form Access */}
+            <div>
+              <Label className="text-base font-semibold mb-3 block">Form Access</Label>
+              <p className="text-sm text-slate-500 mb-3">
+                Control which forms this staff member can access
+              </p>
+              <div className="space-y-2">
+                {[
+                  { id: 'nurse_visit', label: 'Nurse Visit' },
+                  { id: 'vitals_only', label: 'Vital Signs' },
+                  { id: 'daily_note', label: 'Daily Note' },
+                  { id: 'intervention', label: 'Intervention' }
+                ].map(form => (
+                  <div key={form.id} className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      id={`form-${form.id}`}
+                      checked={assignmentData.allowed_forms.includes(form.id)}
+                      onChange={() => toggleFormAccess(form.id)}
+                      className="w-4 h-4 text-purple-600 rounded"
+                    />
+                    <label htmlFor={`form-${form.id}`} className="text-sm font-medium">
+                      {form.label}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             <div className="flex justify-end gap-2 pt-4 border-t">
               <Button type="button" variant="outline" onClick={() => setShowAssignmentsDialog(false)}>
                 Cancel
