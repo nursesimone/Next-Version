@@ -64,6 +64,7 @@ class NurseListResponse(BaseModel):
     is_admin: bool = False
     assigned_patients: List[str] = []  # List of patient IDs
     assigned_organizations: List[str] = []  # List of organizations
+    allowed_forms: List[str] = []  # List of form types allowed
 
 # ==================== PATIENT MODELS ====================
 class PatientPermanentInfo(BaseModel):
@@ -547,6 +548,7 @@ async def update_nurse(nurse_id: str, data: NurseUpdateRequest, nurse: dict = De
 class NurseAssignmentRequest(BaseModel):
     assigned_patients: List[str] = []
     assigned_organizations: List[str] = []
+    allowed_forms: List[str] = []
 
 @api_router.post("/admin/nurses/{nurse_id}/assignments")
 async def update_nurse_assignments(nurse_id: str, data: NurseAssignmentRequest, nurse: dict = Depends(get_current_nurse)):
@@ -557,7 +559,8 @@ async def update_nurse_assignments(nurse_id: str, data: NurseAssignmentRequest, 
         {"id": nurse_id}, 
         {"$set": {
             "assigned_patients": data.assigned_patients,
-            "assigned_organizations": data.assigned_organizations
+            "assigned_organizations": data.assigned_organizations,
+            "allowed_forms": data.allowed_forms
         }}
     )
     if result.modified_count == 0:
