@@ -37,22 +37,29 @@ Healthcare documentation application for in-home nurse visits
 - **Vital Signs Report:** Monthly report
 - All PDFs: Professional headers with organization name
 
-### 4. Incident Report Form
+### 4. Incident Report Form ✅ COMPLETE
 - Located in Reports section (red "Safety First" card)
 - **Fields:**
   - Organization, Date, Time
-  - **Involved Parties:** Resident/Patient (dropdown), Staff Member (dropdown - combines employee/management), Visitor (with details), Other (with details), No people
+  - **Involved Parties:** 
+    - Resident/Patient → Shows dropdown of patients in that org
+    - Staff Member → Shows dropdown of ALL staff in that org (combines employee/management)
+    - Visitor → Shows detail form (name, visiting whom, phone)
+    - Other → Shows detail form (name, reason, contact)
+    - Did not involve people
   - Type of Incident (dropdown - 9 types)
   - Location, Description, Severity slider (1-5)
   - Officials Called (checkboxes)
   - Attachments, Witnesses, Notifications
   - Outcome, Additional Info
-  - Reporter: Name, Cell Phone, Email
-- **JUST UPDATED:** 
-  - Combined Employee & Management into "Staff Member"
-  - Added visitor details form (name, visiting whom, phone)
-  - Added other details form (name, reason, contact)
-  - Changed "Removal" to "removal" in placeholder
+  - Reporter: Name, Cell Phone, Email (auto-populated)
+- **Latest Updates (Jan 5):** 
+  - ✅ Combined Employee & Management into single "Staff Member" option
+  - ✅ Added visitor details form (name, visiting whom, phone)
+  - ✅ Added other details form (name, reason, contact)
+  - ✅ Changed to dropdown for Type of Incident (saves space)
+  - ✅ Fixed "Removal" to "removal" in placeholder
+  - ✅ Reporter contact fields added (cell + email)
 
 ### 5. Form Signatures
 - **Nurse Visit:** Full certification section
@@ -87,11 +94,14 @@ From screenshots user provided:
 
 ## PENDING TASKS 📋
 
-### Immediate (User Just Requested):
-1. **Admin Panel - Staff Management:**
+### Immediate (User Just Requested - Jan 5):
+1. **Admin Panel - Staff Management:** ⏸️ IN PROGRESS
    - Move "Assignments" button INSIDE "Edit" dialog
    - Place after "License Number" field
    - Staff (non-admin) can only VIEW profile (no edit/assignments buttons)
+   
+2. **Incident Report Form Reset:** ⏸️ NEEDS COMPLETION
+   - Update form reset to include new fields (visitor_details, other_details, reporter_cell, reporter_email)
 
 ### Form Updates (Planned Phases):
 1. Complete Phase 1 section reordering
