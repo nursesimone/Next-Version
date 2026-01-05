@@ -342,6 +342,14 @@ export default function AdminPage() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => handleViewNurseProfile(nurseItem)}
+                    >
+                      <Eye className="w-4 h-4 mr-2" />
+                      View Profile
+                    </Button>
                     {nurseItem.is_admin && nurseItem.id !== nurse?.id && (
                       <Button
                         size="sm"
