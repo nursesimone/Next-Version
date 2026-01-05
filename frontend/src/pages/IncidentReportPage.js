@@ -704,8 +704,31 @@ export default function IncidentReportPage() {
             <CardHeader>
               <CardTitle>Incident Reported By</CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="font-medium">{formData.reported_by}</p>
+            <CardContent className="space-y-4">
+              <div>
+                <Label>Name & Title</Label>
+                <p className="font-medium mt-1">{formData.reported_by}</p>
+              </div>
+              
+              <div>
+                <Label>Contact Cell Phone</Label>
+                <Input
+                  type="tel"
+                  value={formData.reporter_cell}
+                  onChange={(e) => updateField('reporter_cell', e.target.value)}
+                  placeholder="Contact phone number"
+                />
+              </div>
+
+              <div>
+                <Label>Contact Email</Label>
+                <Input
+                  type="email"
+                  value={formData.reporter_email}
+                  onChange={(e) => updateField('reporter_email', e.target.value)}
+                  placeholder="Contact email address"
+                />
+              </div>
             </CardContent>
           </Card>
 
