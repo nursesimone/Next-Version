@@ -4,13 +4,26 @@ import { useAuth } from '../contexts/AuthContext';
 import { patientsAPI } from '../lib/api';
 import axios from 'axios';
 import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
+import { Label } from '../components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/card';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '../components/ui/dialog';
 import { 
   ArrowLeft, 
   Users, 
   UserCog, 
   Shield,
-  ChevronRight
+  ChevronRight,
+  Plus,
+  Eye,
+  Edit
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -23,6 +36,16 @@ export default function AdminPage() {
   const [nurses, setNurses] = useState([]);
   const [patients, setPatients] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showAddNurseDialog, setShowAddNurseDialog] = useState(false);
+  const [showNurseProfileDialog, setShowNurseProfileDialog] = useState(false);
+  const [selectedNurse, setSelectedNurse] = useState(null);
+  const [newNurseData, setNewNurseData] = useState({
+    email: '',
+    password: '',
+    full_name: '',
+    title: 'RN',
+    license_number: ''
+  });
 
   useEffect(() => {
     if (!nurse?.is_admin) {
