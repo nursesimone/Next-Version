@@ -524,6 +524,46 @@ async def demote_from_admin(nurse_id: str, nurse: dict = Depends(get_current_nur
         raise HTTPException(status_code=404, detail="Nurse not found")
     return {"message": "Admin privileges removed"}
 
+class NurseUpdateRequest(BaseModel):
+    full_name: Optional[str] = None
+    title: Optional[str] = None
+    license_number: Optional[str] = None
+    email: Optional[str] = None
+
+@api_router.put("/admin/nurses/{nurse_id}")
+async def update_nurse(nurse_id: str, data: NurseUpdateRequest, nurse: dict = Depends(get_current_nurse)):
+    if not nurse.get("is_admin"):
+        raise HTTPException(status_code=403, detail="Admin access required")
+    
+    update_data = {k: v for k, v in data.dict().items() if v is not None}
+    if not update_data:
+        raise HTTPException(status_code=400, detail="No data to update")
+    
+    result = await db.nurses.update_one({"id": nurse_id}, {"$set": update_data})
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="Nurse not found")
+    return {"message": "Nurse updated successfully"}
+
+class NurseAssignmentRequest(BaseModel):
+    assigned_patients: List[str] = []
+    assigned_organizations: List[str] = []
+
+@api_router.post("/admin/nurses/{nurse_id}/assignments")
+async def update_nurse_assignments(nurse_id: str, data: NurseAssignmentRequest, nurse: dict = Depends(get_current_nurse)):
+    if not nurse.get("is_admin"):
+        raise HTTPException(status_code=403, detail="Admin access required")
+    
+    result = await db.nurses.update_one(
+        {"id": nurse_id}, 
+        {"$set": {
+            "assigned_patients": data.assigned_patients,
+            "assigned_organizations": data.assigned_organizations
+        }}
+    )
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="Nurse not found")
+    return {"message": "Assignments updated successfully"}
+
 @api_router.post("/admin/patients/{patient_id}/assign")
 async def assign_nurses_to_patient(patient_id: str, nurse_ids: List[str], nurse: dict = Depends(get_current_nurse)):
     if not nurse.get("is_admin"):
