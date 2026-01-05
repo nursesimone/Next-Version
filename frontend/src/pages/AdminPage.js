@@ -377,6 +377,59 @@ export default function AdminPage() {
           </CardContent>
         </Card>
       </main>
+
+      {/* Nurse Profile Dialog */}
+      <Dialog open={showNurseProfileDialog} onOpenChange={setShowNurseProfileDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Nurse Profile</DialogTitle>
+          </DialogHeader>
+          {selectedNurse && (
+            <div className="space-y-4">
+              <div className="flex items-center gap-4 pb-4 border-b">
+                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center">
+                  <Users className="w-8 h-8 text-purple-600" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg flex items-center gap-2">
+                    {selectedNurse.full_name}
+                    {selectedNurse.is_admin && (
+                      <span className="px-2 py-0.5 bg-amber-100 text-amber-700 text-xs rounded font-medium">
+                        Admin
+                      </span>
+                    )}
+                  </h3>
+                  <p className="text-sm text-slate-500">{selectedNurse.title}</p>
+                </div>
+              </div>
+              
+              <div className="space-y-3">
+                <div>
+                  <Label className="text-slate-500">Email</Label>
+                  <p className="font-medium">{selectedNurse.email}</p>
+                </div>
+                
+                <div>
+                  <Label className="text-slate-500">License Number</Label>
+                  <p className="font-medium">{selectedNurse.license_number || 'Not provided'}</p>
+                </div>
+                
+                <div>
+                  <Label className="text-slate-500">Account Created</Label>
+                  <p className="font-medium">
+                    {new Date(selectedNurse.created_at).toLocaleDateString()}
+                  </p>
+                </div>
+                
+                <div>
+                  <Label className="text-slate-500">User ID</Label>
+                  <p className="font-mono text-xs text-slate-600">{selectedNurse.id}</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
