@@ -221,8 +221,9 @@ export default function DashboardPage() {
                       <SelectValue placeholder="Select organization" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="POSH-Able Living">POSH-Able Living</SelectItem>
+                      <SelectItem value="POSH Host Homes">POSH Host Homes</SelectItem>
                       <SelectItem value="Ebenezer Private HomeCare">Ebenezer Private HomeCare</SelectItem>
+                      <SelectItem value="Jericho">Jericho</SelectItem>
                       <SelectItem value="Other">Other</SelectItem>
                     </SelectContent>
                   </Select>
