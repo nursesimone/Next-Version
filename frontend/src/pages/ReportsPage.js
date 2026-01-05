@@ -260,6 +260,30 @@ export default function ReportsPage() {
       </header>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Incident Report Link - Similar to Unable to Contact */}
+        <Card className="bg-red-50 border-red-200 mb-6">
+          <CardContent className="pt-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center">
+                  <AlertTriangle className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-900">Safety First</h3>
+                  <p className="text-sm text-red-700">For all reportable incidents, Please fill out IMMEDIATELY</p>
+                </div>
+              </div>
+              <Button 
+                onClick={() => navigate('/incident-report')}
+                className="bg-red-600 hover:bg-red-500"
+              >
+                <FileText className="w-4 h-4 mr-2" />
+                Incident Report
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Filters */}
         <Card className="bg-white border-slate-100 mb-6">
           <CardHeader>
