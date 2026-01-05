@@ -367,12 +367,11 @@ export default function ReportsPage() {
                 <Label>Visit Type</Label>
                 <Select value={selectedVisitType} onValueChange={setSelectedVisitType}>
                   <SelectTrigger className="mt-1" data-testid="visit-type-filter-select">
-                    <SelectValue placeholder="All visit types" />
+                    <SelectValue placeholder="Select report type" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Visit Types</SelectItem>
-                    <SelectItem value="daily_note">Daily Notes Only</SelectItem>
-                    <SelectItem value="vitals_only">Vital Signs Only</SelectItem>
+                    <SelectItem value="daily_note">Daily Notes</SelectItem>
+                    <SelectItem value="vitals_only">Vital Signs</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
